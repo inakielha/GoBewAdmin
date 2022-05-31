@@ -3,13 +3,15 @@ import './App.css';
 import ProductsList from './components/products/productsList/ProductsList';
 import Nav from './components/nav/Nav';
 import CreationForm from './components/products/createForm/CreationForm';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <Nav/>
-      <ProductsList/>
-      <CreationForm/>
+      <Routes>
+        <Route exact path='/' element={[<Nav />, <ProductsList />]} />
+        <Route exact path='/product/new' element={[<CreationForm />]} />
+      </Routes>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function CreationImage() {
     const [img, setImg] = useState([]);
     const dispatch = useDispatch()
     const product = useSelector((state) => state.adminReducer.product)
-    console.log(product.data)
+    console.log(product)
 
     const uploadImage = (files) => {
         const formData = new FormData()
@@ -19,9 +19,11 @@ export default function CreationImage() {
                 .then((res) => {
                     console.log("es aca")
                     console.log(res.data)
+                    // "https://res.cloudinary.com/gobew10/image/upload/v1654012241/xzucjdjvl7kgjc0gvcs2.png"
+                    let imgLink = res.data.secure_url.slice(47)
                     dispatch(POST_IMAGE_ADMIN({
                         productId: product.data.product.productId,
-                        imageName: res.data.secure_url,
+                        imageName: imgLink,
                         imageAlt: product.data.product.productName,
                     }))
                 })

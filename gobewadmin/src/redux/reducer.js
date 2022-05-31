@@ -22,6 +22,6 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.categories = action.payload
     })
     builder.addCase(POST_IMAGE_ADMIN.fulfilled, (state, action)=> {
-        state.product = action.payload
+        state.product.images = [...state.product.images, action.payload]
     })
 })

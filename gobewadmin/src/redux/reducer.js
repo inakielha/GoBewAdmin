@@ -5,7 +5,10 @@ import { GET_PRODUCTS } from "./actions";
 const initialState = {
     products: [],
     product: {},
-    categories: []
+    categories: [],
+    auth: {
+        userId:'123'
+    }
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {

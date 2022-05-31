@@ -3,7 +3,7 @@ import { Login } from '../components/auth/Login';
 
 import Nav from "../components/nav/Nav"
 import ProductsList from "../components/products/productsList/ProductsList"
-// import { PrivateRoutes } from './PrivateRoutes';
+import { PrivateRoutes } from './PrivateRoutes';
 
 export const Navigation = () => {
   return (
@@ -11,9 +11,9 @@ export const Navigation = () => {
       <Nav/>
       <Routes>
         <Route path='/' element={ 
-        // <PrivateRoutes>
+        <PrivateRoutes>
             <ProductsList/>
-        // </PrivateRoutes>
+        </PrivateRoutes>
         } />
         <Route path='/login' element={ <Login /> } />
       </Routes>

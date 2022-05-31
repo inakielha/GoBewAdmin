@@ -5,7 +5,10 @@ import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, PO
 const initialState = {
     products: [],
     product: {},
-    categories: []
+    categories: [],
+    auth: {
+        userId:'123'
+    }
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {

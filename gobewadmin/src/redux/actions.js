@@ -9,3 +9,13 @@ export const GET_PRODUCTS = createAsyncThunk(
         return await response.json();
     }
 )
+export const POST_IMAGE_ADMIN = createAsyncThunk(
+    "POST_IMAGE_ADMIN", async (image) => {
+        try{
+            const res = await axios.post(`${REACT_APP_APIURL}images/new`,image);
+            return res
+        }catch (e){
+            console.log(image)
+        }
+    }
+)

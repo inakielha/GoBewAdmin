@@ -3,14 +3,14 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
 import { POST_IMAGE_ADMIN } from "../../../redux/actions";
 
+
 export default function CreationImage() {
     const [img, setImg] = useState([]);
     const dispatch = useDispatch()
     const product = useSelector((state) => state.adminReducer.product)
-    console.log(product.data)
+    console.log(product)
 
     const uploadImage = (files) => {
-        e.preventDefault();
         const formData = new FormData()
         img.forEach(ele => {
             formData.append("file", ele)
@@ -40,13 +40,12 @@ export default function CreationImage() {
                 console.log(img)
             }} />
             <ul>
-                <li>{img.map(pic => <li> {pic.name}
-                    <button type="button" key={pic.name} name={pic.name} onClick={(e) => handleDeleteImg(e)}>X</button>
+                <li>{img.map(pic => <li> {pic?.name}
+                    <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
                 </li>)}
                 </li>
             </ul>
             <button type="button" onClick={uploadImage}> Subir Imagen Prueba</button>
-            {/* <span>{error.productImage}</span> */}
         </div>
     )
 }

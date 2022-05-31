@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CREATE_CATEGORY, GET_CATEGORIES_ADMIN } from "../../../redux/actions";
-import validateForm from "../validation/validateForm";
 
 export default function CreationCategory() {
 
@@ -60,6 +59,8 @@ export default function CreationCategory() {
         <div>
             <label> Crear categoria: </label>
             <input type="text" placeholder="Categoria..." onChange={(e) => handleChangeCategory(e)} value={newCateg.categoryName} name='categoryName' />
+            <br />
+            <span>Para crear una categoria principal, no seleccionar categoria padre</span>
             <span>{error.newProductCategory || ''}</span>
         </div>
         <div>

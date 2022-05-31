@@ -7,7 +7,7 @@ import { POST_IMAGE_ADMIN } from "../../../redux/actions";
 export default function CreationImage() {
     const [img, setImg] = useState([]);
     const dispatch = useDispatch()
-    const product = useSelector((state) => state.adminReducer.products)
+    const product = useSelector((state) => state.adminReducer.product)
     console.log(product)
 
     const uploadImage = (files) => {

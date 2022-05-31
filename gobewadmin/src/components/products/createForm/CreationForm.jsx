@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CREATE_CATEGORY, CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../../redux/actions";
+import { Link } from "react-router-dom";
+import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../../redux/actions";
 import validateForm from "../validation/validateForm";
 
 export default function CreationForm() {
@@ -17,8 +17,7 @@ export default function CreationForm() {
         productPrice: '',
         productStock: '',
         productHighlight: false,
-        productCategories: [],
-        productImage: ''
+        productCategories: []
     })
 
     const [error, setError] = useState('');
@@ -35,11 +34,11 @@ export default function CreationForm() {
     }
 
     function handleSelect(event) {
-        if (input.productCategories.length < 5 && input.productCategories.indexOf(event.target.value) === -1) {
-            setInput({
-                ...input,
-                productCategories: [...input.productCategories, event.target.value]
-            })
+        if (input.productCategories.length < 5 && input.productCategories.indexOf(event.target.value) === -1 && input.productCategories.indexOf(event.target.value) !== '') {
+                setInput({
+                    ...input,
+                    productCategories: [...input.productCategories, event.target.value]
+                })
         }
     }
 
@@ -58,7 +57,6 @@ export default function CreationForm() {
             alert('Error: Ingresa los datos')
         } else if (Object.keys(error).length === 0) {
             dispatch(CREATE_PRODUCT(input));
-            console.log(input)
             alert('Producto creado');
         } else {
             console.log(Object.keys(error).length)
@@ -120,8 +118,11 @@ export default function CreationForm() {
             </div>
             <div>
                 <ul key={input.productCategories[0]}>
-                    <li key={input.productCategories[0]}>{input.productCategories?.map(el => <span key={el}>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></span>)}</li>
+                    <li key={input.productCategories[0]}>{input.productCategories?.map((el) => <span key={el}>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></span>)}</li>
                 </ul>
+            </div>
+            <div>
+                <Link to={'/categories/new'}><button>Crear categoria</button></Link>
             </div>
             <div>
                 <label>Activo: </label>

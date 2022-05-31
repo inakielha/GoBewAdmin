@@ -10,7 +10,6 @@ export default function CreationImage() {
     console.log(product.data)
 
     const uploadImage = (files) => {
-        e.preventDefault();
         const formData = new FormData()
         img.forEach(ele => {
             formData.append("file", ele)

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CREATE_CATEGORY, CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../../redux/actions";
 import validateForm from "../validation/validateForm";
+import CreationImage from "./CreationImage";
 
 export default function CreationForm() {
 
@@ -220,7 +221,7 @@ export default function CreationForm() {
             </div>
         </form>
         <div>
-            {/* <createImage key={'imageForm'} productId={}/> */}
+            <CreationImage/>
         </div>
     </div>
 

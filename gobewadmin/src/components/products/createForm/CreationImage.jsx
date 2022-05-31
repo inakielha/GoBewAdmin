@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
-import { POST_IMAGE_ADMIN } from "../../../../../../GoBewOriginalFront/src/admin/redux/actions";
+import { POST_IMAGE_ADMIN } from "../../../redux/actions";
+
 
 export default function CreationImage() {
     const [img, setImg] = useState([]);
@@ -10,7 +11,6 @@ export default function CreationImage() {
     console.log(product.data)
 
     const uploadImage = (files) => {
-        e.preventDefault();
         const formData = new FormData()
         img.forEach(ele => {
             formData.append("file", ele)
@@ -40,8 +40,8 @@ export default function CreationImage() {
                 console.log(img)
             }} />
             <ul>
-                <li>{img.map(pic => <li> {pic.name}
-                    <button type="button" key={pic.name} name={pic.name} onClick={(e) => handleDeleteImg(e)}>X</button>
+                <li>{img.map(pic => <li> {pic?.name}
+                    <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
                 </li>)}
                 </li>
             </ul>

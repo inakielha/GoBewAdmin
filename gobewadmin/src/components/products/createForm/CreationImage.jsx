@@ -7,8 +7,8 @@ import { POST_IMAGE_ADMIN } from "../../../redux/actions";
 export default function CreationImage() {
     const [img, setImg] = useState([]);
     const dispatch = useDispatch()
-    const product = useSelector((state) => state.adminReducer.product)
-    console.log(product.data)
+    const product = useSelector((state) => state.adminReducer.products)
+    console.log(product)
 
     const uploadImage = (files) => {
         const formData = new FormData()
@@ -46,7 +46,6 @@ export default function CreationImage() {
                 </li>
             </ul>
             <button type="button" onClick={uploadImage}> Subir Imagen Prueba</button>
-            {/* <span>{error.productImage}</span> */}
         </div>
     )
 }

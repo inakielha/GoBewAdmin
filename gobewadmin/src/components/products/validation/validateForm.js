@@ -9,7 +9,7 @@ export default function validateForm(input) {
     else if (input.productName.length > 30) errors.productName = "El nombre del producto debe contener menos de 30 caracteres"
 
     if (!soloNumeros.test(input.productDescription)) errors.productDescription = "La descripción no puede contener solo numeros"
-    else if (input.productDescription.lenght > 140) errors.productDescription = "La descripción del producto no debe contener mas de 140 caracteres"
+    else if (input.productDescription?.lenght > 140) errors.productDescription = "La descripción del producto no debe contener mas de 140 caracteres"
 
     if (!input.productPrice) errors.productPrice = "Debe asignarle un precio a su producto"
     else if (input.productPrice <= 0) errors.productPrice = "El precio no puede ser menor o igual a 0"

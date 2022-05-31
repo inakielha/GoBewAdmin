@@ -2,12 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
 import { POST_IMAGE_ADMIN } from "../../../redux/actions";
+const {REACT_APP_CLOUDINARY,REACT_APP_CLOUDINARY_KEY} = process.env
 
 
 export default function CreationImage() {
     const [img, setImg] = useState([]);
     const dispatch = useDispatch()
     const product = useSelector((state) => state.adminReducer.product)
+    const [primaryPic, setPrimaryPic] = useState("");
     console.log(product)
 
     const uploadImage = (files) => {
@@ -15,16 +17,20 @@ export default function CreationImage() {
         img.forEach(ele => {
             formData.append("file", ele)
             formData.append("upload_preset", "eh329sqm")
-            axios.post("https://api.cloudinary.com/v1_1/gobew10/image/upload", formData)
+            axios.post(REACT_APP_CLOUDINARY, formData)
                 .then((res) => {
-                    console.log("es aca")
                     console.log(res.data)
-                    // "https://res.cloudinary.com/gobew10/image/upload/v1654012241/xzucjdjvl7kgjc0gvcs2.png"
                     let imgLink = res.data.secure_url.slice(47)
+                    let fotoPrincipal = false
+                    let imgName = res.data.original_filename+"."+res.data.format;
+                    console.log(res.data.original_filename)
+                    // console.log (primaryPic)
+                    imgName === primaryPic? fotoPrincipal = true: false;
                     dispatch(POST_IMAGE_ADMIN({
                         productId: product.data.product.productId,
                         imageName: imgLink,
                         imageAlt: product.data.product.productName,
+                        imageIsPrimary: fotoPrincipal,
                     }))
                 })
             });
@@ -32,6 +38,9 @@ export default function CreationImage() {
     function handleDeleteImg(e) {
         let res = img.filter(pic => pic.name !== e.target.name)
         setImg(res)
+    }
+    function handlePrimary(e){
+        setPrimaryPic(e.target.name)
     }
 
     return (
@@ -43,12 +52,17 @@ export default function CreationImage() {
             }} />
             <ul>
                 <li>{img.map(pic => <li> {pic?.name}
+                <div>
+
                     <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
+                </div>
+                <div>
+                    <input type="radio" name={pic?.name} onClick={(e)=> handlePrimary(e)}/> Imagen principal
+                </div>
                 </li>)}
                 </li>
             </ul>
-            <button type="button" onClick={uploadImage}> Subir Imagen Prueba</button>
-            {/* <span>{error.productImage}</span> */}
+            <button type="button" onClick={uploadImage}> Subir Imagenes </button>
         </div>
     )
 }

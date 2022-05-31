@@ -5,7 +5,7 @@ import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, PO
 const initialState = {
     products: [],
     product: {},
-    categories: []
+    categories: [],
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {
@@ -22,6 +22,6 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.categories = action.payload
     })
     builder.addCase(POST_IMAGE_ADMIN.fulfilled, (state, action)=> {
-        state.product.images = [...state.product.images, action.payload]
+        state.product.data.product.images = action.payload.data.image
     })
 })

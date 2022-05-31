@@ -1,4 +1,4 @@
-import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const { REACT_APP_APIURL } = process.env;
 
@@ -42,6 +42,7 @@ export const POST_IMAGE_ADMIN = createAsyncThunk(
     "POST_IMAGE_ADMIN", async (image) => {
         try {
             const res = await axios.post(`${REACT_APP_APIURL}images/new`, image);
+            console.log(res)
             return res
         } catch (e) {
             console.log(image)

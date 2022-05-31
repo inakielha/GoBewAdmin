@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CREATE_CATEGORY, CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../../redux/actions";
-import validateForm from "../validation/validateForm";
+import validateForm from "./validateForm"
 
 export default function CreationForm() {
 

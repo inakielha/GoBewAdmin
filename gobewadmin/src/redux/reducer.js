@@ -6,12 +6,9 @@ const initialState = {
     products: [],
     product: {},
     categories: [],
-<<<<<<< HEAD
-=======
     auth: {
         userId:'123'
     }
->>>>>>> 251a252352556687306049d157531e5ab8112cef
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {

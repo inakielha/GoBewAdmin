@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
 import { POST_IMAGE_ADMIN } from "../../../redux/actions";
 
+
 export default function CreationImage() {
     const [img, setImg] = useState([]);
     const dispatch = useDispatch()
@@ -39,8 +40,8 @@ export default function CreationImage() {
                 console.log(img)
             }} />
             <ul>
-                <li>{img.map(pic => <li> {pic.name}
-                    <button type="button" key={pic.name} name={pic.name} onClick={(e) => handleDeleteImg(e)}>X</button>
+                <li>{img.map(pic => <li> {pic?.name}
+                    <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
                 </li>)}
                 </li>
             </ul>

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
-const {REACT_APP_APIURL} = process.env;
+const { REACT_APP_APIURL } = process.env;
 
 export const GET_PRODUCTS = createAsyncThunk(
     'GET_PRODUCTS', async () => {
@@ -37,3 +37,14 @@ export const GET_CATEGORIES_ADMIN = createAsyncThunk(
         const response = await fetch(`${REACT_APP_APIURL}categories`)
         return await response.json()
     })
+    
+export const POST_IMAGE_ADMIN = createAsyncThunk(
+    "POST_IMAGE_ADMIN", async (image) => {
+        try {
+            const res = await axios.post(`${REACT_APP_APIURL}images/new`, image);
+            return res
+        } catch (e) {
+            console.log(image)
+        }
+    }
+)

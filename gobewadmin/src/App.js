@@ -12,9 +12,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path='/' element={[<Nav />, <ProductsList />]} />
-        <Route exact path='/product/new' element={[<CreationForm />]} />
-        <Route exact path='/categories/new' element={[<CreationCategory />]} />
-        <Route exact path='/product/image' element={[<CreationImage />]} />
+        <Route exact path='/product/new' element={<CreationForm />} />
+        <Route exact path='/categories/new' element={<CreationCategory />} />
+        <Route exact path='/product/image' element={<CreationImage />} />
       </Routes>
     </div>
   );

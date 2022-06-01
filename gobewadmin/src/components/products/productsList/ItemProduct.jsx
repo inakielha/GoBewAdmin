@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GET_PRODUCTS, ORDER_PRODUCT } from '../../../redux/actions';
 import styles from '../../styles/tableProducts.module.css'
+import SearchBar from './SearchBar';
 
 
 export default function ItemProduct() {
@@ -74,19 +75,16 @@ export default function ItemProduct() {
     }
 
     return (
-        <>
-            <section>
+        <section>
+            <div>
+                <SearchBar/>
                 <button onClick={handleAlphaOrder} value="ASC">NOMBRE ↑</button>
                 <button onClick={handleAlphaOrder} value="DESC">NOMBRE ↓</button>
-            </section>
-            <section>
                 <button onClick={handlePriceOrder} value="DESC">PRECIO ↑</button>
                 <button onClick={handlePriceOrder} value="ASC">PRECIO ↓</button>
-            </section>
-            <section>
                 <button onClick={handleStockOrder} value="DESC">STOCK ↑</button>
                 <button onClick={handleStockOrder} value="ASC">STOCK ↓</button>
-            </section>
+            </div>
             <table className={styles.tableContainer}>
                 <thead className={styles.headTable}>
                     <th>Nombre del producto</th>
@@ -107,6 +105,6 @@ export default function ItemProduct() {
                     }
                 </tbody>
             </table>
-        </>
+        </section>
     )
 }

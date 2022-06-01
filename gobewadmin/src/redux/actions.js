@@ -3,15 +3,28 @@ import axios from "axios";
 const { REACT_APP_APIURL } = process.env;
 
 export const USER_LOGIN = createAsyncThunk(
-    'USER_LOGIN', async (userEmail, userPassword) => {
-        const response = await axios.get(`${REACT_APP_APIURL}users/authAdmin`, { userEmail, userPassword });
-        const body = await response.json()
-        if(body.ok){
-            localStorage.setItem('token', body.user.token); 
-            localStorage.setItem('token-init-date', new Date().getTime());
+    'USER_LOGIN', async (values) => {
+        try {
+            const response = await axios.post(`${REACT_APP_APIURL}users/authAdmin`, values);
+            if(response.data.ok){
+                localStorage.setItem('token', response.data.token); 
+                localStorage.setItem('token-init-date', new Date().getTime());
+            }
+            return response.data;
+        } catch (error) {
+            return {
+                ok: false,
+                msg: 'Usuario no encontrado',
+                userId:'',
+                userEmail: '',
+                userFirstName: '',
+                userLastName: '',
+                userIsAdmin: false,
+                userIsSuperAdmin: false,
+            }
         }
-    }
-)
+  }
+);
 export const GET_PRODUCTS = createAsyncThunk(
     'GET_PRODUCTS', async () => {
         const response = await fetch(`${REACT_APP_APIURL}product`);

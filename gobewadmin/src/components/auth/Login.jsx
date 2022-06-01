@@ -1,12 +1,30 @@
 import  { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { USER_LOGIN } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-export const Login = () => (
+export const Login = () => {
+  const dispatch = useDispatch();
+  const { auth: {userId, ok} } = useSelector((store) => store.adminReducer);
+  
+  const navigate = useNavigate();
+  const path = localStorage.getItem('lastPath');
+
+  useEffect(() => {
+    if(userId !=='') {
+      return   (path) && navigate(path, {replace: true})
+    }
+
+  }, [userId, navigate, path])
+
+  return (
+
   <div>
-    <h1>My Form</h1>
+    <h1>Login</h1>
+    { (!ok) && <span>Usuario no encontrado.</span>}
     <Formik
       initialValues={{
                   userEmail:'',
@@ -21,7 +39,8 @@ export const Login = () => (
               }
       onSubmit={(values, actions) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+          dispatch(USER_LOGIN(values))
+          // console.log(values)
           actions.setSubmitting(false);
         }, 1000);
       }}
@@ -36,4 +55,4 @@ export const Login = () => (
       )}
     </Formik>
   </div>
-);
+)};

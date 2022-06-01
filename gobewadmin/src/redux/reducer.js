@@ -6,23 +6,27 @@ const initialState = {
     product: {},
     categories: [],
     auth: {
+        ok: true,
         userId:'',
         userEmail: '',
-        userName: '',
+        userFirstName: '',
         userLastName: '',
         userIsAdmin: false,
-        userIsSuperAdmin: false
+        userIsSuperAdmin: false,
+        msg: ''
     }
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {
     builder.addCase(USER_LOGIN.fulfilled, (state, action) => {
-        state.auth.userId = action.payload.user.userId;
-        state.auth.userEmail = action.payload.user.userEmail;
-        state.auth.userName = action.payload.user.userName;
-        state.auth.userLastName = action.payload.user.userLastName;
-        state.auth.userIsAdmin = action.payload.user.userIsAdmin;
-        state.auth.userIsSuperAdmin = action.payload.user.userIsSuperAdmin;
+        state.auth.userId = action.payload.userId;
+        state.auth.userEmail = action.payload.userEmail;
+        state.auth.userFirstName = action.payload.userFirstName;
+        state.auth.userLastName = action.payload.userLastName;
+        state.auth.userIsAdmin = action.payload.userIsAdmin;
+        state.auth.userIsSuperAdmin = action.payload.userIsSuperAdmin;
+        state.auth.ok = action.payload.ok;
+        state.auth.msg = action.payload.msg;
     })
 
     builder.addCase(GET_PRODUCTS.fulfilled, (state, action) => {

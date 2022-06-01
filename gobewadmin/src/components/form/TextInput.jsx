@@ -1,6 +1,6 @@
 import { useField, ErrorMessage } from 'formik'
 
-//Text input type puede ser text, email o password
+//Text input type puede ser text, email, password o number
 export const TextInput = ({label, ...props}) => {
     const [ field ] = useField(props);
   return (

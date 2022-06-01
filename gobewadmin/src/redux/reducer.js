@@ -1,17 +1,30 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT } from "./actions";
-
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, , USER_LOGIN } from "./actions";
 
 const initialState = {
     products: [],
     product: {},
     categories: [],
     auth: {
-        userId:'123'
+        userId:'',
+        userEmail: '',
+        userName: '',
+        userLastName: '',
+        userIsAdmin: false,
+        userIsSuperAdmin: false
     }
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {
+    builder.addCase(USER_LOGIN.fulfilled, (state, action) => {
+        state.auth.userId = action.payload.user.userId;
+        state.auth.userEmail = action.payload.user.userEmail;
+        state.auth.userName = action.payload.user.userName;
+        state.auth.userLastName = action.payload.user.userLastName;
+        state.auth.userIsAdmin = action.payload.user.userIsAdmin;
+        state.auth.userIsSuperAdmin = action.payload.user.userIsSuperAdmin;
+    })
+
     builder.addCase(GET_PRODUCTS.fulfilled, (state, action) => {
         state.products = action.payload.productList;
     })

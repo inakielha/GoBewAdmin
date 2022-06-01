@@ -2,6 +2,16 @@ import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const { REACT_APP_APIURL } = process.env;
 
+export const USER_LOGIN = createAsyncThunk(
+    'USER_LOGIN', async (userEmail, userPassword) => {
+        const response = await axios.get(`${REACT_APP_APIURL}users/authAdmin`, { userEmail, userPassword });
+        const body = await response.json()
+        if(body.ok){
+            localStorage.setItem('token', body.user.token); 
+            localStorage.setItem('token-init-date', new Date().getTime());
+        }
+    }
+)
 export const GET_PRODUCTS = createAsyncThunk(
     'GET_PRODUCTS', async () => {
         const response = await fetch(`${REACT_APP_APIURL}product`);

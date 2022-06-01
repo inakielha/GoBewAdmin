@@ -8,7 +8,7 @@ export const PrivateRoutes = ({ children }) => {
   
     return !!userId 
       ?  children
-      : <Navigate to='/login' />
+      :  <Navigate to='/login' />
       
 }
 

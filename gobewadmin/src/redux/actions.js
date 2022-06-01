@@ -15,7 +15,6 @@ export const USER_LOGIN = createAsyncThunk(
 export const GET_PRODUCTS = createAsyncThunk(
     'GET_PRODUCTS', async () => {
         const response = await fetch(`${REACT_APP_APIURL}product`);
-        // console.log(`${REACT_APP_APIURL}product`)
         return await response.json();
     }
 )
@@ -56,6 +55,13 @@ export const POST_IMAGE_ADMIN = createAsyncThunk(
         } catch (e) {
             console.log(image)
         }
+    }
+)
+
+export const SEARCH_PRODUCT = createAsyncThunk(
+    'SEARCH_PRODUCT', async (productName) => {
+        const response = await fetch(`${REACT_APP_APIURL}product/name/${productName}`)
+        return await response.json()
     }
 )
 

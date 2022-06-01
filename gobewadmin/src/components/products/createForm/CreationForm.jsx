@@ -21,6 +21,7 @@ export default function CreationForm() {
     })
 
     const [error, setError] = useState('');
+    const [disabledImg, setDisabledImg] = useState(true);
 
     function handleChange(event) {
         setInput((prevState) => {
@@ -49,15 +50,17 @@ export default function CreationForm() {
             productCategories: res
         })
     }
-
+    
     function handleSubmit(event) {
         event.preventDefault();
         if (input.productName.length === 0) {
             setError(1)
             alert('Error: Ingresa los datos')
         } else if (Object.keys(error).length === 0) {
+            console.log('Hola')
             dispatch(CREATE_PRODUCT(input));
             alert('Producto creado');
+            setDisabledImg(false)
         } else {
             console.log(Object.keys(error).length)
             alert('Error: Corregi los errores')
@@ -137,8 +140,12 @@ export default function CreationForm() {
                 <span>{error.productHighlight}</span>
             </div>
             <div>
-                <button type="submit">Crear producto</button>
+                <button type="submit" >Crear producto</button>
             </div>
         </form>
+        <span>Luego de crear su producto haga click en este boton</span>
+        <div>
+            <Link to={'/product/image'}><button disabled={disabledImg}>Agregar imagen</button></Link>
+        </div>
     </div>
 }

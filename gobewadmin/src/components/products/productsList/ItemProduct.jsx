@@ -33,11 +33,59 @@ export default function ItemProduct() {
         }
     }
 
+    const handlePriceOrder = (e) =>{
+        let prod = [...products]
+        if(e.target.value === 'ASC'){
+            let productsSorted = prod.sort((a,b)=>{
+                if(a.productPrice < b.productPrice) return -1
+                if(a.productPrice > b.productPrice) return 1
+                return 0
+            })
+            dispatch(ORDER_PRODUCT(productsSorted))
+        }
+        if(e.target.value === 'DESC'){
+            let productsSorted = prod.sort((a,b)=>{
+                if(a.productPrice < b.productPrice) return 1
+                if(a.productPrice > b.productPrice) return -1
+                return 0
+            })
+            dispatch(ORDER_PRODUCT(productsSorted))
+        }
+    }
+
+    const handleStockOrder = (e) =>{
+        let prod = [...products]
+        if(e.target.value === 'ASC'){
+            let productsSorted = prod.sort((a,b)=>{
+                if(a.productStock < b.productStock) return -1
+                if(a.productStock > b.productStock) return 1
+                return 0
+            })
+            dispatch(ORDER_PRODUCT(productsSorted))
+        }
+        if(e.target.value === 'DESC'){
+            let productsSorted = prod.sort((a,b)=>{
+                if(a.productStock < b.productStock) return 1
+                if(a.productStock > b.productStock) return -1
+                return 0
+            })
+            dispatch(ORDER_PRODUCT(productsSorted))
+        }
+    }
+
     return (
         <>
             <section>
                 <button onClick={handleAlphaOrder} value="ASC">NOMBRE ↑</button>
                 <button onClick={handleAlphaOrder} value="DESC">NOMBRE ↓</button>
+            </section>
+            <section>
+                <button onClick={handlePriceOrder} value="DESC">PRECIO ↑</button>
+                <button onClick={handlePriceOrder} value="ASC">PRECIO ↓</button>
+            </section>
+            <section>
+                <button onClick={handleStockOrder} value="DESC">STOCK ↑</button>
+                <button onClick={handleStockOrder} value="ASC">STOCK ↓</button>
             </section>
             <table className={styles.tableContainer}>
                 <thead className={styles.headTable}>

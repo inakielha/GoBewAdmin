@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT } from "./actions";
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT } from "./actions";
 
 
 const initialState = {
@@ -28,6 +28,9 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.product.data.product.images = action.payload.data.image
     })
     builder.addCase(ORDER_PRODUCT, (state, action)=>{
+        state.products = action.payload
+    })
+    builder.addCase(SEARCH_PRODUCT.fulfilled, (state, action) =>{
         state.products = action.payload
     })
 })

@@ -1,5 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { fetchConToken } from "../helpers/fetch";
 const { REACT_APP_APIURL } = process.env;
 
 export const USER_LOGIN = createAsyncThunk(
@@ -11,10 +12,38 @@ export const USER_LOGIN = createAsyncThunk(
                 localStorage.setItem('token-init-date', new Date().getTime());
             }
             return response.data;
+
         } catch (error) {
             return {
                 ok: false,
                 msg: 'Usuario no encontrado',
+                userId:'',
+                userEmail: '',
+                userFirstName: '',
+                userLastName: '',
+                userIsAdmin: false,
+                userIsSuperAdmin: false,
+            }
+        }
+  }
+);
+export const CHECK_LOGIN = createAsyncThunk(
+    'CHECK_LOGIN', async () => {
+        try {
+            
+            const response = await fetchConToken(`users/adminRenew`);
+            const body = await response.json();
+            if(body.ok){
+                localStorage.setItem('token', body.token); 
+                localStorage.setItem('token-init-date', new Date().getTime());
+            }
+            console.log(body)
+            return body;
+
+        } catch (error) {
+            return {
+                ok: false,
+                msg: 'Token no válido',
                 userId:'',
                 userEmail: '',
                 userFirstName: '',

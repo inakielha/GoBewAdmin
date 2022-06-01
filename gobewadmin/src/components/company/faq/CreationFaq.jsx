@@ -28,7 +28,7 @@ export default function CreationFaq() {
             }}
         >
             {props => (
-                <form>
+                <form onSubmit={onSubmit}>
                     <TextInput label='Pregunta ' name='faqTitle' type='text' placeholder='Introduci tu pregunta' />
                     <TextInput label=' Respuesta ' name='faqDescription' type='text' placeholder='Respuesta' />
                     <TextInput label=' Orden ' name='faqOrder' type='text' placeholder='Orden de muestra' />

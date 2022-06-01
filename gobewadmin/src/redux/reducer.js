@@ -6,7 +6,7 @@ const initialState = {
     product: {},
     categories: [],
     auth: {
-        userId:'',
+        userId:'123',
         userEmail: '',
         userName: '',
         userLastName: '',

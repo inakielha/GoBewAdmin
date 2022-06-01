@@ -6,8 +6,9 @@ import CreationForm from '../components/products/createForm/CreationForm';
 import CreationImage from '../components/products/createForm/CreationImage';
 import CreationCategory from '../components/products/createForm/CreationCategory';
 
-import ProductsList from "../components/products/productsList/ProductsList"
+
 import { PrivateRoutes } from './PrivateRoutes';
+import ItemProduct from '../components/products/productsList/ItemProduct';
 
 export const Navigation = () => {
   return (
@@ -16,7 +17,7 @@ export const Navigation = () => {
       <Routes>
         <Route path='/' element={ 
         <PrivateRoutes>
-            <ProductsList/>
+            <ItemProduct/>
         </PrivateRoutes>
         } />
       

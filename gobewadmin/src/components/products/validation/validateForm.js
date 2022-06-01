@@ -1,6 +1,6 @@
 export default function validateForm(input) {
     const errors = {};
-    const regex = /[A-z\s\d][\\\^]?/
+    const regex = /[A-z\s\d][\\^]?/
     const soloNumeros = /\D/g
 
     if (!input.productName) errors.productName = "El nombre del producto es obligatorio"

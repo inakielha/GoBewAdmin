@@ -2,20 +2,27 @@ import React, { useEffect } from 'react'
 import styles from '../styles/nav.module.css'
 import Logo from '../../images/Logo-GoBew.png'
 import { Link, useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { USER_LOGOUT } from '../../redux/actions'
+import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux'
+// import { USER_LOGOUT } from '../../redux/actions'
 
 export default function Nav() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const location = useLocation();
     useEffect(() => {
         (location.pathname !== '/login')
             && localStorage.setItem('lastPath', location.pathname)
     }, [location])
 
-
+    const navigate = useNavigate();
     const handleLogout = () => {
-        dispatch(USER_LOGOUT());
+        // dispatch(USER_LOGOUT());
+        sessionStorage.removeItem('userFirstName');
+        sessionStorage.removeItem('userId');
+        sessionStorage.removeItem('userIsAdmin');
+        sessionStorage.removeItem('userIsSuperAdmin');
+
+        return    navigate('/login', {replace: true})
     }
     return (
         <nav>

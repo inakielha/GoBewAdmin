@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { PUT_USERS } from '../../redux/actions';
 
 
-export default function TableRow({ userFirstName, userLastName, userEmail, userIsActive, userIsAdmin, userIsGoogle, userIsSuperAdmin }) {
+export default function TableRow({ userFirstName, userLastName, userEmail, userIsActive, userIsAdmin, userIsGoogle, userIsSuperAdmin, _id }) {
     const [edit, setEdit] = useState(false)
+    const dispatch = useDispatch();
     const [userChange, setUserChange] = useState({
+        userId : _id,
         userFirstName,
         userLastName,
         userEmail,
@@ -32,6 +36,8 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
     }
 
     const handleSubmit = (e) => {
+        console.log(userChange.userId)
+        dispatch(PUT_USERS(userChange))
         setReady(false)
         setEdit(false)
     }

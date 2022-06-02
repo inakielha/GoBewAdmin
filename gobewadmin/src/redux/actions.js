@@ -132,6 +132,16 @@ export const GET_USERS = createAsyncThunk(
     }
 )
 
+export const PUT_USERS = createAsyncThunk(
+    'PUT_USERS', async (values) => {
+        const response = await axios.put(`${REACT_APP_APIURL}users`, values)
+        const body = await response.json()
+        return body
+    }
+)
+
+
+
 export const ORDER_PRODUCT = createAction(
     'ORDER_PRODUCT', (productsOrder) => {
         return {

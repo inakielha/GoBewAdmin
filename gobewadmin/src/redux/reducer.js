@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN, CHECK_LOGIN, USER_LOGOUT, GET_USERS } from "./actions";
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN, CHECK_LOGIN, USER_LOGOUT, GET_USERS, PUT_USERS } from "./actions";
 
 const initialState = {
     products: [],
@@ -13,7 +13,8 @@ const initialState = {
         userIsSuperAdmin: false,
         msg: ''
     },
-    users: []
+    users: [],
+    user: {}
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {
@@ -62,5 +63,8 @@ export const adminReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(GET_USERS.fulfilled, (state, action) => {
         state.users = action.payload.users
+    })
+    builder.addCase(PUT_USERS.fulfilled, (state, action) => {
+        state.user = action.payload
     })
 })

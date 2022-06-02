@@ -29,7 +29,7 @@ export default function Users() {
                     {
                         users?.map(u =>{
                             return(
-                                <TableRow userFirstName={u.userFirstName} userLastName={u.userLastName} userEmail={u.userEmail} userIsActive={u.userIsActive} userIsAdmin={u.userIsAdmin} userIsGoogle={u.userIsGoogle} userIsSuperAdmin={u.userIsSuperAdmin} />
+                                <TableRow userFirstName={u.userFirstName} userLastName={u.userLastName} userEmail={u.userEmail} userIsActive={u.userIsActive} userIsAdmin={u.userIsAdmin} userIsGoogle={u.userIsGoogle} userIsSuperAdmin={u.userIsSuperAdmin} _id={u._id} />
                             )
                         })
                     }

@@ -68,7 +68,7 @@ export const adminReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(PUT_USERS.fulfilled, (state, action) => {
         state.user = action.payload
-
+    })
     builder.addCase(GET_FAQS.fulfilled, (state, action) => {
         state.faqs = action.payload
     })

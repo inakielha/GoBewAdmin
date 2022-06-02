@@ -5,6 +5,7 @@ const initialState = {
     products: [],
     product: {},
     categories: [],
+    faqs: [],
     auth: {
         ok: true,
         userId:'',
@@ -58,5 +59,12 @@ export const adminReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(SEARCH_PRODUCT.fulfilled, (state, action) =>{
         state.products = action.payload
+    })
+    builder.addCase(GET_FAQS.fulfilled, (state, action) => {
+        state.faqs = action.payload
+    })
+    builder.addCase(POST_FAQS.fulfilled, (state, action) => {
+        state.faqs = action.payload
+        console.log(state)
     })
 })

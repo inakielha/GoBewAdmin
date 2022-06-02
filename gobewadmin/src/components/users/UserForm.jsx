@@ -44,7 +44,7 @@ export const UserForm = () => {
                             <TextInput label='Password' name='userPassword' type='password' placeholder='password' />
                             <TextInput label='First Name' name='userFirstName' type='text' placeholder='first name' />
                             <TextInput label='Last Name' name='userLastName' type='text' placeholder='last name' />
-                            <CheckBox label='Active' type='checkbox' name='userIsActive' />
+                            <CheckBox label='Active' type='checkbox' name='userIsActive'  />
                             <CheckBox label='Admin' type='checkbox' name='userIsAdmin' />
                             <CheckBox label='Google'type='checkbox' name='userIsGoogle' />
                             <CheckBox label='Super Admin' type='checkbox' name='userIsSuperAdmin' />

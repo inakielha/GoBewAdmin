@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GET_PRODUCTS, ORDER_PRODUCT } from '../../../redux/actions';
 import styles from '../../styles/tableProducts.module.css'
 import SearchBar from './SearchBar';
-
+import TableRow from './TableRow';
 
 export default function ItemProduct() {
 
@@ -95,11 +95,7 @@ export default function ItemProduct() {
                     {
                         products?.map(p => {
                             return (
-                                <tr>
-                                    <td>{p.productName}</td>
-                                    <td className={styles.stockContainer}>{p.productStock}</td>
-                                    <td className={styles.priceContainer}>{p.productPrice}</td>
-                                </tr>
+                                <TableRow productName={p.productName} productStock={p.productStock} productPrice={p.productPrice}/>
                             )
                         })
                     }

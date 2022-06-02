@@ -9,6 +9,7 @@ import CreationCategory from '../components/products/createForm/CreationCategory
 
 import { PrivateRoutes } from './PrivateRoutes';
 import ItemProduct from '../components/products/productsList/ItemProduct';
+import { UserForm } from '../components/users/UserForm';
 
 export const Navigation = () => {
   return (
@@ -24,7 +25,7 @@ export const Navigation = () => {
         <Route exact path='/product/new' element={[<CreationForm />]} />
         <Route exact path='/categories/new' element={[<CreationCategory />]} />
         <Route exact path='/product/image' element={[<CreationImage />]} />
-      
+        <Route exact path='/user' element={<UserForm/>} />
         <Route path='/login' element={ <Login /> } />
       </Routes>
     </Router>

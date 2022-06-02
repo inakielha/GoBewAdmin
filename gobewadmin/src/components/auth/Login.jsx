@@ -1,4 +1,4 @@
-import  { Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
 

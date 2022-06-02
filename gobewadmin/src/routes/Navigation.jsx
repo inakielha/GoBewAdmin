@@ -30,7 +30,7 @@ export const Navigation = () => {
         } />
         <Route exact path='/user' element={
           <PrivateRoutes>
-            {/* <UserForm /> */}
+            <UserForm />
             <Users/>
           </PrivateRoutes>
         } />

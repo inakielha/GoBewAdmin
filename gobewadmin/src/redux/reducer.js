@@ -1,30 +1,43 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN } from "./actions";
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN, CHECK_LOGIN, USER_LOGOUT } from "./actions";
 
 const initialState = {
     products: [],
     product: {},
     categories: [],
     auth: {
-        userId:'123',
-        userEmail: '',
-        userName: '',
-        userLastName: '',
+        ok: true,
+        userId:'',
+        userFirstName: '',
         userIsAdmin: false,
-        userIsSuperAdmin: false
+        userIsSuperAdmin: false,
+        msg: ''
     }
 }
 
 export const adminReducer = createReducer(initialState, (builder) => {
     builder.addCase(USER_LOGIN.fulfilled, (state, action) => {
-        state.auth.userId = action.payload.user.userId;
-        state.auth.userEmail = action.payload.user.userEmail;
-        state.auth.userName = action.payload.user.userName;
-        state.auth.userLastName = action.payload.user.userLastName;
-        state.auth.userIsAdmin = action.payload.user.userIsAdmin;
-        state.auth.userIsSuperAdmin = action.payload.user.userIsSuperAdmin;
+        state.auth.userId = action.payload.userId;
+        state.auth.userFirstName = action.payload.userFirstName;
+        state.auth.userIsAdmin = action.payload.userIsAdmin;
+        state.auth.userIsSuperAdmin = action.payload.userIsSuperAdmin;
+        state.auth.ok = action.payload.ok;
+        state.auth.msg = action.payload.msg;
+    })
+    
+    builder.addCase(CHECK_LOGIN.fulfilled, (state, action) => {
+        state.auth.userId = action.payload.userId;
+        state.auth.userFirstName = action.payload.userFirstName;
+        state.auth.userIsAdmin = action.payload.userIsAdmin;
+        state.auth.userIsSuperAdmin = action.payload.userIsSuperAdmin;
+        state.auth.ok = action.payload.ok;
+        state.auth.msg = action.payload.msg;
     })
 
+    builder.addCase(USER_LOGOUT, (state, action) => {
+        state.auth = initialState.auth;
+    })
+    
     builder.addCase(GET_PRODUCTS.fulfilled, (state, action) => {
         state.products = action.payload.productList;
     })

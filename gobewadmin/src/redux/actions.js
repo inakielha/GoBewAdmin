@@ -6,8 +6,8 @@ export const USER_LOGIN = createAsyncThunk(
     'USER_LOGIN', async (userEmail, userPassword) => {
         const response = await axios.get(`${REACT_APP_APIURL}users/authAdmin`, { userEmail, userPassword });
         const body = await response.json()
-        if(body.ok){
-            localStorage.setItem('token', body.user.token); 
+        if (body.ok) {
+            localStorage.setItem('token', body.user.token);
             localStorage.setItem('token-init-date', new Date().getTime());
         }
     }
@@ -36,7 +36,7 @@ export const CREATE_CATEGORY = createAsyncThunk(
             const res = await axios.post(`${REACT_APP_APIURL}categories/new`, categ);
             return res
         } catch (e) {
-            console.log(categ)
+            console.log(e)
         }
     }
 )
@@ -46,14 +46,14 @@ export const GET_CATEGORIES_ADMIN = createAsyncThunk(
         const response = await fetch(`${REACT_APP_APIURL}categories`)
         return await response.json()
     })
-    
+
 export const POST_IMAGE_ADMIN = createAsyncThunk(
     "POST_IMAGE_ADMIN", async (image) => {
         try {
             const res = await axios.post(`${REACT_APP_APIURL}images/new`, image);
             return res
         } catch (e) {
-            console.log(image)
+            console.log(e)
         }
     }
 )
@@ -66,9 +66,28 @@ export const SEARCH_PRODUCT = createAsyncThunk(
 )
 
 export const ORDER_PRODUCT = createAction(
-    'ORDER_PRODUCT', (productsOrder) =>{
-        return{
+    'ORDER_PRODUCT', (productsOrder) => {
+        return {
             payload: productsOrder
+        }
+    }
+)
+
+export const GET_FAQS = createAsyncThunk(
+    'GET_FAQS', async () => {
+        const response = await fetch(`${REACT_APP_APIURL}faqs`)
+        return await response.json()
+    }
+)
+
+export const POST_FAQS = createAsyncThunk(
+    'POST_FAQS', async (faq) => {
+        try {
+            const response = await axios.post(`${REACT_APP_APIURL}faqs`, faq)
+            console.log(response)
+            return response
+        } catch (error) {
+            console.log(error)
         }
     }
 )

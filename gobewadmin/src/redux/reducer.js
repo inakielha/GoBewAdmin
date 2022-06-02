@@ -1,10 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN } from "./actions";
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN, GET_FAQS, POST_FAQS } from "./actions";
 
 const initialState = {
     products: [],
     product: {},
     categories: [],
+    faqs: [],
     auth: {
         userId:'123',
         userEmail: '',
@@ -45,5 +46,12 @@ export const adminReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(SEARCH_PRODUCT.fulfilled, (state, action) =>{
         state.products = action.payload
+    })
+    builder.addCase(GET_FAQS.fulfilled, (state, action) => {
+        state.faqs = action.payload
+    })
+    builder.addCase(POST_FAQS.fulfilled, (state, action) => {
+        state.faqs = action.payload
+        console.log(state)
     })
 })

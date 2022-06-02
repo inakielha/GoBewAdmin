@@ -10,7 +10,7 @@ import CreationCategory from '../components/products/createForm/CreationCategory
 import { PrivateRoutes } from './PrivateRoutes';
 import ItemProduct from '../components/products/productsList/ItemProduct';
 import CreationFaq from '../components/company/faq/CreationFaq';
-import FaqsCreated from '../components/company/faq/FaqsCreated';
+import FaqCardContainer from '../components/company/faq/FaqCardContainer';
 
 export const Navigation = () => {
   return (
@@ -26,7 +26,7 @@ export const Navigation = () => {
         <Route exact path='/product/new' element={[<CreationForm />]} />
         <Route exact path='/categories/new' element={[<CreationCategory />]} />
         <Route exact path='/product/image' element={[<CreationImage />]} />
-        <Route exact path='/faq' element={[<CreationFaq />, <FaqsCreated/>]} />
+        <Route exact path='/faq' element={[<CreationFaq />, <FaqCardContainer/>]} />
       
         <Route path='/login' element={ <Login /> } />
       </Routes>

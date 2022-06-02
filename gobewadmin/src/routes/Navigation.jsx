@@ -10,6 +10,7 @@ import { UserForm } from '../components/users/UserForm';
 import { PrivateRoutes } from './PrivateRoutes';
 import ItemProduct from '../components/products/productsList/ItemProduct';
 import CreationFaq from '../components/company/faq/CreationFaq';
+import Users from '../components/users/Users';
 // import FaqsCreated from '../components/company/faq/FaqsCreated';
 
 export const Navigation = () => {
@@ -29,7 +30,8 @@ export const Navigation = () => {
         } />
         <Route exact path='/user' element={
           <PrivateRoutes>
-            <UserForm />
+            {/* <UserForm /> */}
+            <Users/>
           </PrivateRoutes>
         } />
 

@@ -7,8 +7,8 @@ export const USER_LOGIN = createAsyncThunk(
     'USER_LOGIN', async (values) => {
         try {
             const response = await axios.post(`${REACT_APP_APIURL}users/authAdmin`, values);
-            if(response.data.ok){
-                localStorage.setItem('token', response.data.token); 
+            if (response.data.ok) {
+                localStorage.setItem('token', response.data.token);
                 localStorage.setItem('token-init-date', new Date().getTime());
             }
             return response.data;
@@ -17,7 +17,7 @@ export const USER_LOGIN = createAsyncThunk(
             return {
                 ok: false,
                 msg: 'Usuario no encontrado',
-                userId:'',
+                userId: '',
                 userEmail: '',
                 userFirstName: '',
                 userLastName: '',
@@ -25,10 +25,10 @@ export const USER_LOGIN = createAsyncThunk(
                 userIsSuperAdmin: false,
             }
         }
-  }
+    }
 );
 export const USER_LOGOUT = createAction(
-    'USER_LOGOUT', () =>{
+    'USER_LOGOUT', () => {
         localStorage.removeItem('token');
         localStorage.removeItem('token-init-date');
         return {};
@@ -38,11 +38,11 @@ export const USER_LOGOUT = createAction(
 export const CHECK_LOGIN = createAsyncThunk(
     'CHECK_LOGIN', async () => {
         try {
-            
+
             const response = await fetchConToken(`users/adminRenew`);
             const body = await response.json();
-            if(body.ok){
-                localStorage.setItem('token', body.token); 
+            if (body.ok) {
+                localStorage.setItem('token', body.token);
                 localStorage.setItem('token-init-date', new Date().getTime());
             }
             // console.log(body)
@@ -52,7 +52,7 @@ export const CHECK_LOGIN = createAsyncThunk(
             return {
                 ok: false,
                 msg: 'Token no válido',
-                userId:'',
+                userId: '',
                 userEmail: '',
                 userFirstName: '',
                 userLastName: '',
@@ -60,7 +60,7 @@ export const CHECK_LOGIN = createAsyncThunk(
                 userIsSuperAdmin: false,
             }
         }
-  }
+    }
 );
 export const GET_PRODUCTS = createAsyncThunk(
     'GET_PRODUCTS', async () => {
@@ -96,7 +96,7 @@ export const GET_CATEGORIES_ADMIN = createAsyncThunk(
         const response = await fetch(`${REACT_APP_APIURL}categories`)
         return await response.json()
     })
-    
+
 export const POST_IMAGE_ADMIN = createAsyncThunk(
     "POST_IMAGE_ADMIN", async (image) => {
         try {
@@ -115,20 +115,26 @@ export const SEARCH_PRODUCT = createAsyncThunk(
     }
 )
 
-
 export const USER_CREATE = createAsyncThunk(
-    'USER_CREATE', async (values) =>{
-        console.log(URL,`${REACT_APP_APIURL}users/new`)
-        console.log( values )
+    'USER_CREATE', async (values) => {
+        console.log(URL, `${REACT_APP_APIURL}users/new`)
+        console.log(values)
         const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
         const body = await response.json()
         return body
     }
-) 
+)
+
+export const GET_USERS = createAsyncThunk(
+    'GET_USERS', async () => {
+        const response = await fetch(`${REACT_APP_APIURL}users/all`)
+        return await response.json()
+    }
+)
 
 export const ORDER_PRODUCT = createAction(
-    'ORDER_PRODUCT', (productsOrder) =>{
-        return{
+    'ORDER_PRODUCT', (productsOrder) => {
+        return {
             payload: productsOrder
         }
     }

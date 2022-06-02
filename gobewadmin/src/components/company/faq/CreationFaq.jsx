@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { TextInput } from "../../form/TextInput";
 import { useDispatch } from "react-redux";
 import { POST_FAQS } from "../../../redux/actions";
+import FaqCardContainer from "./FaqCardContainer";
 
 export default function CreationFaq() {
 
@@ -12,14 +13,7 @@ export default function CreationFaq() {
         faqTitle: '',
         faqDescription: '',
         faqOrder: ''
-    };
-    const validationSchema = {
-        faqTitle: Yup.string()
-            .required('Requerido.'),
-        faqDescription: Yup.string().min(6, 'Requerida')
-            .required('Requerido'),
-        faqOrder: Yup.number()
-    };
+    };   
 
     return <div>
         <div>
@@ -29,8 +23,17 @@ export default function CreationFaq() {
         <div>
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={(values) => dispatch(POST_FAQS(values.faqTitle, values.faqDescription, values.faqOrder))}
+                validationSchema = {
+                    Yup.object({
+                        faqTitle: Yup.string().required('Requerido.'),
+                        faqDescription: Yup.string(),
+                        faqOrder: Yup.number()
+                    })
+                }
+                onSubmit={(values) => {
+                    console.log(values)
+                    dispatch(POST_FAQS(values))
+                }}
             >
                 {props => (
                     <Form>
@@ -41,6 +44,10 @@ export default function CreationFaq() {
                     </Form>
                 )}
             </Formik>
+        </div>
+        // Fijarse
+        <div>
+            <FaqCardContainer/>
         </div>
     </div >
 }

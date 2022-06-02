@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { TextInput } from "../../form/TextInput";
 
 export default function CreationFaq() {
@@ -28,7 +28,7 @@ export default function CreationFaq() {
             }}
         >
             {props => (
-                <form onSubmit={onSubmit}>
+                <form>
                     <TextInput label='Pregunta ' name='faqTitle' type='text' placeholder='Introduci tu pregunta' />
                     <TextInput label=' Respuesta ' name='faqDescription' type='text' placeholder='Respuesta' />
                     <TextInput label=' Orden ' name='faqOrder' type='text' placeholder='Orden de muestra' />

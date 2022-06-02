@@ -9,10 +9,10 @@ export default function Nav() {
     const dispatch = useDispatch();
     const location = useLocation();
     useEffect(() => {
-      (location.pathname !== '/login')
-        && localStorage.setItem('lastPath', location.pathname)
+        (location.pathname !== '/login')
+            && localStorage.setItem('lastPath', location.pathname)
     }, [location])
-    
+
 
     const handleLogout = () => {
         dispatch(USER_LOGOUT());
@@ -23,10 +23,10 @@ export default function Nav() {
                 <div className={styles.navWidth}>
                     <div className={styles.navLogoContainer}>
                         <img className={styles.navLogo} src={Logo} alt='img not found' />
-                        <span  className={styles.navLink}><Link  className={styles.navLink} to='/'>Productos</Link></span>
-                        <span  className={styles.navLink}><Link  className={styles.navLink} to='/'>Usuarios</Link></span>
-                        <span  className={styles.navLink}><Link  className={styles.navLink} to='/faq'>FAQ</Link></span>
-                        <button  className={styles.btnNav} onClick={ handleLogout }>Logout</button>
+                        <span className={styles.navLink}><Link className={styles.navLink} to='/'>Productos</Link></span>
+                        <span className={styles.navLink}><Link className={styles.navLink} to='/user'>Usuarios</Link></span>
+                        <span className={styles.navLink}><Link className={styles.navLink} to='/faq'>FAQ</Link></span>
+                        <button className={styles.btnNav} onClick={handleLogout}>Logout</button>
                     </div>
                 </div>
             </div>

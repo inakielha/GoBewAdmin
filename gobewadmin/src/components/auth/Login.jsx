@@ -30,20 +30,20 @@ export const Login = () => {
                   userEmail:'',
                   userPassword: ''
                 }}
-                validationSchema={Yup.object({
-                  userEmail: Yup.string()
-                  .email('El email es inválido.')
-                  .required('Requerido.'),
-                userPassword: Yup.string().min(6, 'Requerida')
-                  })
-              }
-      onSubmit={(values, actions) => {
-        setTimeout(() => {
-          dispatch(USER_LOGIN(values))
-          // console.log(values)
-          actions.setSubmitting(false);
-        }, 1000);
-      }}
+      validationSchema={Yup.object({
+        userEmail: Yup.string()
+          .email('El email es inválido.')
+          .required('Requerido.'),
+        userPassword: Yup.string().min(6, 'Requerida')
+        })
+    }
+    onSubmit={(values, actions) => {
+      setTimeout(() => {
+      dispatch(USER_LOGIN(values))
+      // console.log(values)
+      actions.setSubmitting(false);
+    }, 1000);
+    }}
     >
       {props => (
         <Form>

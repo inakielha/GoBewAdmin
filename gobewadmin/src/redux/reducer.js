@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN, CHECK_LOGIN } from "./actions";
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, USER_LOGIN, CHECK_LOGIN, USER_LOGOUT } from "./actions";
 
 const initialState = {
     products: [],
@@ -34,6 +34,10 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.auth.msg = action.payload.msg;
     })
 
+    builder.addCase(USER_LOGOUT, (state, action) => {
+        state.auth = initialState.auth;
+    })
+    
     builder.addCase(GET_PRODUCTS.fulfilled, (state, action) => {
         state.products = action.payload.productList;
     })

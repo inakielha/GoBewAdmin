@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 import { CHECK_LOGIN } from "../redux/actions";
@@ -8,7 +9,13 @@ export const PrivateRoutes = ({ children }) => {
     // console.log(userId, !!userId, token)
   
   const dispatch = useDispatch();
-  !userId && dispatch(CHECK_LOGIN())
+
+  useEffect(() => {
+    token && dispatch(CHECK_LOGIN())
+  }, [token, dispatch])
+  
+
+  
 
 
     return !!userId || !!token

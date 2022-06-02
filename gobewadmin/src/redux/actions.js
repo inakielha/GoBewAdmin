@@ -27,6 +27,14 @@ export const USER_LOGIN = createAsyncThunk(
         }
   }
 );
+export const USER_LOGOUT = createAction(
+    'USER_LOGOUT', () =>{
+        localStorage.removeItem('token');
+        localStorage.removeItem('token-init-date');
+        return {};
+    }
+)
+
 export const CHECK_LOGIN = createAsyncThunk(
     'CHECK_LOGIN', async () => {
         try {
@@ -37,7 +45,7 @@ export const CHECK_LOGIN = createAsyncThunk(
                 localStorage.setItem('token', body.token); 
                 localStorage.setItem('token-init-date', new Date().getTime());
             }
-            console.log(body)
+            // console.log(body)
             return body;
 
         } catch (error) {

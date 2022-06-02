@@ -4,7 +4,7 @@ import { TextInput } from '../form/TextInput'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { USER_CREATE } from '../../redux/actions'
-
+import  CheckBox  from '../form/CheckBox'
 
 export const UserForm = () => {
     const dispatch = useDispatch();
@@ -44,10 +44,10 @@ export const UserForm = () => {
                             <TextInput label='Password' name='userPassword' type='password' placeholder='password' />
                             <TextInput label='First Name' name='userFirstName' type='text' placeholder='first name' />
                             <TextInput label='Last Name' name='userLastName' type='text' placeholder='last name' />
-                            <Field name='userIsActive' type='checkbox'/>
-                            <Field name='userIsAdmin' type='checkbox' />
-                            <Field name='userIsGoogle' type='checkbox' />
-                            <Field name='userIsSuperAdmin' type='checkbox' />
+                            <CheckBox label='Active' type='checkbox' name='userIsActive' />
+                            <CheckBox label='Admin' type='checkbox' name='userIsAdmin' />
+                            <CheckBox label='Google'type='checkbox' name='userIsGoogle' />
+                            <CheckBox label='Super Admin' type='checkbox' name='userIsSuperAdmin' />
                             <button type='submit'>Crear</button>
                         </Form>
                     )

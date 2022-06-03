@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { GET_PRODUCTS, ORDER_PRODUCT } from '../../../redux/actions';
 import styles from '../../styles/tableProducts.module.css'
 import SearchBar from './SearchBar';
@@ -84,6 +85,9 @@ export default function ItemProduct() {
                 <button onClick={handlePriceOrder} value="ASC">PRECIO ↓</button>
                 <button onClick={handleStockOrder} value="DESC">STOCK ↑</button>
                 <button onClick={handleStockOrder} value="ASC">STOCK ↓</button>
+                <Link to='/product/new'>
+                    <button>Agregar nuevo producto</button>
+                </Link>
             </div>
             <table className={styles.tableContainer}>
                 <thead className={styles.headTable}>

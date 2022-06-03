@@ -48,7 +48,6 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
     }
 
 
-    console.log(userIsAdmin, userChange.userIsAdmin)
     return (
         <tr>
             {
@@ -62,9 +61,11 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
             <td><input type="checkbox" checked={userChange.userIsAdmin} name="userIsAdmin" onClick={handleCheckEvent} disabled={!edit} style={{width:"24px", height:"24px"}}/></td>
             <td><input type="checkbox" checked={userChange.userIsGoogle} name="userIsGoogle" onClick={handleCheckEvent} disabled={!edit} style={{width:"24px", height:"24px"}}/></td>
             <td><input type="checkbox" checked={userChange.userIsSuperAdmin} name="userIsSuperAdmin" onClick={handleCheckEvent} disabled={!edit} style={{width:"24px", height:"24px"}}/></td>
-            <button onClick={() => setEdit(!edit)}>E</button>
-            <button>B</button>
-            {ready && <button onClick={handleSubmit}>OK</button>}
+            <td>
+                <button onClick={() => setEdit(!edit)}>E</button>
+                <button>B</button>
+                {ready && <button onClick={handleSubmit}>OK</button>}
+            </td>
         </tr>
     )
 }

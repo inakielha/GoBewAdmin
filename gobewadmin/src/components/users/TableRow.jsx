@@ -36,10 +36,15 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
     }
 
     const handleSubmit = (e) => {
-        console.log(userChange.userId)
-        dispatch(PUT_USERS(userChange))
-        setReady(false)
-        setEdit(false)
+        
+        try {
+            dispatch(PUT_USERS(userChange))
+            setReady(false)
+            setEdit(false)
+            alert("Usuario editado correctamente")
+        } catch (error) {
+            alert("Se produjo un error el editar el usuario, intente nuevamente")
+        }
     }
 
 

@@ -35,6 +35,7 @@
 
 .stockContainer{
     text-align: center;
+    width: max-content;
 }
 
 .priceContainer{

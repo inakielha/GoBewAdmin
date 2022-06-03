@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { PUT_PRODUCT } from '../../../redux/actions'
 import styles from '../../styles/tableProducts.module.css'
 
 
 
-export default function TableRow({productName, productPrice, productStock}) {
+export default function TableRow({productName, productPrice, productStock, _id}) {
     
+    const dispatch = useDispatch();
     const [edit, setEdit] = useState(false)
     const [productChange, setProductChange] = useState({
+        productId : _id,
         productName,
         productPrice,
         productStock
@@ -19,6 +23,17 @@ export default function TableRow({productName, productPrice, productStock}) {
             [e.target.name]: e.target.value
         })
         setReady(true)
+    }
+
+    const handleSubmit = (e)=>{
+        try {
+            dispatch(PUT_PRODUCT(productChange))
+            setReady(false)
+            setEdit(false)
+            alert("Producto editado correctamente")
+        } catch (error) {
+            alert("El producto no se pudo editar, intentar nuevamente")
+        }
     }
 
     return (
@@ -34,7 +49,7 @@ export default function TableRow({productName, productPrice, productStock}) {
             }
             <button onClick={()=> setEdit(!edit)}>E</button>
             <button>B</button>
-            {ready && <button>OK</button>}
+            {ready && <button onClick={handleSubmit}>OK</button>}
         </tr>
     )
 }

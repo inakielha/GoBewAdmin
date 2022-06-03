@@ -91,15 +91,17 @@ export default function ItemProduct() {
             </div>
             <table className={styles.tableContainer}>
                 <thead className={styles.headTable}>
-                    <th>Nombre del producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
+                    <tr>
+                        <th>Nombre del producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                    </tr>
                 </thead>
                 <tbody className={styles.bodyTable}>
                     {
                         products?.map(p => {
                             return (
-                                <TableRow productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} _id={p._id}/>
+                                <TableRow productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} _id={p._id} key={p._id}/>
                             )
                         })
                     }

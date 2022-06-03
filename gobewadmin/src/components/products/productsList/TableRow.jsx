@@ -36,7 +36,6 @@ export default function TableRow({productName, productPrice, productStock, _id})
             alert("El producto no se pudo editar, intentar nuevamente")
         }
     }
-    console.log(productName)
     
     useEffect(()=>{
         setProductChange({productName, productPrice, productStock, productId: _id})
@@ -54,9 +53,11 @@ export default function TableRow({productName, productPrice, productStock, _id})
             {
                 <td><input onChange={handleChange}  style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}} type="text" value={productChange.productPrice} name="productPrice" disabled={!edit}/></td> 
             }
-            <button onClick={()=> setEdit(!edit)}>E</button>
-            <button>B</button>
-            {ready && <button onClick={handleSubmit}>OK</button>}
+            <td>
+                <button onClick={()=> setEdit(!edit)}>E</button>
+                <button>B</button>
+                {ready && <button onClick={handleSubmit}>OK</button>}
+            </td>
         </tr>
     )
 }

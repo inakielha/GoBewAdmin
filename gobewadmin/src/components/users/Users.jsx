@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_USERS } from '../../redux/actions';
 import TableRow from './TableRow';
 import styles from '../styles/tableUsers.module.css'
+import { Link } from 'react-router-dom';
 
 export default function Users() {
     
@@ -15,6 +16,9 @@ export default function Users() {
     
     return (
         <div>
+            <Link to='/user/new'>
+                <button>Agregar nuevo usuario</button>
+            </Link>
             <table className={styles.tableContainer}>
                 <thead className={styles.headTable}>
                     <th>Nombre</th>

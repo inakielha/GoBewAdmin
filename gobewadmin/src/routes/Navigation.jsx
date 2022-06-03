@@ -30,7 +30,6 @@ export const Navigation = () => {
         } />
         <Route exact path='/user' element={
           <PrivateRoutes>
-            <UserForm />
             <Users/>
           </PrivateRoutes>
         } />
@@ -38,6 +37,7 @@ export const Navigation = () => {
         <Route exact path='/product/new' element={[<CreationForm />]} />
         <Route exact path='/categories/new' element={[<CreationCategory />]} />
         <Route exact path='/product/image' element={[<CreationImage />]} />
+        <Route exact path='/user/new' element={<UserForm />}/>
         {/* <Route exact path='/faq' element={[<CreationFaq />, <FaqsCreated/>]} /> */}
 
         <Route path='/login' element={<Login />} />

@@ -1,25 +1,35 @@
 import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
-import { USER_LOGIN } from '../../redux/actions';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useState } from 'react';
+const { REACT_APP_APIURL } = process.env;
 export const Login = () => {
-  const dispatch = useDispatch();
-  const { auth: {userId, ok} } = useSelector((store) => store.adminReducer);
   
   const navigate = useNavigate();
   const path = localStorage.getItem('lastPath');
 
-  useEffect(() => {
-    if(userId !=='') {
-      return   (path) && navigate(path, {replace: true})
+  const [ok, setOk] = useState(true)
+  const login = async (values) => {
+    try {
+      const response = await axios.post(`${REACT_APP_APIURL}users/authAdmin`, values);
+      if(response.data.ok){
+          sessionStorage.setItem('userFirstName', response.data.userfirstName);
+          sessionStorage.setItem('userId', response.data.userId);
+          sessionStorage.setItem('userIsAdmin', response.data.userIsAdmin);
+          sessionStorage.setItem('userIsSuperAdmin', response.data.userIsSuperAdmin);
+
+          return   (path) ? navigate(path, {replace: true}) : navigate('/', {replace: true})
+      } else {
+        setOk(false)
+      }
+
+    } catch (error) {
+        setOk(false)
     }
-
-  }, [userId, navigate, path])
-
+  }
   return (
 
   <div>
@@ -39,8 +49,9 @@ export const Login = () => {
     }
     onSubmit={(values, actions) => {
       setTimeout(() => {
-      dispatch(USER_LOGIN(values))
+      // dispatch(USER_LOGIN(values))
       // console.log(values)
+      login(values)
       actions.setSubmitting(false);
     }, 1000);
     }}

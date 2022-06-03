@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from '../../styles/tableProducts.module.css'
 
 
+
 export default function TableRow({productName, productPrice, productStock}) {
     
     const [edit, setEdit] = useState(false)
@@ -23,12 +24,14 @@ export default function TableRow({productName, productPrice, productStock}) {
     return (
         <tr>
             {
-                edit ? <td><input onChange={handleChange}  style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}} type="text" value={productChange.productName} name="productName" /></td> : <td>{productChange.productName}</td>
+                <td><input onChange={handleChange}  style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}} type="text" value={productChange.productName} name="productName" disabled={!edit}/></td> 
             }
             {
-                edit ? <td><input onChange={handleChange}  style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}} type="text" value={productChange.productStock} name="productStock" /></td> : <td>{productChange.productStock}</td>
+                <td><input onChange={handleChange}  style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}} type="text" value={productChange.productStock} name="productStock" disabled={!edit}/></td> 
             }
-            <td className={styles.priceContainer}>{productPrice}</td>
+            {
+                <td><input onChange={handleChange}  style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}} type="text" value={productChange.productPrice} name="productPrice" disabled={!edit}/></td> 
+            }
             <button onClick={()=> setEdit(!edit)}>E</button>
             <button>B</button>
             {ready && <button>OK</button>}

@@ -86,6 +86,14 @@ export const PUT_PRODUCT = createAsyncThunk(
     }
 )
 
+export const PUT_USER_ACTIVE = createAsyncThunk(
+    'PUT_USER_ACTIVE', async (values) => {
+        const response = await axios.put(`${REACT_APP_APIURL}users/isActive`, values)
+        const body = await response.json()
+        return body
+    }
+)
+
 
 export const ORDER_PRODUCT = createAction(
     'ORDER_PRODUCT', (productsOrder) => {

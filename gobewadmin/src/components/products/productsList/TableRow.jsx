@@ -56,6 +56,7 @@ export default function TableRow({productName, productPrice, productStock, _id})
             <td>
                 <button onClick={()=> setEdit(!edit)}>E</button>
                 <button>B</button>
+                <button>Editar todo el producto</button>
                 {ready && <button onClick={handleSubmit}>OK</button>}
             </td>
         </tr>

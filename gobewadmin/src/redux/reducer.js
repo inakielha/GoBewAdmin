@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, POST_FAQS, GET_FAQS, GET_USERS, PUT_USERS, PUT_PRODUCT } from "./actions";
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, POST_FAQS, GET_FAQS, GET_USERS, PUT_USERS, PUT_PRODUCT, PUT_USER_ACTIVE } from "./actions";
 
 
 
@@ -40,6 +40,9 @@ export const adminReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(PUT_USERS.fulfilled, (state, action) => {
         state.user = action.payload
+    })
+    builder.addCase(PUT_USER_ACTIVE.fulfilled, (state, action) => {
+        state.user = action.payload.user
     })
     builder.addCase(GET_FAQS.fulfilled, (state, action) => {
         state.faqs = action.payload

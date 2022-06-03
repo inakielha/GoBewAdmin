@@ -95,7 +95,7 @@ export default function ItemProduct() {
                     {
                         products?.map(p => {
                             return (
-                                <TableRow productName={p.productName} productStock={p.productStock} productPrice={p.productPrice}/>
+                                <TableRow productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} _id={p._id}/>
                             )
                         })
                     }

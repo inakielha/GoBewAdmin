@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { PUT_PRODUCT } from '../../../redux/actions'
-import styles from '../../styles/tableProducts.module.css'
 
 
 

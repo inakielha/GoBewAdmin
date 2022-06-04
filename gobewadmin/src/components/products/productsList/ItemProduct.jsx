@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { GET_PRODUCTS, ORDER_PRODUCT } from '../../../redux/actions';
@@ -11,67 +11,78 @@ export default function ItemProduct() {
     const { products } = useSelector((store) => store.adminReducer);
     const dispatch = useDispatch();
 
+    const [valueButtonPrice, setValueButtonPrice] = useState('ASC')
+    const [valueButtonName, setValueButtonName] = useState('ASC')
+    const [valueButtonStock, setValueButtonStock] = useState('ASC')
+
+
     useEffect(() => {
         dispatch(GET_PRODUCTS())
     }, [dispatch])
 
     const handleAlphaOrder = (e) =>{
         let prod = [...products]
-        if(e.target.value === 'ASC'){
+        if(valueButtonName === 'ASC'){
             let productsSorted = prod.sort((a,b)=>{
                 if(a.productName < b.productName) return -1
                 if(a.productName > b.productName) return 1
                 return 0
             })
             dispatch(ORDER_PRODUCT(productsSorted))
+            setValueButtonName('DESC')
         }
-        if(e.target.value === 'DESC'){
+        if(valueButtonName === 'DESC'){
             let productsSorted = prod.sort((a,b)=>{
                 if(a.productName < b.productName) return 1
                 if(a.productName > b.productName) return -1
                 return 0
             })
             dispatch(ORDER_PRODUCT(productsSorted))
+            setValueButtonName('ASC')
         }
     }
 
     const handlePriceOrder = (e) =>{
         let prod = [...products]
-        if(e.target.value === 'ASC'){
+        if(valueButtonPrice === 'ASC'){
             let productsSorted = prod.sort((a,b)=>{
                 if(a.productPrice < b.productPrice) return -1
                 if(a.productPrice > b.productPrice) return 1
                 return 0
             })
             dispatch(ORDER_PRODUCT(productsSorted))
+            setValueButtonPrice('DESC')
         }
-        if(e.target.value === 'DESC'){
+        if(valueButtonPrice === 'DESC'){
             let productsSorted = prod.sort((a,b)=>{
                 if(a.productPrice < b.productPrice) return 1
                 if(a.productPrice > b.productPrice) return -1
                 return 0
             })
             dispatch(ORDER_PRODUCT(productsSorted))
+            setValueButtonPrice('ASC')
         }
     }
 
     const handleStockOrder = (e) =>{
         let prod = [...products]
-        if(e.target.value === 'ASC'){
+        if(valueButtonStock === 'ASC'){
             let productsSorted = prod.sort((a,b)=>{
                 if(a.productStock < b.productStock) return -1
                 if(a.productStock > b.productStock) return 1
                 return 0
             })
             dispatch(ORDER_PRODUCT(productsSorted))
+            setValueButtonStock('DESC')
         }
-        if(e.target.value === 'DESC'){
+        if(valueButtonStock === 'DESC'){
             let productsSorted = prod.sort((a,b)=>{
                 if(a.productStock < b.productStock) return 1
                 if(a.productStock > b.productStock) return -1
                 return 0
             })
             dispatch(ORDER_PRODUCT(productsSorted))
+            setValueButtonStock('ASC')
         }
     }
 
@@ -79,12 +90,15 @@ export default function ItemProduct() {
         <section>
             <div>
                 <SearchBar/>
-                <button onClick={handleAlphaOrder} value="ASC">NOMBRE ↑</button>
-                <button onClick={handleAlphaOrder} value="DESC">NOMBRE ↓</button>
-                <button onClick={handlePriceOrder} value="DESC">PRECIO ↑</button>
-                <button onClick={handlePriceOrder} value="ASC">PRECIO ↓</button>
-                <button onClick={handleStockOrder} value="DESC">STOCK ↑</button>
-                <button onClick={handleStockOrder} value="ASC">STOCK ↓</button>
+                <button onClick={handleAlphaOrder} value={valueButtonName}>
+                    {valueButtonName === 'ASC' ? 'A-Z' : 'Z-A'}
+                </button>
+                <button onClick={handlePriceOrder} value={valueButtonPrice}>
+                    {valueButtonPrice === 'ASC' ? 'Price ASC' : 'Price DESC'}
+                </button>
+                <button onClick={handleStockOrder} value={valueButtonStock}>
+                    {valueButtonStock === 'ASC' ? 'Stock ASC' : 'Stock DESC'}
+                </button>
                 <Link to='/product/new'>
                     <button>Agregar nuevo producto</button>
                 </Link>

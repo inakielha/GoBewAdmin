@@ -91,13 +91,13 @@ export default function ItemProduct() {
             <div>
                 <SearchBar/>
                 <button onClick={handleAlphaOrder} value={valueButtonName}>
-                    {valueButtonName === 'ASC' ? 'A-Z' : 'Z-A'}
+                    {valueButtonName === 'ASC' ? 'Nombre 🡅' : 'Nombre 🡇'}
                 </button>
                 <button onClick={handlePriceOrder} value={valueButtonPrice}>
-                    {valueButtonPrice === 'ASC' ? 'Price ASC' : 'Price DESC'}
+                    {valueButtonPrice === 'ASC' ? 'Price 🡇' : 'Price 🡅'}
                 </button>
                 <button onClick={handleStockOrder} value={valueButtonStock}>
-                    {valueButtonStock === 'ASC' ? 'Stock ASC' : 'Stock DESC'}
+                    {valueButtonStock === 'ASC' ? 'Stock 🡇' : 'Stock 🡅'}
                 </button>
                 <Link to='/product/new'>
                     <button>Agregar nuevo producto</button>

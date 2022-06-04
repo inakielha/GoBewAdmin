@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { PUT_PRODUCT } from '../../../redux/actions'
 
 
@@ -55,7 +56,9 @@ export default function TableRow({productName, productPrice, productStock, _id})
             <td>
                 <button onClick={()=> setEdit(!edit)}>E</button>
                 <button>B</button>
-                <button>Editar todo el producto</button>
+                <Link to={`/product/edit/${productChange.productId}`}>
+                    <button>Editar todo el producto</button>
+                </Link>
                 {ready && <button onClick={handleSubmit}>OK</button>}
             </td>
         </tr>

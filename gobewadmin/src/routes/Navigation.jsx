@@ -12,7 +12,6 @@ import ItemProduct from '../components/products/productsList/ItemProduct';
 import CreationFaq from '../components/company/faq/CreationFaq';
 import Users from '../components/users/Users';
 import ProductForm from '../components/products/ProductForm';
-import PutAllProduct from '../components/products/PutAllProduct';
 // import FaqsCreated from '../components/company/faq/FaqsCreated';
 
 export const Navigation = () => {
@@ -37,7 +36,6 @@ export const Navigation = () => {
         } />
 
         <Route exact path='/product/new' element={<ProductForm/>} />
-        <Route exact path='/product/edit/:productId' element={<PutAllProduct/>} />
         <Route exact path='/categories/new' element={[<CreationCategory />]} />
         <Route exact path='/product/image' element={[<CreationImage />]} />
         <Route exact path='/user/new' element={<UserForm />}/>

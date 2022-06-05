@@ -1,10 +1,10 @@
 import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
-
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useState } from 'react';
+import '../../scss/_loginAdmin.scss'
 const { REACT_APP_APIURL } = process.env;
 export const Login = () => {
   
@@ -57,12 +57,13 @@ export const Login = () => {
     }}
     >
       {props => (
-        <Form>
-          <TextInput label='e-mail' name='userEmail' type='email' placeholder='e-mail'/>
-          <TextInput label='password' name='userPassword' type='password' placeholder='password'/>
-          <button type="submit">Submit</button>
-
-        </Form>
+        <section className='form__login--container'>
+          <Form className='form--login'>
+            <TextInput label='e-mail' name='userEmail' type='email' placeholder='e-mail'/>
+            <TextInput label='password' name='userPassword' type='password' placeholder='password'/>
+            <button type="submit">Submit</button>
+          </Form>
+        </section>
       )}
     </Formik>
   </div>

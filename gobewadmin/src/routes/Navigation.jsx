@@ -37,6 +37,7 @@ export const Navigation = () => {
         } />
 
         <Route exact path='/product/new' element={<ProductForm/>} />
+        <Route exact path='/product/edit/:productId' element={<ProductForm/>} />
         <Route exact path='/categories/new' element={[<CreationCategory />]} />
         <Route exact path='/product/image' element={[<CreationImage />]} />
         <Route exact path='/user/new' element={<UserForm />}/>

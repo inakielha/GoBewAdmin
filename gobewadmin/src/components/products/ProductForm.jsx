@@ -4,21 +4,22 @@ import { TextInput } from '../form/TextInput'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckBox from '../form/CheckBox'
-import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from '../../redux/actions'
-import { Link } from 'react-router-dom'
+import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID } from '../../redux/actions'
+import { Link, useParams } from 'react-router-dom'
 import '../../scss/_productsForm.scss'
 
 export default function ProductForm() {
-    const { categories } = useSelector((state) => state.adminReducer)
+    const { categories, product } = useSelector((state) => state.adminReducer)
     const dispatch = useDispatch();
+    const {productId} = useParams();
     const initialValues = {
-        productName: '',
-        productIsActive: 0,
-        productDescription: '',
-        productPrice: '',
-        productStock: '',
-        productHighlight: 0,
-        productCategories: []
+        productName: product[0] ? product[0]?.productName : '',
+        productIsActive: product[0] ? product[0]?.productIsActive : 0,
+        productDescription: product[0] ? product[0]?.productDescription : '',
+        productPrice: product[0] ? product[0]?.productPrice : '',
+        productStock: product[0] ? product[0]?.productStock : '',
+        productHighlight: product[0] ? product[0]?.productHighlight : 0,
+        productCategories: product[0] ? product[0]?.productCategories : []
     }
 
     const [disabledImg, setDisabledImg] = useState(true);
@@ -37,8 +38,8 @@ export default function ProductForm() {
 
     useEffect(() => {
         dispatch(GET_CATEGORIES_ADMIN())
-    }, [dispatch])
-
+        !!productId && dispatch(GET_PRODUCT_BY_ID(productId))
+    }, [dispatch, productId])
 
 
 
@@ -46,6 +47,7 @@ export default function ProductForm() {
     return (
         <div className='form--newProduct__container'>
             <Formik
+                enableReinitialize={true}
                 initialValues={initialValues}
                 onSubmit={(values) => {
                     // console.log(values)
@@ -62,13 +64,14 @@ export default function ProductForm() {
                 {
                     (formik) => (
                         <Form className='form-newProduct'>
-                            <TextInput label='Nombre' name='productName' type='text' placeholder='nombre' />
-                            <TextInput label='Descripción' name='productDescription' type='text' placeholder='descripción' />
-                            <TextInput label='Precio' name='productPrice' type='number' placeholder='precio' />
-                            <TextInput label='Stock' name='productStock' type='number' placeholder='stock' />
+                            <TextInput key={1}  label='Nombre' name='productName' type='text' placeholder='nombre' />
+                            <TextInput key={2} label='Descripción' name='productDescription' type='text' placeholder='descripción' />
+                            <TextInput key={3} label='Precio' name='productPrice' type='number' placeholder='precio' />
+                            <TextInput key={4} label='Stock' name='productStock' type='number' placeholder='stock' />
                             <div className='form--checkbox__productHighligth'>
-                                <CheckBox label='Destacado' type='checkbox' name='productHighlight' />
+                                <CheckBox key={5} label='Destacado' type='checkbox' name='productHighlight' />
                             </div>
+                            <CheckBox key={6} label='Activo' type='checkbox' name='productIsActive'/>
                             <label>Categorias</label>
                             {
                                 categories?.map((c) => {
@@ -90,7 +93,7 @@ export default function ProductForm() {
                                     )
                                 })
                             }
-                            <button type='submit'>Añadir producto</button>
+                            <button type='submit'>{productId ? "Actualizar producto" : "Agregar producto"} </button>
                             <div>
                                 <Link to={'/product/image'}><button disabled={disabledImg}>Agregar imagen</button></Link>
                             </div>

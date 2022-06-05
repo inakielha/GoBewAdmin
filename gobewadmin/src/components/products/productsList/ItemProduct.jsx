@@ -115,6 +115,7 @@ export default function ItemProduct() {
                         <th className='products--table__column--name'>Nombre del producto</th>
                         <th className='products--table__column--stock'>Cantidad</th>
                         <th className='products--table__column--price'>Precio</th>
+                        <th className='products--table__column--active'>Activo</th>
                         <th className='products--table__column--actions'>Acciones</th>
                     </tr>
                 </thead>
@@ -122,7 +123,7 @@ export default function ItemProduct() {
                     {
                         products?.map(p => {
                             return (
-                                <TableRow className="products--table__rows" productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} _id={p._id} key={p._id}/>
+                                <TableRow className="products--table__rows" productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} productIsActive={p.productIsActive} _id={p._id} key={p._id}/>
                             )
                         })
                     }

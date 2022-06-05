@@ -3,8 +3,9 @@ import * as Yup from 'yup';
 // import { useDispatch } from 'react-redux';
 import { TextInput } from "../../form/TextInput";
 import { useDispatch } from "react-redux";
-import { POST_FAQS } from "../../../redux/actions";
+import { GET_FAQS, POST_FAQS } from "../../../redux/actions";
 import FaqCardContainer from "./FaqCardContainer";
+import { useEffect } from "react";
 
 export default function CreationFaq() {
 
@@ -13,7 +14,11 @@ export default function CreationFaq() {
         faqTitle: '',
         faqDescription: '',
         faqOrder: ''
-    };   
+    };  
+    
+    useEffect(() => {
+        dispatch(GET_FAQS)
+    }, [GET_FAQS])
 
     return <div>
         <div>
@@ -31,7 +36,6 @@ export default function CreationFaq() {
                     })
                 }
                 onSubmit={(values) => {
-                    console.log(values)
                     dispatch(POST_FAQS(values))
                 }}
             >

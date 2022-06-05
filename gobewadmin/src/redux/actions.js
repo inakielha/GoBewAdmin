@@ -135,3 +135,4 @@ export const PUT_FAQS = createAsyncThunk(
         return body
     }
 )
+

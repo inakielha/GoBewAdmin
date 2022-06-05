@@ -1,5 +1,5 @@
 
-import './App.css';
+import './scss/main.scss'
 
 
 import { Navigation } from './routes/Navigation';

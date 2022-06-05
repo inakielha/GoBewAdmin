@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import styles from '../styles/nav.module.css'
 import Logo from '../../images/Logo-GoBew.png'
+import '../../scss/_navAdmin.scss'
 import { Link, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 // import { useDispatch } from 'react-redux'
@@ -25,17 +25,15 @@ export default function Nav() {
         return    navigate('/login', {replace: true})
     }
     return (
-        <nav>
-            <div className={styles.navContaner}>
-                <div className={styles.navWidth}>
-                    <div className={styles.navLogoContainer}>
-                        <img className={styles.navLogo} src={Logo} alt='img not found' />
-                        <span className={styles.navLink}><Link className={styles.navLink} to='/'>Productos</Link></span>
-                        <span className={styles.navLink}><Link className={styles.navLink} to='/user'>Usuarios</Link></span>
-                        <span className={styles.navLink}><Link className={styles.navLink} to='/faq'>FAQ</Link></span>
-                        <button className={styles.btnNav} onClick={handleLogout}>Logout</button>
-                    </div>
-                </div>
+        <nav className='nav--content__container'>
+            <div className='nav--logo__container'>
+                <img src={Logo} alt='img not found' />
+                <p className='nav--links'><Link to='/'>Productos</Link></p>
+                <p className='nav--links'><Link to='/user'>Usuarios</Link></p>
+                <p className='nav--links'><Link to='/faq'>FAQ</Link></p>
+            </div>
+            <div className='nav--btn__container'>
+                <button onClick={handleLogout}>Cerrar Sesión</button>
             </div>
         </nav>
     )

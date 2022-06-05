@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { GET_USERS, PUT_USERS, PUT_USER_ACTIVE } from '../../redux/actions';
-
+import {MdDoNotDisturbOn} from 'react-icons/md'
+import {ImCheckboxChecked} from 'react-icons/im'
 
 export default function TableRow({ userFirstName, userLastName, userEmail, userIsActive, userIsAdmin, userIsGoogle, userIsSuperAdmin, _id }) {
     const [edit, setEdit] = useState(false)
@@ -63,7 +64,7 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
             <td><input type="checkbox" checked={userChange.userIsSuperAdmin} name="userIsSuperAdmin" onClick={handleCheckEvent} disabled={!edit} style={{width:"24px", height:"24px"}}/></td>
             <td>
                 <button onClick={() => setEdit(!edit)}>E</button>
-                <button onClick={handleUserActive}>{userChange.userIsActive ? "Desactivar" : "Activar"}</button>
+                <button onClick={handleUserActive}>{userChange.userIsActive ? <MdDoNotDisturbOn/> : <ImCheckboxChecked/>}</button>
                 {ready && <button onClick={handleSubmit}>OK</button>}
             </td>
         </tr>

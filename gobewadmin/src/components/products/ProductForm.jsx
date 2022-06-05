@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CheckBox from '../form/CheckBox'
 import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from '../../redux/actions'
 import { Link } from 'react-router-dom'
+import '../../scss/_productsForm.scss'
 
 export default function ProductForm() {
     const { categories } = useSelector((state) => state.adminReducer)
@@ -43,7 +44,7 @@ export default function ProductForm() {
 
 
     return (
-        <div>
+        <div className='form--newProduct__container'>
             <Formik
                 initialValues={initialValues}
                 onSubmit={(values) => {
@@ -60,28 +61,32 @@ export default function ProductForm() {
             >
                 {
                     (formik) => (
-                        <Form>
+                        <Form className='form-newProduct'>
                             <TextInput label='Nombre' name='productName' type='text' placeholder='nombre' />
                             <TextInput label='Descripción' name='productDescription' type='text' placeholder='descripción' />
                             <TextInput label='Precio' name='productPrice' type='number' placeholder='precio' />
                             <TextInput label='Stock' name='productStock' type='number' placeholder='stock' />
-                            <CheckBox label='Destacado' type='checkbox' name='productHighlight' />
+                            <div className='form--checkbox__productHighligth'>
+                                <CheckBox label='Destacado' type='checkbox' name='productHighlight' />
+                            </div>
                             <label>Categorias</label>
                             {
                                 categories?.map((c) => {
                                     return (
-                                        <>
-                                            <p>{c.categoryName}</p>
-                                            {
-                                                c.childCategories?.map((child) => {
-                                                    return (
-                                                        <label>
-                                                            <Field key={child._id} type="checkbox" name="productCategories" value={child._id} /> {child.categoryName}
-                                                        </label>
-                                                    )
-                                                })
-                                            }
-                                        </>
+                                        <section className='form--products-categories__container'>
+                                            <div>
+                                                <p>{c.categoryName}</p>
+                                                {
+                                                    c.childCategories?.map((child) => {
+                                                        return (
+                                                            <label>
+                                                                <Field key={child._id} type="checkbox" name="productCategories" value={child._id} /> {child.categoryName}
+                                                            </label>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </section>
                                     )
                                 })
                             }

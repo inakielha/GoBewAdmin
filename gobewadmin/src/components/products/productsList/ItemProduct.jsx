@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { GET_PRODUCTS, ORDER_PRODUCT } from '../../../redux/actions';
-import styles from '../../styles/tableProducts.module.css'
+import '../../../scss/_productsAdmin.scss'
 import SearchBar from './SearchBar';
 import TableRow from './TableRow';
+import {TiPlus} from 'react-icons/ti'
 
 export default function ItemProduct() {
 
@@ -87,35 +88,41 @@ export default function ItemProduct() {
     }
 
     return (
-        <section>
-            <div>
+        <section className='products--content__container'>
+            <div className='products--title__content'>
+                <h1>Productos</h1>
+            </div>
+            <div className='products--buttons__container'>
                 <SearchBar/>
-                <button onClick={handleAlphaOrder} value={valueButtonName}>
-                    {valueButtonName === 'ASC' ? 'Nombre 🡅' : 'Nombre 🡇'}
-                </button>
-                <button onClick={handlePriceOrder} value={valueButtonPrice}>
-                    {valueButtonPrice === 'ASC' ? 'Price 🡇' : 'Price 🡅'}
-                </button>
-                <button onClick={handleStockOrder} value={valueButtonStock}>
-                    {valueButtonStock === 'ASC' ? 'Stock 🡇' : 'Stock 🡅'}
-                </button>
+                <div className='products--buttons'>
+                    <button onClick={handleAlphaOrder} value={valueButtonName}>
+                        {valueButtonName === 'ASC' ? 'Nombre 🡅' : 'Nombre 🡇'}
+                    </button>
+                    <button onClick={handlePriceOrder} value={valueButtonPrice}>
+                        {valueButtonPrice === 'ASC' ? 'Precio 🡇' : 'Precio 🡅'}
+                    </button>
+                    <button onClick={handleStockOrder} value={valueButtonStock}>
+                        {valueButtonStock === 'ASC' ? 'Stock 🡇' : 'Stock 🡅'}
+                    </button>
+                </div>
                 <Link to='/product/new'>
-                    <button>Agregar nuevo producto</button>
+                    <button> + Agregar nuevo producto</button>
                 </Link>
             </div>
-            <table className={styles.tableContainer}>
-                <thead className={styles.headTable}>
+            <table className='products--table'>
+                <thead className='products--table__headers'>
                     <tr>
-                        <th>Nombre del producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
+                        <th className='products--table__column--name'>Nombre del producto</th>
+                        <th className='products--table__column--stock'>Cantidad</th>
+                        <th className='products--table__column--price'>Precio</th>
+                        <th className='products--table__column--actions'>Acciones</th>
                     </tr>
                 </thead>
-                <tbody className={styles.bodyTable}>
+                <tbody className='products--table__body'>
                     {
                         products?.map(p => {
                             return (
-                                <TableRow productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} _id={p._id} key={p._id}/>
+                                <TableRow className="products--table__rows" productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} _id={p._id} key={p._id}/>
                             )
                         })
                     }

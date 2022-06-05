@@ -32,8 +32,8 @@ export const Login = () => {
   }
   return (
 
-  <div>
-    <h1>Login</h1>
+  <div className='login--content__container'>
+    {/* <h1>Login</h1> */}
     { (!ok) && <span>Usuario no encontrado.</span>}
     <Formik
       initialValues={{
@@ -42,26 +42,32 @@ export const Login = () => {
                 }}
       validationSchema={Yup.object({
         userEmail: Yup.string()
-          .email('El email es inválido.')
-          .required('Requerido.'),
+          .email('Debes ingresar un email válido')
+          .required('Debes ingresar tu email para iniciar sesión'),
         userPassword: Yup.string().min(6, 'Requerida')
         })
     }
     onSubmit={(values, actions) => {
-      setTimeout(() => {
-      // dispatch(USER_LOGIN(values))
-      // console.log(values)
+      
       login(values)
-      actions.setSubmitting(false);
-    }, 1000);
+      
     }}
     >
       {props => (
-        <section className='form__login--container'>
+        <section className='form--login__container'>
           <Form className='form--login'>
-            <TextInput label='e-mail' name='userEmail' type='email' placeholder='e-mail'/>
-            <TextInput label='password' name='userPassword' type='password' placeholder='password'/>
-            <button type="submit">Submit</button>
+            <div className='form--login--tittle__container'>
+              <h1>BIENVENIDO</h1>
+            </div>
+            <div className='form--login__input--container'>
+              <TextInput name='userEmail' type='email' placeholder='e-mail'/>
+            </div>
+            <div className='form--login__input--container'>
+              <TextInput name='userPassword' type='password' placeholder='password'/>
+            </div>
+            <div className='form--login__btn'>
+              <button type="submit">Iniciar Sesión</button>
+            </div>
           </Form>
         </section>
       )}

@@ -3,6 +3,7 @@ import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, PO
 
 
 
+
 const initialState = {
     products: [],
     product: {},
@@ -47,6 +48,9 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.faqs = action.payload
     })
     builder.addCase(POST_FAQS.fulfilled, (state, action) => {
+        state.faqs = action.payload
+    })
+    builder.addCase(PUT_FAQS.fulfilled, (state, action) => {
         state.faqs = action.payload
     })
     builder.addCase(PUT_PRODUCT.fulfilled, (state, action) => {

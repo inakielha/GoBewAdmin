@@ -48,12 +48,9 @@ export const Login = () => {
         })
     }
     onSubmit={(values, actions) => {
-      setTimeout(() => {
-      // dispatch(USER_LOGIN(values))
-      // console.log(values)
+      
       login(values)
-      actions.setSubmitting(false);
-    }, 1000);
+      
     }}
     >
       {props => (

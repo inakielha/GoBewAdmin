@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GET_USERS } from '../../redux/actions';
 import TableRow from './TableRow';
 import styles from '../styles/tableUsers.module.css'
+import { Link } from 'react-router-dom';
 
 export default function Users() {
     
@@ -15,21 +16,26 @@ export default function Users() {
     
     return (
         <div>
+            <Link to='/user/new'>
+                <button>Agregar nuevo usuario</button>
+            </Link>
             <table className={styles.tableContainer}>
-                <thead className={styles.headTable}>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Usuario Activo</th>
-                    <th>Usuario Admin</th>
-                    <th>Usuario Google</th>
-                    <th>Usuario SuperAdmin</th>
+                <thead>
+                    <tr className={styles.headTable}>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Usuario Activo</th>
+                        <th>Usuario Admin</th>
+                        <th>Usuario Google</th>
+                        <th>Usuario SuperAdmin</th>
+                    </tr>
                 </thead>
                 <tbody className={styles.bodyTable}>
                     {
                         users?.map(u =>{
                             return(
-                                <TableRow userFirstName={u.userFirstName} userLastName={u.userLastName} userEmail={u.userEmail} userIsActive={u.userIsActive} userIsAdmin={u.userIsAdmin} userIsGoogle={u.userIsGoogle} userIsSuperAdmin={u.userIsSuperAdmin} _id={u._id} />
+                                <TableRow userFirstName={u.userFirstName} userLastName={u.userLastName} userEmail={u.userEmail} userIsActive={u.userIsActive} userIsAdmin={u.userIsAdmin} userIsGoogle={u.userIsGoogle} userIsSuperAdmin={u.userIsSuperAdmin} _id={u._id} key={u._id}/>
                             )
                         })
                     }

@@ -9,6 +9,13 @@ export const GET_PRODUCTS = createAsyncThunk(
     }
 )
 
+export const GET_PRODUCT_BY_ID = createAsyncThunk(
+    'GET_PRODUCT_BY_ID', async (id) => {
+        const response = await fetch(`${REACT_APP_APIURL}product/${id}`);
+        return await response.json();
+    }
+)
+
 export const CREATE_PRODUCT = createAsyncThunk(
     "CREATE_PRODUCT", async (productInfo) => {
         try {
@@ -57,11 +64,9 @@ export const SEARCH_PRODUCT = createAsyncThunk(
 
 export const USER_CREATE = createAsyncThunk(
     'USER_CREATE', async (values) => {
-        console.log(URL, `${REACT_APP_APIURL}users/new`)
-        console.log(values)
-        const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
-        const body = await response.json()
-        return body
+            const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
+            const body = await response.json()
+            return body
     }
 )
 
@@ -83,6 +88,14 @@ export const PUT_USERS = createAsyncThunk(
 export const PUT_PRODUCT = createAsyncThunk(
     'PUT_PRODUCT', async (values) => {
         const response = await axios.put(`${REACT_APP_APIURL}product`, values)
+        const body = await response.json()
+        return body
+    }
+)
+
+export const PUT_USER_ACTIVE = createAsyncThunk(
+    'PUT_USER_ACTIVE', async (values) => {
+        const response = await axios.put(`${REACT_APP_APIURL}users/isActive`, values)
         const body = await response.json()
         return body
     }

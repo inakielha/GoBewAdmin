@@ -42,8 +42,8 @@ export const Login = () => {
                 }}
       validationSchema={Yup.object({
         userEmail: Yup.string()
-          .email('El email es inválido.')
-          .required('Requerido.'),
+          .email('Debes ingresar un email válido')
+          .required('Debes ingresar tu email para iniciar sesión'),
         userPassword: Yup.string().min(6, 'Requerida')
         })
     }
@@ -63,10 +63,10 @@ export const Login = () => {
               <h1>BIENVENIDO</h1>
             </div>
             <div className='form--login__input--container'>
-              <TextInput label='e-mail' name='userEmail' type='email' placeholder='e-mail'/>
+              <TextInput name='userEmail' type='email' placeholder='e-mail'/>
             </div>
             <div className='form--login__input--container'>
-              <TextInput label='password' name='userPassword' type='password' placeholder='password'/>
+              <TextInput name='userPassword' type='password' placeholder='password'/>
             </div>
             <div className='form--login__btn'>
               <button type="submit">Iniciar Sesión</button>

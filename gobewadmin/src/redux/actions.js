@@ -57,7 +57,7 @@ export const POST_IMAGE_ADMIN = createAsyncThunk(
 
 export const SEARCH_PRODUCT = createAsyncThunk(
     'SEARCH_PRODUCT', async (productName) => {
-        const response = await fetch(`${REACT_APP_APIURL}product/name/${productName}`)
+        const response = await fetch(`${REACT_APP_APIURL}product/nameAll/${productName}`)
         return await response.json()
     }
 )

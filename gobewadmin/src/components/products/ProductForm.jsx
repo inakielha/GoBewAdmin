@@ -4,7 +4,7 @@ import { TextInput } from '../form/TextInput'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckBox from '../form/CheckBox'
-import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID } from '../../redux/actions'
+import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID, PUT_PRODUCT } from '../../redux/actions'
 import { Link, useParams } from 'react-router-dom'
 import '../../scss/_productsForm.scss'
 
@@ -51,10 +51,24 @@ export default function ProductForm() {
                 initialValues={initialValues}
                 onSubmit={(values) => {
                     // console.log(values)
+                    // try {
+                    //     dispatch(CREATE_PRODUCT(values))
+                    //     alert("Producto creado correctamente")
+                    //     setDisabledImg(false)
+                    // } catch (error) {
+                    //     alert("Se ha producido un error al cargar el producto, intente nuevamente")
+                    // }
                     try {
-                        dispatch(CREATE_PRODUCT(values))
-                        alert("Producto creado correctamente")
-                        setDisabledImg(false)
+                        if(productId){
+                            dispatch(PUT_PRODUCT(values))
+                            console.log(values)
+                            alert("Producto editado correctamente")
+                            setDisabledImg(false)
+                        }else{
+                            dispatch(CREATE_PRODUCT(values))
+                            alert("Producto creado correctamente")
+                            setDisabledImg(false)
+                        }
                     } catch (error) {
                         alert("Se ha producido un error al cargar el producto, intente nuevamente")
                     }

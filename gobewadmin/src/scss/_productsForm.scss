@@ -1,22 +1,167 @@
-.form--newProduct__container{
-    max-width: 100vw;
-    min-height: 90vh;
+.form--newProduct__container {
     display: flex;
-    justify-content: center;
-    .form-newProduct{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 90%;
-    }
-    .form--checkbox__productHighligth{
-display: flex;
-    }
-    .form--products-categories__container{
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 90vh;
+    background-color: #f3fafa;
 
+
+    .form-newProduct {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        background-color: #f3fafa;
+
+        .form-newProduct--left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            margin: 2%;
+            height: 40vh;
+            width: 25%;
+
+            .form__newProduct--textInput {
+                border: 1px solid black;
+                border-radius: 16px;
+                padding: 3%;
+                width: 100%;
+                align-items: center;
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+
+                &>input {
+                    height: 3vh;
+                    text-align: center;
+                    width: 80%;
+                    border: none;
+                    border-radius: 16px;
+                    outline: none;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 18px;
+                    padding: 1%;
+                    background-color: #b1d8de;
+                }
+            }
+        }
+
+        .form-newProduct--right {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 2%;
+            min-width: 50%;
+
+            &>label {
+                margin: 1%;
+            }
+
+            &>input[type='checkbox'] {
+                margin: 1%;
+                background: #00ff00;
+            }
+
+            .form--products-categories__container {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                height: 50%;
+                margin: 2%;
+                padding: 2%;
+                border: 1px solid black;
+                border-radius: 26px;
+
+                .checkbox:checked:before {
+                    background-color: green;
+                }
+            }
+
+            .categorieslabel {
+                align-self: center;
+            }
+
+            .categoriesCol {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                height: 50%;
+                margin: 2%;
+                padding: 2%;
+                justify-content: space-between;
+                border-radius: 26px;
+                text-align: center;
+
+
+
+            }
+
+            .textArea {
+                align-self: center;
+                width: 70%;
+                border-radius: 16px;
+                padding: 2%;
+                resize: none;
+            }
+        }
+
+        .form--checkbox__productHighligth {
+            margin: 2%;
+        }
+
+        .form-newProduct--btn {
+            padding: 1%;
+            width: 40%;
+            background-color: #82bac6;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-family: "Poppins", sans-serif;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 1%;
+            height: 4vh;
+
+            color: #17252A;
+            margin: 1%;
+            cursor: pointer;
+        }
+
+        .form-newProduct--btn-link {
+            width: 40%;
+            margin: 1%;
+
+            .form-newProduct--btn {
+                padding: 1%;
+                width: 100%;
+                background-color: #82bac6;
+                border: none;
+                border-radius: 15px;
+                font-size: 16px;
+                font-family: "Poppins", sans-serif;
+                font-weight: 600;
+                text-align: center;
+                margin-top: 1%;
+                height: 4vh;
+                color: #17252A;
+
+                cursor: pointer;
+                &:disabled{
+                background-color: #5d8790;
+                    cursor: not-allowed;
+                }
+            }
+        }
     }
+
+    .form--checkbox__productHighligth {
+        display: flex;
+
+       
+    }
+
+
 }

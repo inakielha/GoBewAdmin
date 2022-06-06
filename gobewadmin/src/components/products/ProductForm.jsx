@@ -62,37 +62,53 @@ export default function ProductForm() {
                 {
                     (formik) => (
                         <Form className='form-newProduct'>
-                            <TextInput label='Nombre' name='productName' type='text' placeholder='nombre' />
-                            <TextInput label='Descripción' name='productDescription' type='text' placeholder='descripción' />
-                            <TextInput label='Precio' name='productPrice' type='number' placeholder='precio' />
-                            <TextInput label='Stock' name='productStock' type='number' placeholder='stock' />
-                            <div className='form--checkbox__productHighligth'>
-                                <CheckBox label='Destacado' type='checkbox' name='productHighlight' />
+                            <div className='form-newProduct--left'>
+
+                                <div className='form__newProduct--textInput'>
+                                    <TextInput label='Nombre:' name='productName' type='text' placeholder='Nombre' />
+
+
+                                    <TextInput label='Precio:' name='productPrice' type='number' placeholder='Precio' />
+                                    <TextInput label='Stock:' name='productStock' type='number' placeholder='Stock' />
+                                    <div className='form--checkbox__productHighligth'>
+                                        <CheckBox label='Destacado' type='checkbox' name='productHighlight' />
+                                    </div>
+
+                                    <button type='submit' className='form-newProduct--btn'>Añadir producto</button>
+                                    <Link to={'/product/image'} className="form-newProduct--btn-link"><button className='form-newProduct--btn' disabled={disabledImg}>Agregar imagen</button></Link>
+                                </div>
                             </div>
-                            <label>Categorias</label>
-                            {
-                                categories?.map((c) => {
-                                    return (
-                                        <section className='form--products-categories__container'>
-                                            <div>
-                                                <p>{c.categoryName}</p>
-                                                {
-                                                    c.childCategories?.map((child) => {
-                                                        return (
-                                                            <label>
-                                                                <Field key={child._id} type="checkbox" name="productCategories" value={child._id} /> {child.categoryName}
-                                                            </label>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        </section>
-                                    )
-                                })
-                            }
-                            <button type='submit'>Añadir producto</button>
+                            <div className='form-newProduct--right'>
+                                <div className='categorieslabel'>
+                                    <label>Categorias:</label>
+
+                                </div>
+                                <div className='categoriesCol'>
+
+                                    {
+                                        categories?.map((c) => {
+                                            return (
+                                                <section className='form--products-categories__container'>
+
+                                                    <p>{c.categoryName}</p>
+                                                    {
+                                                        c.childCategories?.map((child) => {
+                                                            return (
+                                                                <label>
+                                                                    <Field key={child._id} type="checkbox" name="productCategories" value={child._id} />
+                                                                    {child.categoryName}
+                                                                </label>
+                                                            )
+                                                        })
+                                                    }
+                                                </section>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <textarea name="productDescription" id="" cols="30" rows="10" className='textArea'></textarea>
+                            </div>
                             <div>
-                                <Link to={'/product/image'}><button disabled={disabledImg}>Agregar imagen</button></Link>
                             </div>
                         </Form>
                     )

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_USERS } from '../../redux/actions';
 import TableRow from './TableRow';
-import styles from '../styles/tableUsers.module.css'
 import { Link } from 'react-router-dom';
+import '../../scss/_usersAdmin.scss'
 
 export default function Users() {
     
@@ -15,23 +15,29 @@ export default function Users() {
     }, [dispatch])
     
     return (
-        <div>
-            <Link to='/user/new'>
-                <button>Agregar nuevo usuario</button>
-            </Link>
-            <table className={styles.tableContainer}>
+        <section className='users--content__container'>
+            <div className='users--title__content'>
+                <h1>Usuarios</h1>
+            </div>
+            <div className='users--buttons__container'>
+                <Link to='/user/new'>
+                    <button>Agregar nuevo usuario</button>
+                </Link>
+            </div>
+            <table className='users--table'>
                 <thead>
-                    <tr className={styles.headTable}>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Usuario Activo</th>
-                        <th>Usuario Admin</th>
-                        <th>Usuario Google</th>
-                        <th>Usuario SuperAdmin</th>
+                    <tr className='users--table__headers'>
+                        <th className='users--table__column-name'>Nombre</th>
+                        <th className='users--table__column-lastName'>Apellido</th>
+                        <th className='users--table__column-email'>Email</th>
+                        <th className='users--table__column-active'>Activo</th>
+                        <th className='users--table__column-admin'>Admin</th>
+                        <th className='users--table__column-google'>Google</th>
+                        <th className='users--table__column-superAdmin'>SuperAdmin</th>
+                        <th className='users--table__column-actions'>Acciones</th>
                     </tr>
                 </thead>
-                <tbody className={styles.bodyTable}>
+                <tbody className='users--table__body'>
                     {
                         users?.map(u =>{
                             return(
@@ -41,6 +47,6 @@ export default function Users() {
                     }
                 </tbody>
             </table>
-        </div>
+        </section>
     )
 }

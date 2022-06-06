@@ -10,7 +10,7 @@
         height: 1rem;
         padding: 1.2%;
         margin-left: 2rem;
-        margin-top: 2rem;
+        margin-top: 1rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -80,7 +80,8 @@
             border: 2px solid #17252a;
             th{
                 font-family: 'Poppins', sans-serif;
-                font-size: 16px;
+                font-size: 18px;
+                font-weight: bold;
             }
             .products--table__column--name{
                 width: 40rem;
@@ -94,7 +95,11 @@
                 text-align: center;
             }
             .products--table__column--actions{
-                width: 12rem;
+                width: 30rem;
+                text-align: center;
+            }
+            .products--table__column--active{
+                width: 5rem;
                 text-align: center;
             }
         }
@@ -128,6 +133,27 @@
                         background: none;
                         margin: 2%;
                     }
+                    .table--products__btn-active{
+                        border: none;
+                        background: none;
+                        margin: 2%;
+                    }
+                    .table--products__btn-edit--all{
+                        padding: 2px;
+                        background-color: #3f7b8d;
+                        border: none;
+                        border-radius: 15px;
+                        font-size: 14px;
+                        font-family: 'Poppins', sans-serif;
+                        text-align: center;
+                        margin-top: 1%;
+                        color: white;
+                        height: 25px;
+                        width: 200px;
+                    }
+                }
+                .field--active{
+                    text-align: center;
                 }
             }
             input{
@@ -141,7 +167,7 @@
         }
     }
     .products--title__content{
-        margin-top: 3rem;
+        margin-top: 1rem;
         margin-left: 2rem;
         h1{
             font-family: 'Poppins', sans-serif;
@@ -151,11 +177,3 @@
             color: #17252A;
         }
     }
-
-
-
-
-
-// style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}}
-// style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}}
-// style={{width:"99%", height:"99%", border:"none", fontSize:"20px"}}

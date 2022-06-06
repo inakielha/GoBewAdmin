@@ -101,6 +101,13 @@ export const PUT_USER_ACTIVE = createAsyncThunk(
     }
 )
 
+export const PUT_PRODUCT_ACTIVE = createAsyncThunk(
+    'PUT_PRODUCT_ACTIVE', async (values) => {
+        const response = await axios.put(`${REACT_APP_APIURL}product/isActive`, values)
+        const body = await response.json()
+        return body
+    }
+)
 
 export const ORDER_PRODUCT = createAction(
     'ORDER_PRODUCT', (productsOrder) => {
@@ -121,10 +128,18 @@ export const POST_FAQS = createAsyncThunk(
     'POST_FAQS', async (faq) => {
         try {
             const response = await axios.post(`${REACT_APP_APIURL}faqs`, faq)
-            console.log(response)
             return response
         } catch (error) {
             console.log(error)
         }
     }
 )
+
+export const PUT_FAQS = createAsyncThunk(
+    'PUT_FAQS', async (faq) => {
+        const response = await axios.put(`${REACT_APP_APIURL}faqs`, faq)
+        const body = await response.json()
+        return body
+    }
+)
+

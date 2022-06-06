@@ -5,7 +5,6 @@ import { GET_PRODUCTS, ORDER_PRODUCT } from '../../../redux/actions';
 import '../../../scss/_productsAdmin.scss'
 import SearchBar from './SearchBar';
 import TableRow from './TableRow';
-import {TiPlus} from 'react-icons/ti'
 
 export default function ItemProduct() {
 
@@ -113,7 +112,7 @@ export default function ItemProduct() {
                 <thead className='products--table__headers'>
                     <tr>
                         <th className='products--table__column--name'>Nombre del producto</th>
-                        <th className='products--table__column--stock'>Cantidad</th>
+                        <th className='products--table__column--stock'>Stock</th>
                         <th className='products--table__column--price'>Precio</th>
                         <th className='products--table__column--active'>Activo</th>
                         <th className='products--table__column--actions'>Acciones</th>

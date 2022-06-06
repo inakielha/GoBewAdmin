@@ -89,7 +89,6 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 height: 50%;
-                margin: 2%;
                 padding: 2%;
                 justify-content: space-between;
                 border-radius: 26px;
@@ -99,12 +98,19 @@
 
             }
 
+            .textAreaLabel {
+                align-self: center;
+            }
+
             .textArea {
                 align-self: center;
                 width: 70%;
                 border-radius: 16px;
                 padding: 2%;
                 resize: none;
+                height: 30vh;
+                font-family: "Poppins", sans-serif;
+
             }
         }
 
@@ -154,8 +160,9 @@
                 color: #17252A;
 
                 cursor: pointer;
-                &:disabled{
-                background-color: #5d8790;
+
+                &:disabled {
+                    background-color: #5d8790;
                     cursor: not-allowed;
                 }
             }
@@ -165,7 +172,7 @@
     .form--checkbox__productHighligth {
         display: flex;
 
-       
+
     }
 
 

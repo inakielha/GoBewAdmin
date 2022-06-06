@@ -13,6 +13,7 @@ export default function ProductForm() {
     const dispatch = useDispatch();
     const { productId } = useParams();
     const initialValues = {
+        productId: productId ? productId : '',
         productName: product[0] ? product[0]?.productName : '',
         productIsActive: product[0] ? product[0]?.productIsActive : 0,
         productDescription: product[0] ? product[0]?.productDescription : '',
@@ -82,7 +83,7 @@ export default function ProductForm() {
 
                                 <div className='form__newProduct--textInput'>
                                     <TextInput key={1} label='Nombre' name='productName' type='text' placeholder='nombre' />
-                                    {/* <TextInput key={2} label='Descripción' name='productDescription' type='text' placeholder='descripción' /> */}
+
                                     <TextInput key={3} label='Precio' name='productPrice' type='number' placeholder='precio' />
                                     <TextInput key={4} label='Stock' name='productStock' type='number' placeholder='stock' />
                                     <div className='form--checkbox__productHighligth'>
@@ -121,7 +122,13 @@ export default function ProductForm() {
                                         })
                                     }
                                 </div>
-                                <textarea key={2} value={initialValues.productDescription ? initialValues.productDescription : ""} name="productDescription" id="" cols="30" rows="10" className='textArea'></textarea>
+                                <label htmlFor="productDescription" className='textAreaLabel'> Descripción</label>
+                                <Field as="textarea" name="productDescription" key={2} label='Descripción' class="textArea" placeholder='descripción' />
+
+                                {/* <textarea key={2} value={initialValues.productDescription ? initialValues.productDescription : ""} name="productDescription" id="" cols="30" rows="10" className='textArea'></textarea> */}
+                                {/* <TextInput key={2} label='Descripción' name='productDescription' type='text' placeholder='descripción' style={{ width: "100%", height: "30vh", display: "flex", alignItems: "flex-start", inlineSize: "150px", overflowWrap: "break-word" }} /> */}
+
+
                             </div>
                             <div>
                             </div>

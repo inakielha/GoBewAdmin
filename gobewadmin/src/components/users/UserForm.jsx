@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { USER_CREATE } from '../../redux/actions'
 import CheckBox from '../form/CheckBox'
+import '../../scss/_usersForm.scss'
 
 
 export const UserForm = () => {
@@ -31,7 +32,10 @@ export const UserForm = () => {
     });
 
     return (
-        <div>
+        <div className='users--form__container'>
+            <div className='users-form--title__container'>
+                <h1>Nuevo Usuario</h1>
+            </div>
             <Formik
                 initialValues={initialValues}
                 onSubmit={(values) => {
@@ -44,14 +48,20 @@ export const UserForm = () => {
             >
                 {
                     (formik) => (
-                        <Form>
-                            <TextInput label='Email' name='userEmail' type='email' placeholder='email' />
-                            <TextInput label='Password' name='userPassword' type='password' placeholder='password' />
-                            <TextInput label='First Name' name='userFirstName' type='text' placeholder='first name' />
-                            <TextInput label='Last Name' name='userLastName' type='text' placeholder='last name' />
-                            <CheckBox label='Admin' type='checkbox' name='userIsAdmin' />
-                            <CheckBox label='Google' type='checkbox' name='userIsGoogle' />
-                            <CheckBox label='Super Admin' type='checkbox' name='userIsSuperAdmin' />
+                        <Form class = 'users--form'>
+                            <TextInput class='field-user__form' name='userEmail' type='email' placeholder='email' />
+                            <TextInput class='field-user__form' name='userPassword' type='password' placeholder='password' />
+                            <TextInput class='field-user__form' name='userFirstName' type='text' placeholder='first name' />
+                            <TextInput class='field-user__form' name='userLastName' type='text' placeholder='last name' />
+                            <div className='checkbox--container'>
+                                <CheckBox class='field-user__form' label='Admin' type='checkbox' name='userIsAdmin' />
+                            </div>
+                            <div className='checkbox--container'>
+                                <CheckBox class='field-user__form' label='Google' type='checkbox' name='userIsGoogle' />
+                            </div>
+                            <div className='checkbox--container'>
+                                <CheckBox class='field-user__form' label='Super Admin' type='checkbox' name='userIsSuperAdmin' />       
+                            </div>
                             <button type='submit'>Crear</button>
                         </Form>
                     )

@@ -1,57 +1,70 @@
-import { Form, Formik } from "formik";
-import * as Yup from 'yup';
-// import { useDispatch } from 'react-redux';
-import { TextInput } from "../../form/TextInput";
 import { useDispatch } from "react-redux";
 import { GET_FAQS, POST_FAQS } from "../../../redux/actions";
 import FaqCardContainer from "./FaqCardContainer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import validateForm from "./validation/validateForm";
+import styles from './styles/creationFaq.module.css'
 
 export default function CreationFaq() {
 
     const dispatch = useDispatch();
-    const initialValues = {
+    const [values, setValues] = useState({
         faqTitle: '',
         faqDescription: '',
         faqOrder: ''
-    };  
-    
-    useEffect(() => {
-        dispatch(GET_FAQS)
-    }, [GET_FAQS])
+    });
+    const [error, setError] = useState('');
 
-    return <div>
-        <div>
+    function handleChange(event) {
+        setValues((prevState) => {
+            const newState = {
+                ...prevState,
+                [event.target.name]: event.target.value
+            }
+            setError(validateForm(newState))
+            return newState
+        })
+    }
+    console.log(Object.keys(error).length)
+    function handleSubmit() {
+        console.log(Object.keys(error).length)
+        if (values.faqTitle.length === 0) {
+            setError(1);
+            alert('Error: Ingresa la pregunta')
+        } else if (Object.keys(error).length === 0) {
+            dispatch(POST_FAQS(values))
+            alert('FAQ creada')
+        }
+    }
+
+    useEffect(() => {
+        dispatch(GET_FAQS())
+    }, [dispatch])
+
+    return <div className={styles.faqs}>
+        <div className={styles.faqTitulo}>
             <h1>Crea tus FAQ</h1>
             <span>Frequently Asked Questions (Preguntas mas frecuentes)</span>
         </div>
+        <br />
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <div>
+                <label>Pregunta: </label>
+                <input type="text" placeholder="Pregunta..." onChange={(e) => handleChange(e)} value={values.faqTitle} name='faqTitle' />
+            </div>
+            <div>
+                <label>Descripcion: </label>
+                <input type="text" placeholder="Descripcion..." onChange={(e) => handleChange(e)} value={values.faqDescription} name='faqDescription' />
+            </div>
+            <div>
+                <label>Orden: </label>
+                <input type="text" placeholder="Orden..." onChange={(e) => handleChange(e)} value={values.faqOrder} name='faqOrder' />
+            </div>
+            <button type="submit">Crear</button>
+        </form>
+        <br />
         <div>
-            <Formik
-                initialValues={initialValues}
-                validationSchema = {
-                    Yup.object({
-                        faqTitle: Yup.string().required('Requerido.'),
-                        faqDescription: Yup.string(),
-                        faqOrder: Yup.number()
-                    })
-                }
-                onSubmit={(values) => {
-                    dispatch(POST_FAQS(values))
-                }}
-            >
-                {props => (
-                    <Form>
-                        <TextInput label='Pregunta ' name='faqTitle' type='text' placeholder='Introduci tu pregunta' />
-                        <TextInput label=' Respuesta ' name='faqDescription' type='text' placeholder='Respuesta' />
-                        <TextInput label=' Orden ' name='faqOrder' type='text' placeholder='Orden de muestra' />
-                        <button type="submit">Cargar</button>
-                    </Form>
-                )}
-            </Formik>
-        </div>
-        // Fijarse
-        <div>
-            <FaqCardContainer/>
+            <FaqCardContainer />
         </div>
     </div >
 }

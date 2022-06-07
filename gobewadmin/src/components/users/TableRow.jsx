@@ -52,12 +52,14 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
 
     return (
         <tr>
-            {
+            {/* {
                 <td><input onChange={handleChange}  type="text" value={userChange.userFirstName} name="userFirstName" disabled={!edit} /></td>
             }
             {
                 <td><input onChange={handleChange}  type="text" value={userChange.userLastName} name="userLastName" disabled={!edit} /></td>
-            }
+            } */}
+            <td className='field--name'>{userChange.userFirstName}</td>
+            <td className='field--lastName'>{userChange.userLastName}</td>
             <td className='field--email'>{userChange.userEmail}</td>
             <td className='field--active'><input type="checkbox" checked={userChange.userIsActive} name="userIsActive" disabled/></td>
             <td className='field--admin'><input type="checkbox" checked={userChange.userIsAdmin} name="userIsAdmin" onClick={handleCheckEvent} disabled={!edit}/></td>

@@ -6,6 +6,7 @@ import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, PO
 
 const initialState = {
     products: [],
+    productsSort : [],
     product: {},
     categories: [],
     faqs: [],

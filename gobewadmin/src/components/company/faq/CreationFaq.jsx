@@ -3,7 +3,7 @@ import { GET_FAQS, POST_FAQS } from "../../../redux/actions";
 import FaqCardContainer from "./FaqCardContainer";
 import { useEffect, useState } from "react";
 import validateForm from "./validation/validateForm";
-import styles from './styles/creationFaq.module.css'
+import '../../scss/_faqForm.scss'
 
 export default function CreationFaq() {
 
@@ -41,8 +41,8 @@ export default function CreationFaq() {
         dispatch(GET_FAQS())
     }, [dispatch])
 
-    return <div className={styles.faqs}>
-        <div className={styles.faqTitulo}>
+    return <div className="faq--content__container">
+        <div className="faq--title__container">
             <h1>Crea tus FAQ</h1>
             <span>Frequently Asked Questions (Preguntas mas frecuentes)</span>
         </div>

@@ -45,7 +45,7 @@ export default function ItemProduct() {
     //! ORDERS
 
 
-    const handleAlphaOrder = (e) => {
+    const handleAlphaOrder = () => {
         let prod = [...products];
         if (valueButtonName === 'ASC') {
             let productsSorted = prod.sort((a, b) => {
@@ -69,7 +69,8 @@ export default function ItemProduct() {
         }
     }
 
-    const handlePriceOrder = (e) => {
+
+    const handlePriceOrder = () => {
         let prod = [...products]
         if (valueButtonPrice === 'ASC') {
             let productsSorted = prod.sort((a, b) => {
@@ -91,7 +92,7 @@ export default function ItemProduct() {
         }
     }
 
-    const handleStockOrder = (e) => {
+    const handleStockOrder = () => {
         let prod = [...products]
         if (valueButtonStock === 'ASC') {
             let productsSorted = prod.sort((a, b) => {

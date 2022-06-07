@@ -34,8 +34,6 @@ export default function CreationCategory() {
     }
 
     function handleCreateCategory(event) {
-        event.preventDefault()
-        console.log(error)
         if (newCateg.categoryName.length === 0) {
             setError(1);
             alert('Error: Ingresa el nombre de la categoria')

@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from '../components/auth/Login';
 
 import Nav from "../components/nav/Nav"
-import CreationForm from '../components/products/createForm/CreationForm';
 import CreationImage from '../components/products/createForm/CreationImage';
 import CreationCategory from '../components/products/createForm/CreationCategory';
 
@@ -32,15 +31,15 @@ export const Navigation = () => {
         } />
         <Route exact path='/user' element={
           <PrivateRoutes>
-            <Users/>
+            <Users />
           </PrivateRoutes>
         } />
 
-        <Route exact path='/product/new' element={<ProductForm/>} />
-        <Route exact path='/product/edit/:productId' element={<ProductForm/>} />
+        <Route exact path='/product/new' element={<ProductForm />} />
+        <Route exact path='/product/edit/:productId' element={<ProductForm />} />
         <Route exact path='/categories/new' element={[<CreationCategory />]} />
         <Route exact path='/product/image' element={[<CreationImage />]} />
-        <Route exact path='/user/new' element={<UserForm />}/>
+        <Route exact path='/user/new' element={<UserForm />} />
         {/* <Route exact path='/faq' element={[<CreationFaq />, <FaqsCreated/>]} /> */}
 
         <Route path='/login' element={<Login />} />

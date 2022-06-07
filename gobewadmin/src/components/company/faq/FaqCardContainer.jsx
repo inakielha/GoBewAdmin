@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_FAQS } from "../../../redux/actions";
 import FaqsCreated from "./FaqsCreated";
-
+import '../../../scss/_faqAdmin.scss'
 
 export default function FaqCardContainer() {
 
@@ -14,6 +14,7 @@ export default function FaqCardContainer() {
     }, [dispatch])
 
     return <div>
+        <h2>FAQ creadas</h2>
         {faqs.faqs ?
             <FaqsCreated faqsCreated={faqs.faqs?.faqList} />
             : <h2>No hay FAQ creadas</h2>

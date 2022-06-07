@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from '../components/auth/Login';
 
 import Nav from "../components/nav/Nav"
-import CreationForm from '../components/products/createForm/CreationForm';
 import CreationImage from '../components/products/createForm/CreationImage';
 import CreationCategory from '../components/products/createForm/CreationCategory';
 

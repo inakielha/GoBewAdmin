@@ -146,6 +146,34 @@
             color: #17252A;
         }
     }
+    .users--pagination__container{
+        display: flex;
+        width: 100%;
+        justify-content: left;
+        margin-left: 2rem;
+        ul{
+            display: flex;
+            width: 60%;
+            justify-content: left;
+            li{
+                margin: 2px;
+                border: 1px solid #17252A;
+                padding: 3px;
+                height: 16px;
+                width: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                a{
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 1px;
+                }
+            }
+        }
+    }
 }
 
 

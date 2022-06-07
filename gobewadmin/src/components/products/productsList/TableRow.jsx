@@ -57,7 +57,7 @@ export default function TableRow({productName, productPrice, productStock,produc
                 <td><input onChange={handleChange}  type="text" value={productChange.productName} name="productName" disabled={!edit}/></td> 
             }
             {
-                <td className='field--stock'><input onChange={handleChange}   type="text" value={productChange.productStock} name="productStock" disabled={!edit}/></td> 
+                <td className='field--stock'><input onChange={handleChange} type="text" value={productChange.productStock} name="productStock" disabled={!edit}/></td> 
             }
             {
                 <td className='field--price'><input onChange={handleChange}   type="text" value={productChange.productPrice} name="productPrice" disabled={!edit}/></td> 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { PUT_FAQS } from "../../../redux/actions";
+import { useDispatch } from "react-redux"
+import { GET_FAQS, PUT_FAQS } from "../../../redux/actions";
+import '../../../scss/_faqAdmin.scss'
+import {RiPencilFill} from 'react-icons/ri'
 
 export default function FaqCard({ faqTitle, faqDescription, faqOrder, faqId }) {
 
-
     let dispatch = useDispatch();
-    //const { faqs } = useSelector(store => store.adminReducer)
 
     const [edit, setEdit] = useState(false);
     const [faqChange, setFaqChange] = useState({
@@ -31,6 +31,7 @@ export default function FaqCard({ faqTitle, faqDescription, faqOrder, faqId }) {
             setReady(false)
             setEdit(false)
             alert('Modificado correctamente')
+            dispatch(GET_FAQS())
         } catch (error) {
             alert('No se pudo editar')
         }
@@ -40,7 +41,7 @@ export default function FaqCard({ faqTitle, faqDescription, faqOrder, faqId }) {
         setFaqChange({ faqTitle: faqTitle, faqDescription, faqOrder, faqId: faqId })
     }, [faqTitle, faqDescription, faqOrder, faqId])
 
-    return <div>
+    return <div className="faqs--created__container">
         {
             <div>
                 <h4>Titulo</h4>
@@ -59,7 +60,9 @@ export default function FaqCard({ faqTitle, faqDescription, faqOrder, faqId }) {
                 <input type="text" onChange={handleEdit} value={faqChange.faqOrder} name='faqOrder' disabled={!edit} />
             </div>
         }
-        <button onClick={() => setEdit(!edit)}>Editar</button>
+        <div>
+            <button onClick={() => setEdit(!edit)}><RiPencilFill/></button>
+        </div>
         {ready && <button onClick={handleSubmit}>OK</button>}
     </div>
 }

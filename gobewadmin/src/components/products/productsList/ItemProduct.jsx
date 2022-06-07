@@ -69,6 +69,7 @@ export default function ItemProduct() {
         }
     }
 
+
     const handlePriceOrder = () => {
         let prod = [...products]
         if (valueButtonPrice === 'ASC') {

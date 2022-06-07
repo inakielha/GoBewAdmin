@@ -1,70 +1,57 @@
 import { useDispatch } from "react-redux";
 import { GET_FAQS, POST_FAQS } from "../../../redux/actions";
 import FaqCardContainer from "./FaqCardContainer";
-import { useEffect, useState } from "react";
-import validateForm from "./validation/validateForm";
-import styles from './styles/creationFaq.module.css'
+import { Form, Formik } from 'formik'
+import { TextInput } from '../../form/TextInput'
+import * as Yup from 'yup';
+import '../../../scss/_faqForm.scss';
 
 export default function CreationFaq() {
 
     const dispatch = useDispatch();
-    const [values, setValues] = useState({
+    const initialValues = {
         faqTitle: '',
         faqDescription: '',
         faqOrder: ''
+    }
+
+    const validations = Yup.object().shape({
+        faqTitle: Yup.string()
+            .required('Requerido.'),
+        faqDescription: Yup.string(),
+        faqOrder: Yup.number()
     });
-    const [error, setError] = useState('');
 
-    function handleChange(event) {
-        setValues((prevState) => {
-            const newState = {
-                ...prevState,
-                [event.target.name]: event.target.value
-            }
-            setError(validateForm(newState))
-            return newState
-        })
-    }
-    console.log(Object.keys(error).length)
-    function handleSubmit() {
-        console.log(Object.keys(error).length)
-        if (values.faqTitle.length === 0) {
-            setError(1);
-            alert('Error: Ingresa la pregunta')
-        } else if (Object.keys(error).length === 0) {
-            dispatch(POST_FAQS(values))
-            alert('FAQ creada')
-        }
-    }
-
-    useEffect(() => {
-        dispatch(GET_FAQS())
-    }, [dispatch])
-
-    return <div className={styles.faqs}>
-        <div className={styles.faqTitulo}>
-            <h1>Crea tus FAQ</h1>
-            <span>Frequently Asked Questions (Preguntas mas frecuentes)</span>
+    return (
+        <div className="faq--content__container">
+            <div className="faq--title__container">
+                <h1>Crea tus FAQ</h1>
+                <h3>Frequently Asked Questions (Preguntas mas frecuentes)</h3>
+            </div>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={(values) => {
+                    dispatch(POST_FAQS(values))
+                    alert("FAQ creada correctamente")
+                    dispatch(GET_FAQS())
+                }
+                }
+                validationSchema={validations}
+            >
+                {
+                    (formik) => (
+                        <Form class='faq--form__container'>
+                            <TextInput class='field-faq__form' name='faqTitle' type='text' placeholder='Pregunta...' />
+                            <TextInput class='field-faq__form' name='faqDescription' type='text' placeholder='Descripcion...' />
+                            <TextInput class='field-faq__form' name='faqOrder' type='text' placeholder='Orden...' />
+                            <button type='submit'>Crear</button>
+                        </Form>
+                    )
+                }
+            </Formik>
+            <div>
+                <FaqCardContainer />
+            </div>
         </div>
-        <br />
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <div>
-                <label>Pregunta: </label>
-                <input type="text" placeholder="Pregunta..." onChange={(e) => handleChange(e)} value={values.faqTitle} name='faqTitle' />
-            </div>
-            <div>
-                <label>Descripcion: </label>
-                <input type="text" placeholder="Descripcion..." onChange={(e) => handleChange(e)} value={values.faqDescription} name='faqDescription' />
-            </div>
-            <div>
-                <label>Orden: </label>
-                <input type="text" placeholder="Orden..." onChange={(e) => handleChange(e)} value={values.faqOrder} name='faqOrder' />
-            </div>
-            <button type="submit">Crear</button>
-        </form>
-        <br />
-        <div>
-            <FaqCardContainer />
-        </div>
-    </div >
+    )
 }

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+.orders--content__container {
+    max-width: 100vw;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+
+    .orders--title__content {
+        margin-top: 1rem;
+        margin-left: 2rem;
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 600;
+            font-style: italic;
+            color: #17252A;
+
+        }
+    }
+
+    .orders--table {
+        width: 90%;
+        border: 2px solid #17252a;
+        margin-left: 2rem;
+        margin-top: 1rem;
+
+        .orders--table__headers {
+            background-color: #b1d8de;
+            height: 2rem;
+            border: 2px solid #17252a;
+
+            th {
+                font-family: 'Poppins', sans-serif;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .orders--table__column--idOrder {
+                width: 15rem;
+            }
+
+            .orders--table__column--firstName {
+                width: 5rem;
+                text-align: center;
+            }
+
+            .orders--table__column--lastName {
+                width: 8rem;
+                text-align: center;
+            }
+
+            .orders--table__column--date {
+                width: 18rem;
+                text-align: center;
+            }
+
+            .orders--table__column--actions {
+                width: 5rem;
+                text-align: center;
+            }
+
+            .orders--table__column--detail {
+                width: 5rem;
+                text-align: center;
+            }
+        }
+
+        .orders--table__body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+
+            tr:nth-child(even) {
+                background-color: #b1d8de;
+
+                :disabled {
+                    background: #b1d8de;
+                }
+
+                :enabled {
+                    background: #b1d8de;
+                }
+            }
+
+            tr {
+                .field--idOrder {
+                    text-align: center;
+                    outline: none;
+                }
+
+                .field--userFirstName {
+                    text-align: center;
+                    outline: none;
+                }
+
+                .field--userLastName {
+                    text-align: center;
+                    outline: none;
+                }
+
+                .field--date {
+                    text-align: center;
+                    outline: none;
+                }
+
+                .field--actions {
+                    text-align: center;
+                }
+
+                .field--active {
+                    text-align: center;
+                }
+
+                .field--buttonDetail {
+                    text-align: center;
+                    outline: none;
+                }
+            }
+        }
+    }
+}

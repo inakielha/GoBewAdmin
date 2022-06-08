@@ -20,7 +20,7 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
     })
     const [ready, setReady] = useState(false)
     
-
+// eslint-disable-next-line
     const handleChange = (e) => {
         setUserChange({
             ...userChange,
@@ -67,5 +67,3 @@ export default function TableRow({ userFirstName, userLastName, userEmail, userI
         </tr>
     )
 }
-
-

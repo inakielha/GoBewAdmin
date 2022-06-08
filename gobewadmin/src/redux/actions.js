@@ -157,3 +157,17 @@ export const PUT_FAQS = createAsyncThunk(
     }
 )
 
+export const GET_ALL_ORDERS = createAsyncThunk(
+    'GET_ALL_ORDERS', async () => {
+        const response = await fetch(`${REACT_APP_APIURL}payments/order/getAll`)
+        return await response.json()
+    }
+)
+
+export const GET_ORDER_BY_ID = createAsyncThunk(
+    'GET_ORDER_BY_ID', async (orderId) => {
+        const response = await fetch(`${REACT_APP_APIURL}order/byId/${orderId}`)
+        console.log(response)
+        return await response.json()
+    }
+)

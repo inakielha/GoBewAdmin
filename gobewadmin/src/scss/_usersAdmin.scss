@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     .users--buttons__container{
-        width: 73.7rem;
+        width: 87%;
         height: 1rem;
         padding: 1.2%;
         margin-left: 2rem;
@@ -29,6 +29,13 @@
                     height: 30px;
                     width: 200px;
                 }
+        .label--filter{
+            font-family: 'Poppins', sans-serif;
+            margin: 10px;
+        }
+        .input--radio__btn{
+            margin-right: 16px;
+        }
     }
     .users--table{
         width: 90%;
@@ -151,6 +158,7 @@
         width: 100%;
         justify-content: left;
         margin-left: 2rem;
+        margin-top: .6rem ;
         ul{
             display: flex;
             width: 60%;
@@ -164,12 +172,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                background-color: #b1d8de;
+                color: #17252A;
                 a{
                     font-family: 'Poppins', sans-serif;
                     font-size: 16px;
                     font-weight: bold;
                     text-align: center;
-                    margin-top: 1px;
                 }
             }
         }

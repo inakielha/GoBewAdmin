@@ -38,31 +38,32 @@
             }
 
             .orders--table__column--idOrder {
-                width: 15rem;
+                width: auto;
+                text-align: center;
             }
 
             .orders--table__column--firstName {
-                width: 5rem;
+                width: auto;
                 text-align: center;
             }
 
             .orders--table__column--lastName {
-                width: 8rem;
+                width: auto;
                 text-align: center;
             }
 
             .orders--table__column--date {
-                width: 18rem;
+                width: auto;
                 text-align: center;
             }
 
             .orders--table__column--actions {
-                width: 5rem;
+                width: auto;
                 text-align: center;
             }
 
             .orders--table__column--detail {
-                width: 5rem;
+                width: auto;
                 text-align: center;
             }
         }

@@ -70,6 +70,7 @@
         }
     .products--table{
         width: 90%;
+        min-height: 40vh;
         border: 2px solid #17252a;
         margin-left: 2rem;
         margin-top: 1rem;
@@ -181,6 +182,7 @@
         width: 100%;
         justify-content: left;
         margin-left: 2rem;
+        margin-top: .6rem ;
         ul{
             display: flex;
             width: 60%;
@@ -194,6 +196,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                background-color: #b1d8de;
+                color: #17252A;
                 a{
                     font-family: 'Poppins', sans-serif;
                     font-size: 16px;

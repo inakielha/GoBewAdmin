@@ -24,6 +24,7 @@ export default function Users() {
 
     const [admin, setAdmin] = useState(true);
     const [checkedAdmin, setCheckedAdmin] = useState(false);
+    const [disabledAdmin, setDisabledAdmin] = useState(false)
 
 
     const handleChangeAdmin = (e) => {
@@ -32,8 +33,10 @@ export default function Users() {
         setCheckedAdmin(!checkedAdmin);
         if(admin){
             dispatch(GET_USERS_ADMINS(admin));
+            setDisabledActive(true);
         }else{
             dispatch(GET_USERS());
+            setDisabledActive(false);
         }
     }
 
@@ -41,6 +44,8 @@ export default function Users() {
 
     const [active, setActive] = useState(true);
     const [checkedActive, setCheckedActive] = useState(false);
+    const [disabledActive, setDisabledActive] = useState(false)
+
 
     const handleChangeActive = (e) => {
         console.log(e.target.value);
@@ -48,8 +53,10 @@ export default function Users() {
         setCheckedActive(!checkedActive);
         if(active){
             dispatch(GET_USERS_ACTIVE(active));
+            setDisabledAdmin(true);
         }else{
             dispatch(GET_USERS());
+            setDisabledAdmin(false);
         }
     }
 
@@ -75,10 +82,10 @@ export default function Users() {
                 <h1>Usuarios</h1>
             </div>
             <div className='users--buttons__container'>
-                <label htmlFor="userIsAdmin">Admins</label>
-                <input type="radio" name="userIsAdmin" value={admin} onClick={handleChangeAdmin} checked={checkedAdmin}/>
-                <label htmlFor="userIsActive">Activos</label>
-                <input type="radio" name="userIsActive" value={active} onClick={handleChangeActive} checked={checkedActive} />
+                <label className='label--filter' htmlFor="userIsAdmin">Admins</label>
+                <input className='input--radio__btn' type="radio" name="userIsAdmin" value={admin} onClick={handleChangeAdmin} checked={checkedAdmin} disabled={disabledAdmin}/>
+                <label className='label--filter' htmlFor="userIsActive">Activos</label>
+                <input className='input--radio__btn' type="radio" name="userIsActive" value={active} onClick={handleChangeActive} checked={checkedActive} disabled={disabledActive} />
                 <Link to='/user/new'>
                     <button>Agregar nuevo usuario</button>
                 </Link>

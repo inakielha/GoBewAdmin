@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_USERS } from '../../redux/actions';
+import { GET_USERS, GET_USERS_ACTIVE, GET_USERS_ADMINS } from '../../redux/actions';
 import TableRow from './TableRow';
 import { Link } from 'react-router-dom';
 import '../../scss/_usersAdmin.scss'
@@ -19,6 +19,39 @@ export default function Users() {
     const [itemOffset, setItemOffset] = useState(0);
     const itemPerPage = 5;
 
+
+    //! ADMINS
+
+    const [admin, setAdmin] = useState(true);
+    const [checkedAdmin, setCheckedAdmin] = useState(false);
+
+
+    const handleChangeAdmin = (e) => {
+        console.log(e.target.value);
+        setAdmin(!admin);
+        setCheckedAdmin(!checkedAdmin);
+        if(admin){
+            dispatch(GET_USERS_ADMINS(admin));
+        }else{
+            dispatch(GET_USERS());
+        }
+    }
+
+    //! ACTIVES
+
+    const [active, setActive] = useState(true);
+    const [checkedActive, setCheckedActive] = useState(false);
+
+    const handleChangeActive = (e) => {
+        console.log(e.target.value);
+        setActive(!active);
+        setCheckedActive(!checkedActive);
+        if(active){
+            dispatch(GET_USERS_ACTIVE(active));
+        }else{
+            dispatch(GET_USERS());
+        }
+    }
 
     useEffect(() => {
         dispatch(GET_USERS())
@@ -42,6 +75,10 @@ export default function Users() {
                 <h1>Usuarios</h1>
             </div>
             <div className='users--buttons__container'>
+                <label htmlFor="userIsAdmin">Admins</label>
+                <input type="radio" name="userIsAdmin" value={admin} onClick={handleChangeAdmin} checked={checkedAdmin}/>
+                <label htmlFor="userIsActive">Activos</label>
+                <input type="radio" name="userIsActive" value={active} onClick={handleChangeActive} checked={checkedActive} />
                 <Link to='/user/new'>
                     <button>Agregar nuevo usuario</button>
                 </Link>

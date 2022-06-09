@@ -42,6 +42,7 @@ export default function FaqCard({ faqTitle, faqDescription, faqOrder, faqId }) {
     }, [faqTitle, faqDescription, faqOrder, faqId])
 
     return <div className="faqs--created__container">
+        <h2>FAQ creadas</h2>
         {
             <div>
                 <h4>Titulo</h4>

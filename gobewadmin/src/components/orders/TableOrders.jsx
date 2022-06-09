@@ -1,22 +1,14 @@
-import { MdDoNotDisturbOn } from 'react-icons/md'
-import { ImCheckboxChecked } from 'react-icons/im'
-import { RiPencilFill } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
-import DetailOrder from './DetailOrder'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { GET_ORDER_BY_ID } from '../../redux/actions'
+
 
 export default function TableOrders({ orderId, userFirstName, userLastName, date, setOrdId }) {
 
     function handleClick(event) {
-        console.log(event.target.value)
         setOrdId(event.target.value)
     }
 
     return (
         <tr>
-            <td className='field--idOrder'>{idOrden}</td>
+            <td className='field--idOrder'>{orderId}</td>
             <td className='field--userFirstName'>{userFirstName}</td>
             <td className='field--userLastName'>{userLastName}</td>
             <td className='field--date'>{date?.slice(0, 10)}</td>

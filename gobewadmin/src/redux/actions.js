@@ -166,8 +166,7 @@ export const GET_ALL_ORDERS = createAsyncThunk(
 
 export const GET_ORDER_BY_ID = createAsyncThunk(
     'GET_ORDER_BY_ID', async (orderId) => {
-        const response = await fetch(`${REACT_APP_APIURL}order/byId/${orderId}`)
-        console.log(response)
+        const response = await fetch(`${REACT_APP_APIURL}payments//admin/order/byId/${orderId}`)
         return await response.json()
     }
 )

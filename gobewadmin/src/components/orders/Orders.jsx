@@ -36,7 +36,7 @@ export default function Orders() {
                     {
                         orders?.map(elem => {
                             return (
-                                <TableOrders className='orders--table__rows' setOrdId={setOrdId} idOrden={elem._id} userFirstName={elem.user[0]?.userFirstName} userLastName={elem.user[0]?.userLastName} date={elem.orderAceptDate} />
+                                <TableOrders key={elem._id} className='orders--table__rows' setOrdId={setOrdId} orderId={elem._id} userFirstName={elem.user[0]?.userFirstName} userLastName={elem.user[0]?.userLastName} date={elem.orderAceptDate} />
                             )
                         })
                     }
@@ -44,7 +44,7 @@ export default function Orders() {
                 </tbody>
             </table>
             <div>
-                <DetailOrder idOrden={ordId} />
+                <DetailOrder orderId={ordId} />
             </div>
         </section>
     )

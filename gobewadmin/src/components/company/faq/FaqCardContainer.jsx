@@ -14,7 +14,6 @@ export default function FaqCardContainer() {
     }, [dispatch])
 
     return <div>
-        <h2>FAQ creadas</h2>
         {faqs.faqs ?
             <FaqsCreated faqsCreated={faqs.faqs?.faqList} />
             : <h2>No hay FAQ creadas</h2>

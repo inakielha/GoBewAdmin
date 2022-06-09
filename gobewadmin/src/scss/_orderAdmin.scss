@@ -18,6 +18,14 @@
             color: #17252A;
 
         }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            font-weight: 600;
+            font-style: italic;
+            color: #17252A;
+        }
     }
 
     .orders--table {
@@ -119,5 +127,40 @@
                 }
             }
         }
+    }
+
+    .orders--details {
+        margin-top: 1rem;
+        margin-left: 3rem;
+        display: flex;
+        flex-direction: column;
+        max-width: 60vw;
+        min-height: auto;
+        border: 3px solid #17252A;
+        border-radius: 1%;
+
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+
+        .orders--details__cart {
+            display: flex;
+            
+            .orders--details__cart__cant {
+                color: #17252A;
+            }
+        }
+
+        .orders--details__final {
+            display: inline-flex;
+            margin-right: 10px;
+            //justify-content: space-around;
+        }
+
+        .orders--details__final__price {
+            font-weight: bold;
+        }
+
     }
 }

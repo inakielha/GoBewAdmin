@@ -33,7 +33,6 @@ export const Login = () => {
   return (
 
   <div className='login--content__container'>
-    {/* <h1>Login</h1> */}
     { (!ok) && <span>Usuario no encontrado.</span>}
     <Formik
       initialValues={{
@@ -63,7 +62,7 @@ export const Login = () => {
               <TextInput name='userEmail' type='email' placeholder='e-mail'/>
             </div>
             <div className='form--login__input--container'>
-              <TextInput name='userPassword' type='password' placeholder='password'/>
+              <TextInput name='userPassword' type='password' placeholder='contraseña'/>
             </div>
             <div className='form--login__btn'>
               <button type="submit">Iniciar Sesión</button>

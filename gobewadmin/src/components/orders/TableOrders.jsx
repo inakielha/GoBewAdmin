@@ -7,9 +7,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { GET_ORDER_BY_ID } from '../../redux/actions'
 
-export default function TableOrders({ idOrden, userFirstName, userLastName, date, setOrdId }) {
-
-    let dispatch = useDispatch()
+export default function TableOrders({ orderId, userFirstName, userLastName, date, setOrdId }) {
 
     function handleClick(event) {
         console.log(event.target.value)
@@ -23,7 +21,7 @@ export default function TableOrders({ idOrden, userFirstName, userLastName, date
             <td className='field--userLastName'>{userLastName}</td>
             <td className='field--date'>{date?.slice(0, 10)}</td>
             <td className='field--active'><input type="checkbox" checked={''} name="orderStatus" disabled /></td>
-            <td className='field--buttonDetail'><button onClick={handleClick} value={idOrden} >Detail</button></td>
+            <td className='field--buttonDetail'><button onClick={handleClick} value={orderId} >Detail</button></td>
             <td className='field--actions'>
                 {/* <button onClick={() => setEdit(!edit)}><RiPencilFill /></button>
                     <button onClick={handleUserActive}>{userChange.userIsActive ? <MdDoNotDisturbOn /> : <ImCheckboxChecked />}</button>

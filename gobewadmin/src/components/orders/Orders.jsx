@@ -38,12 +38,6 @@ export default function Orders() {
                             return (
                                 <TableOrders className='orders--table__rows' setOrdId={setOrdId} idOrden={elem._id} userFirstName={elem.user[0]?.userFirstName} userLastName={elem.user[0]?.userLastName} date={elem.orderAceptDate} />
                             )
-                            // elem.user?.map(elemUs => {
-                            //     console.log(elemUs)
-                            //     return (
-                            //         <TableOrders idOrden={elem._id} userFirstName={elemUs.userFirstName} userLastName={elemUs.userLastName} date={elem.orderAceptDate} />
-                            //     )
-                            // })
                         })
                     }
 

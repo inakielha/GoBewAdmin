@@ -2,21 +2,21 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { GET_ORDER_BY_ID } from "../../redux/actions"
 
-export default function DetailOrder({ idOrden }) {
+export default function DetailOrder({ orderId }) {
 
     let dispatch = useDispatch()
     let order = useSelector((state) => state.adminReducer.order)
 
     useEffect(() => {
-        dispatch(GET_ORDER_BY_ID(idOrden))
-    }, [dispatch, idOrden])
+        dispatch(GET_ORDER_BY_ID(orderId))
+    }, [dispatch, orderId])
 
     console.log(order)
     return (
         <div>
             <h2>Order detalle</h2>
-            <p>Este es el detalle de la orden seleccionada: {idOrden}</p>
-            <p>La persona: {order.user[0]?.userFirstName} {order.user[0]?.userLastName}</p>
+            <p>Este es el detalle de la orden seleccionada: {orderId}</p>
+            <p>La persona: {order.user?.userFirstName} {order.user?.userLastName}</p>
             <p>
                 Compro:
                 {order.cart?.map(elem => {

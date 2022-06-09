@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import '../../scss/_usersAdmin.scss'
 import ReactPaginate from 'react-paginate';
 import {TiArrowRightThick , TiArrowLeftThick} from 'react-icons/ti'
+import SearchBar from './SearchBar';
 
 export default function Users() {
     
@@ -82,10 +83,15 @@ export default function Users() {
                 <h1>Usuarios</h1>
             </div>
             <div className='users--buttons__container'>
-                <label className='label--filter' htmlFor="userIsAdmin">Admins</label>
-                <input className='input--radio__btn' type="radio" name="userIsAdmin" value={admin} onClick={handleChangeAdmin} checked={checkedAdmin} disabled={disabledAdmin}/>
-                <label className='label--filter' htmlFor="userIsActive">Activos</label>
-                <input className='input--radio__btn' type="radio" name="userIsActive" value={active} onClick={handleChangeActive} checked={checkedActive} disabled={disabledActive} />
+                <SearchBar/>
+                <div className='users--btn-radio__container'>
+                    <label className='label--filter' htmlFor="userIsAdmin">Admins</label>
+                    <input className='input--radio__btn' type="radio" name="userIsAdmin" value={admin} onClick={handleChangeAdmin} checked={checkedAdmin} disabled={disabledAdmin}/>
+                </div>
+                <div className='users--btn-radio__container'>
+                    <label className='label--filter' htmlFor="userIsActive">Activos</label>
+                    <input className='input--radio__btn' type="radio" name="userIsActive" value={active} onClick={handleChangeActive} checked={checkedActive} disabled={disabledActive} />
+                </div>
                 <Link to='/user/new'>
                     <button>Agregar nuevo usuario</button>
                 </Link>

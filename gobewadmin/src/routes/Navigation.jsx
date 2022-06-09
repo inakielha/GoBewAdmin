@@ -12,7 +12,7 @@ import CreationFaq from '../components/company/faq/CreationFaq';
 import Users from '../components/users/Users';
 import { Activate } from '../components/users/Activate';
 import ProductForm from '../components/products/ProductForm';
-// import FaqsCreated from '../components/company/faq/FaqsCreated';
+import Orders from '../components/orders/Orders';
 
 export const Navigation = () => {
   return (
@@ -34,13 +34,17 @@ export const Navigation = () => {
             <Users />
           </PrivateRoutes>
         } />
+        <Route exact path='/orders' element={
+          <PrivateRoutes>
+            <Orders/>
+          </PrivateRoutes>
+        } />
 
         <Route exact path='/product/new' element={<ProductForm />} />
         <Route exact path='/product/edit/:productId' element={<ProductForm />} />
         <Route exact path='/categories/new' element={[<CreationCategory />]} />
         <Route exact path='/product/image' element={[<CreationImage />]} />
         <Route exact path='/user/new' element={<UserForm />} />
-        {/* <Route exact path='/faq' element={[<CreationFaq />, <FaqsCreated/>]} /> */}
 
         <Route path='/login' element={<Login />} />
         <Route path='/activate/:id/:hash/:email' element={<Activate />} />

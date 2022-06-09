@@ -48,7 +48,7 @@ export default function TableRow({productName, productPrice, productStock,produc
     
     useEffect(()=>{
         setProductChange({productName, productPrice, productStock,productIsActive, productId: _id})
-    }, [productName, productPrice, productStock, _id])
+    }, [productName, productPrice, productStock, _id, productIsActive])
     
     
     return (
@@ -64,12 +64,14 @@ export default function TableRow({productName, productPrice, productStock,produc
             }
             <td className='field--active'><input type="checkbox" checked={productChange.productIsActive} name="productIsActive" disabled style={{width:"24px", height:"24px"}}/></td>
             <td className='field--actions'>
-                <button className='table--products__btn-edit' onClick={()=> setEdit(!edit)}><RiPencilFill/></button>
-                <button className='table--products__btn-active' onClick={handleProductActive}>{productChange.productIsActive ? <MdDoNotDisturbOn/> : <ImCheckboxChecked/>}</button>
+                <div className='btn--edits__container'>
+                    <button className='table--products__btn-edit' onClick={()=> setEdit(!edit)}><RiPencilFill className='btn--pencil'/></button>
+                    <button className='table--products__btn-active' onClick={handleProductActive}>{productChange.productIsActive ? <MdDoNotDisturbOn/> : <ImCheckboxChecked/>}</button>
+                    {ready && <button className='table--products__btn-confirm' onClick={handleSubmit}>OK</button>}
+                </div>
                 <Link to={`/product/edit/${productChange.productId}`}>
                     <button className='table--products__btn-edit--all'>Editar todo el producto</button>
                 </Link>
-                {ready && <button onClick={handleSubmit}>OK</button>}
             </td>
         </tr>
     )

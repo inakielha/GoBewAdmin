@@ -24,6 +24,9 @@ export default function Nav() {
 
         return    navigate('/login', {replace: true})
     }
+
+    const userIdAdmin = sessionStorage.getItem('userId')
+
     return (
         <nav className='nav--content__container'>
             <div className='nav--logo__container'>
@@ -33,7 +36,9 @@ export default function Nav() {
                 <p className='nav--links'><Link to='/faq'>FAQ</Link></p>
             </div>
             <div className='nav--btn__container'>
-                <button onClick={handleLogout}>Cerrar Sesión</button>
+                {
+                    userIdAdmin && <button className='navbar--btn' onClick={handleLogout}>Cerrar Sesión</button>
+                }
             </div>
         </nav>
     )

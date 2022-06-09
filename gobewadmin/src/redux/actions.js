@@ -77,6 +77,20 @@ export const GET_USERS = createAsyncThunk(
     }
 )
 
+export const GET_USERS_ADMINS = createAsyncThunk(
+    'GET_USERS_ACTIVE', async (isAdmin) => {
+        const response = await fetch(`${REACT_APP_APIURL}users/allByAdmin/${isAdmin}`)
+        return await response.json()
+    }
+)
+
+export const GET_USERS_ACTIVE = createAsyncThunk(
+    'GET_USERS_ADMINS', async (isActive) => {
+        const response = await fetch(`${REACT_APP_APIURL}users/allByActive/${isActive}`)
+        return await response.json()
+    }
+)
+
 export const PUT_USERS = createAsyncThunk(
     'PUT_USERS', async (values) => {
         const response = await axios.put(`${REACT_APP_APIURL}users`, values)

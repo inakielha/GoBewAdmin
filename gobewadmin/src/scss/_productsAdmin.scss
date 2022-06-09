@@ -128,15 +128,21 @@
                 }
                 .field--actions{
                     text-align: center;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 7px;
                     .table--products__btn-edit{
                         border: none;
                         background: none;
-                        margin: 2%;
+                        margin-right: 16px;
+                        width: 10px;
+                        
                     }
                     .table--products__btn-active{
                         border: none;
                         background: none;
-                        margin: 2%;
+                        margin-right: 16px;
                     }
                     .table--products__btn-edit--all{
                         padding: 2px;
@@ -147,9 +153,28 @@
                         font-family: 'Poppins', sans-serif;
                         text-align: center;
                         margin-top: 1%;
+                        margin-right: 16px;
                         color: white;
                         height: 25px;
                         width: 200px;
+                    }
+                    .btn--edits__container{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-right: 20px;
+                    }
+                    .table--products__btn-confirm{
+                        border: 1px solid #82bac6;
+                        background-color: #82bac6;
+                        color: #17252A;
+                        font-size: 14px;
+                        font-family: 'Poppins', sans-serif;
+                        font-weight: bold;
+                        border-radius: 6px;
+                        padding: 2px;
+                        margin-right: 16px;
+                        width: 34px;
                     }
                 }
                 .field--active{

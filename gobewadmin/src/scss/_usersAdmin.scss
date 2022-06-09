@@ -4,13 +4,13 @@
     display: flex;
     flex-direction: column;
     .users--buttons__container{
-        width: 73.7rem;
+        width: 87%;
         height: 1rem;
         padding: 1.2%;
         margin-left: 2rem;
         margin-top: 1rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         border: 1px solid #b1d8de ;
         border-radius: 8px;
@@ -29,6 +29,27 @@
                     height: 30px;
                     width: 200px;
                 }
+        .input--text{
+            height: 1.5rem;
+            width: 30rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+        }
+        .users--btn-radio__container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .label--filter{
+                font-family: 'Poppins', sans-serif;
+                
+            }
+            .input--radio__btn{
+                margin-left: 16px;
+            }
+        }
     }
     .users--table{
         width: 90%;
@@ -151,6 +172,7 @@
         width: 100%;
         justify-content: left;
         margin-left: 2rem;
+        margin-top: .6rem ;
         ul{
             display: flex;
             width: 60%;
@@ -164,12 +186,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                background-color: #b1d8de;
+                color: #17252A;
                 a{
                     font-family: 'Poppins', sans-serif;
                     font-size: 16px;
                     font-weight: bold;
                     text-align: center;
-                    margin-top: 1px;
                 }
             }
         }

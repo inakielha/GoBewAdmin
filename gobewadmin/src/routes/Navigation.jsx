@@ -40,12 +40,32 @@ export const Navigation = () => {
           </PrivateRoutes>
         } />
 
-        <Route exact path='/product/new' element={<ProductForm />} />
-        <Route exact path='/product/edit/:productId' element={<ProductForm />} />
-        <Route exact path='/categories/new' element={[<CreationCategory />]} />
-        <Route exact path='/product/image' element={[<CreationImage />]} />
-        <Route exact path='/user/new' element={<UserForm />} />
-
+        <Route exact path='/product/new' element={
+          <PrivateRoutes>
+            <ProductForm />
+          </PrivateRoutes>
+        } />
+        
+        <Route exact path='/product/edit/:productId' element={
+          <PrivateRoutes>
+            <ProductForm />
+          </PrivateRoutes>
+        }/>
+        <Route exact path='/categories/new' element={
+          <PrivateRoutes>
+            <CreationCategory />
+          </PrivateRoutes>
+        }/>
+        <Route exact path='/product/image' element={
+          <PrivateRoutes>
+            <CreationImage />
+          </PrivateRoutes>
+        } />
+        <Route exact path='/user/new' element={
+          <PrivateRoutes>
+            <UserForm />
+          </PrivateRoutes>
+        }/>
         <Route path='/login' element={<Login />} />
         <Route path='/activate/:id/:hash/:email' element={<Activate />} />
       </Routes>

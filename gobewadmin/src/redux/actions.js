@@ -170,3 +170,10 @@ export const GET_ORDER_BY_ID = createAsyncThunk(
         return await response.json()
     }
 )
+
+export const CANCEL_ORDER_BY_ID = createAsyncThunk(
+    'CANCEL_ORDER_BY_ID', async (orderId) => {
+        const response = await axios.put(`${REACT_APP_APIURL}payments//admin/order/byId/${orderId}`)
+        return await response.json()
+    }
+)

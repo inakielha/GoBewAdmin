@@ -24,11 +24,13 @@ export default function Orders() {
             <table className='orders--table'>
                 <thead className='orders--table__headers'>
                     <tr>
+                        <th className='orders--table__column--date'>Fecha</th>
                         <th className='orders--table__column--idOrder'>Numero de orden</th>
                         <th className='orders--table__column--firstName'>Nombre</th>
                         <th className='orders--table__column--lastName'>Apellido</th>
-                        <th className='orders--table__column--date'>Fecha</th>
-                        <th className='orders--table__column--actions'>Acciones</th>
+                        <th className='orders--table__column--send'>Enviar</th>
+                        <th className='orders--table__column--recieve'>Recibida</th>
+                        <th className='orders--table__column--cancel'>Cancelar</th>
                         <th className='orders--table__column--detail'>Detalle</th>
                     </tr>
                 </thead>
@@ -36,7 +38,7 @@ export default function Orders() {
                     {
                         orders?.map(elem => {
                             return (
-                                <TableOrders key={elem._id} className='orders--table__rows' setOrdId={setOrdId} orderId={elem._id} userFirstName={elem.user[0]?.userFirstName} userLastName={elem.user[0]?.userLastName} date={elem.orderAceptDate} />
+                                <TableOrders key={elem._id} className='orders--table__rows' setOrdId={setOrdId} orderId={elem._id} userFirstName={elem.user[0]?.userFirstName} userLastName={elem.user[0]?.userLastName} date={elem.orderAceptDate ? elem.orderAceptDate : elem.orderCreationDate} statusOrder={elem.orderState} />
                             )
                         })
                     }

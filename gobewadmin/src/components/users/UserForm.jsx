@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { USER_CREATE } from '../../redux/actions'
 import CheckBox from '../form/CheckBox'
 import '../../scss/_usersForm.scss'
+import {toast} from 'react-toastify'
 
 
 export const UserForm = () => {
@@ -34,10 +35,12 @@ export const UserForm = () => {
 
     useEffect(() => {
         if (userIsCreated.ok) {
-            alert('Usuario creado correctamente')
+            // alert('Usuario creado correctamente')
+            toast.success('Usuario creado correctamente')
         } else if (userIsCreated.errors) {
             for (const key in userIsCreated.errors) {
-                alert(userIsCreated.errors[key].msg)
+                // alert(userIsCreated.errors[key].msg)
+                toast.error(userIsCreated.errors[key].msg)
             }
         }
     }, [userIsCreated])

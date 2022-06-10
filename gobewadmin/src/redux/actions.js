@@ -74,7 +74,7 @@ export const USER_CREATE = createAsyncThunk(
     'USER_CREATE', async (values) => {
             try {
                 const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
-                const body = await response.json()
+                const body = await response.data
                 console.log(body)
                 return body
             } catch (error) {
@@ -108,7 +108,7 @@ export const GET_USERS_ACTIVE = createAsyncThunk(
 export const PUT_USERS = createAsyncThunk(
     'PUT_USERS', async (values) => {
         const response = await axios.put(`${REACT_APP_APIURL}users`, values)
-        const body = await response.json()
+        const body = await response.data
         return body
     }
 )
@@ -116,7 +116,7 @@ export const PUT_USERS = createAsyncThunk(
 export const PUT_PRODUCT = createAsyncThunk(
     'PUT_PRODUCT', async (values) => {
         const response = await axios.put(`${REACT_APP_APIURL}product`, values)
-        const body = await response.json()
+        const body = await response.data
         return body
     }
 )
@@ -124,7 +124,7 @@ export const PUT_PRODUCT = createAsyncThunk(
 export const PUT_USER_ACTIVE = createAsyncThunk(
     'PUT_USER_ACTIVE', async (values) => {
         const response = await axios.put(`${REACT_APP_APIURL}users/isActive`, values)
-        const body = await response.json()
+        const body = await response.data
         return body
     }
 )
@@ -132,7 +132,7 @@ export const PUT_USER_ACTIVE = createAsyncThunk(
 export const PUT_PRODUCT_ACTIVE = createAsyncThunk(
     'PUT_PRODUCT_ACTIVE', async (values) => {
         const response = await axios.put(`${REACT_APP_APIURL}product/isActive`, values)
-        const body = await response.json()
+        const body = await response.data
         return body
     }
 )
@@ -156,7 +156,7 @@ export const POST_FAQS = createAsyncThunk(
     'POST_FAQS', async (faq) => {
         try {
             const response = await axios.post(`${REACT_APP_APIURL}faqs`, faq)
-            return response
+            return response.data
         } catch (error) {
             console.log(error)
         }
@@ -166,7 +166,7 @@ export const POST_FAQS = createAsyncThunk(
 export const PUT_FAQS = createAsyncThunk(
     'PUT_FAQS', async (faq) => {
         const response = await axios.put(`${REACT_APP_APIURL}faqs`, faq)
-        const body = await response.json()
+        const body = await response.data
         return body
     }
 )

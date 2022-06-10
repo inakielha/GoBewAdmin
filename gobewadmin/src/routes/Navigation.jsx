@@ -13,11 +13,18 @@ import Users from '../components/users/Users';
 import { Activate } from '../components/users/Activate';
 import ProductForm from '../components/products/ProductForm';
 import Orders from '../components/orders/Orders';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const Navigation = () => {
   return (
     <Router>
       <Nav />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        pauseOnHover
+        theme='colored'
+      />
       <Routes>
         <Route path='/' element={
           <PrivateRoutes>

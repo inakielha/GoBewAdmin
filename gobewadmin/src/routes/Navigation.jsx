@@ -13,11 +13,18 @@ import Users from '../components/users/Users';
 import { Activate } from '../components/users/Activate';
 import ProductForm from '../components/products/ProductForm';
 import Orders from '../components/orders/Orders';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const Navigation = () => {
   return (
     <Router>
       <Nav />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        pauseOnHover
+        theme='colored'
+      />
       <Routes>
         <Route path='/' element={
           <PrivateRoutes>
@@ -39,13 +46,32 @@ export const Navigation = () => {
             <Orders/>
           </PrivateRoutes>
         } />
-
-        <Route exact path='/product/new' element={<ProductForm />} />
-        <Route exact path='/product/edit/:productId' element={<ProductForm />} />
-        <Route exact path='/categories/new' element={[<CreationCategory />]} />
-        <Route exact path='/product/image' element={[<CreationImage />]} />
-        <Route exact path='/user/new' element={<UserForm />} />
-
+        <Route exact path='/product/new' element={
+          <PrivateRoutes>
+            <ProductForm />
+          </PrivateRoutes>
+        } />
+        
+        <Route exact path='/product/edit/:productId' element={
+          <PrivateRoutes>
+            <ProductForm />
+          </PrivateRoutes>
+        }/>
+        <Route exact path='/categories/new' element={
+          <PrivateRoutes>
+            <CreationCategory />
+          </PrivateRoutes>
+        }/>
+        <Route exact path='/product/image' element={
+          <PrivateRoutes>
+            <CreationImage />
+          </PrivateRoutes>
+        } />
+        <Route exact path='/user/new' element={
+          <PrivateRoutes>
+            <UserForm />
+          </PrivateRoutes>
+        }/>
         <Route path='/login' element={<Login />} />
         <Route path='/activate/:id/:hash/:email' element={<Activate />} />
       </Routes>

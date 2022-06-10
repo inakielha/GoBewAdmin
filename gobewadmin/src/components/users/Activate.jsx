@@ -1,18 +1,43 @@
-import { useEffect } from "react"
-import { useDispatch } from "react-redux";
+import { useCallback, useEffect, useState } from "react"
+
 import { useParams } from "react-router-dom"
+import { userActivateCta } from "../../controllers/auth";
 
 export const Activate = () => {
-    const { id, hash, email } = useParams();
-    const dispatch = useDispatch();
-  useEffect(() => {
+    const { userId, hash, userEmail } = useParams();
     
-    // dispatch()
     
-  }, [dispatch, id, hash, email])
+    const [res, setRes] = useState({
+      ok: false,
+      msg: '123',
+      userId,
+      userEmail,
+      userFirstName: '',
+      userLastName: ''
+    })
+    // useCallback(
+    //    () => {
+    //      setRes(async  () => await userActivateCta(userId, hash, userEmail))
+    //      console.log(1)
+    //   },
+    //   [userId, hash, userEmail],
+    // )
+    
+    
+    
+useEffect( () => {
   
+  
+  setRes((async  () =>await userActivateCta(userId, hash, userEmail))())
+  // console.log(res)
+}, [userId, hash, userEmail])
+
+
 
   return (
-    <div>Activar la cuenta y cambiar Password</div>
+    <>
+    <p>{res?.msg}</p>
+    {res?.ok && <div>La cuenta se activó con éxito.</div>}
+    </>
   )
 }

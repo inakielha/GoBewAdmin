@@ -43,7 +43,7 @@ export const Navigation = () => {
         {/* <Route exact path='/faq' element={[<CreationFaq />, <FaqsCreated/>]} /> */}
 
         <Route path='/login' element={<Login />} />
-        <Route path='/activate/:id/:hash/:email' element={<Activate />} />
+        <Route path='/activate/:userId/:hash/:userEmail' element={<Activate />} />
       </Routes>
     </Router>
   )

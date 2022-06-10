@@ -62,6 +62,14 @@ export const SEARCH_PRODUCT = createAsyncThunk(
     }
 )
 
+export const SEARCH_USERS = createAsyncThunk(
+    'SEARCH_USERS', async (userName) => {
+        const response = await fetch(`${REACT_APP_APIURL}users/byName/${userName}`)
+        return await response.json()
+    }
+)
+
+
 export const USER_CREATE = createAsyncThunk(
     'USER_CREATE', async (values) => {
             const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)

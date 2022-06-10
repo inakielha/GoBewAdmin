@@ -72,9 +72,15 @@ export const SEARCH_USERS = createAsyncThunk(
 
 export const USER_CREATE = createAsyncThunk(
     'USER_CREATE', async (values) => {
-            const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
-            const body = await response.json()
-            return body
+            try {
+                const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
+                const body = await response.json()
+                console.log(body)
+                return body
+            } catch (error) {
+                console.log(error.response.data)
+                return error.response.data
+            }
     }
 )
 

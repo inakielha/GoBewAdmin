@@ -114,6 +114,10 @@
                 }
             }
             tr{
+                max-height: 20%;
+                &>td{
+                    max-height: 20%;
+                }
                 .field--stock{
                     input{
                         text-align: center;

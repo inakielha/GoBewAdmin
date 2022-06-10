@@ -67,8 +67,8 @@ export default function Users() {
 
     useEffect(() => {
         const endOffset = itemOffset + itemPerPage;
-        setCurrentUsers(users.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(users.length / itemPerPage));
+        setCurrentUsers(users?.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(users?.length / itemPerPage));
     } , [users, itemOffset, itemPerPage]);
     
     const handlePageClick = (e) => {

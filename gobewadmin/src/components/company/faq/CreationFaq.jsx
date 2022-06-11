@@ -40,10 +40,10 @@ export default function CreationFaq() {
             >
                 {
                     (formik) => (
-                        <Form class='faq--form__container'>
-                            <TextInput class='field-faq__form' name='faqTitle' type='text' placeholder='Pregunta...' />
-                            <TextInput class='field-faq__form' name='faqDescription' type='text' placeholder='Descripcion...' />
-                            <TextInput class='field-faq__form' name='faqOrder' type='text' placeholder='Orden...' />
+                        <Form className='faq--form__container'>
+                            <TextInput className='field-faq__form' name='faqTitle' type='text' placeholder='Pregunta...' />
+                            <TextInput className='field-faq__form' name='faqDescription' type='text' placeholder='Descripcion...' />
+                            <TextInput className='field-faq__form' name='faqOrder' type='text' placeholder='Orden...' />
                             <button type='submit'>Crear</button>
                         </Form>
                     )

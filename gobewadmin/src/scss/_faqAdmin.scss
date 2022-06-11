@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-h2 {
-    color: #17252A;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-style: italic;
-    margin-top: 20px;
-}
-
 .faqs--created__container {
     display: flex;
     justify-content: center;
@@ -18,6 +10,14 @@ h2 {
     //border-left: #17252A 3px solid;
     border: 3px solid #17252A;
     border-radius: 1%;
+
+    h2 {
+        color: #17252A;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-style: italic;
+        margin-top: 20px;
+    }
 
     h4 {
         color: #17252A;

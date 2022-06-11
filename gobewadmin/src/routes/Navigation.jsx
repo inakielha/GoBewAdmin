@@ -18,6 +18,7 @@ import { RememberPass } from '../components/auth/RememberPass';
 import Orders from '../components/orders/Orders';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ChangePass } from '../components/auth/ChangePass';
 export const Navigation = () => {
   return (
     <Router>
@@ -77,6 +78,7 @@ export const Navigation = () => {
         }/>
         <Route path='/login' element={<Login />} />
         <Route path='/activate/:userId/:hash/:userEmail' element={<Activate />} />
+        <Route path='/reset/:userId/:hash/:userEmail' element={<ChangePass />} />
         <Route path='/rememberPass' element={<RememberPass/> }/>
       </Routes>
     </Router>

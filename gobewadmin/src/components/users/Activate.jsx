@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 
 import { useNavigate, useParams } from "react-router-dom"
+import { useCallback } from "react";
 
 const { REACT_APP_APIURL } = process.env;
 
@@ -18,40 +19,55 @@ export const Activate = () => {
       userFirstName: '',
       userLastName: ''
     })
-    // useCallback(
-    //    () => {
-    //      setRes(async  () => await userActivateCta(userId, hash, userEmail))
-    //      console.log(1)
-    //   },
-    //   [userId, hash, userEmail],
-    // )
-    
-    
-  const userActivateCta = async (userId, hash, userEmail) => {
-        try {
-            const response = await axios.get(`${REACT_APP_APIURL}users/activate/${userId}/${hash}/${userEmail}`)
-            const data = await response.data
+
+  // const userActivateCta = async (userId, hash, userEmail) => {
+  //       try {
+  //           const response = await axios.get(`${REACT_APP_APIURL}users/activate/${userId}/${hash}/${userEmail}`)
+  //           const data = await response.data
             
-            setRes(  {
-                ok: data.ok,
-                msg: data.msg,
-                userId: data.user._id,
-                userEmail: data.user.userEmail,
-                userFirstName: data.user.userFirstName,
-                userLastName: data.user.userLastName
-              });
-        } catch (error) {
-            setRes({...res, ok:"noOk"})
-        }
+  //           setRes(  {
+  //               ok: data.ok,
+  //               msg: data.msg,
+  //               userId: data.user._id,
+  //               userEmail: data.user.userEmail,
+  //               userFirstName: data.user.userFirstName,
+  //               userLastName: data.user.userLastName
+  //             });
+  //       } catch (error) {
+  //           setRes({...res, ok:"noOk"})
+  //       }
     
     
-    }    
-    
-useEffect( () => {
+  //   }    
+
+const cbUserActivateCta = useCallback(
+  async () => {
+      try {
+        const response = await axios.get(`${REACT_APP_APIURL}users/activate/${userId}/${hash}/${userEmail}`);
+        const data = response.data;
+        
+        setRes(  {
+            ok: data.ok,
+            msg: data.msg,
+            userId: data.user._id,
+            userEmail: data.user.userEmail,
+            userFirstName: data.user.userFirstName,
+            userLastName: data.user.userLastName
+          });
+    } catch (error) {
+        setRes({...res, ok:"noOk"})
+    }
+  },
+  [userId, hash, userEmail, res],
+)
+
+
   
-  userActivateCta(userId, hash, userEmail)
+useEffect( () => {
+  cbUserActivateCta()
+  // userActivateCta(userId, hash, userEmail)
   // console.log(res)
-})
+},[cbUserActivateCta])
 
 useEffect(() => {
   res?.ok === true  && navigate('/login?validate=ok', {replace: true})

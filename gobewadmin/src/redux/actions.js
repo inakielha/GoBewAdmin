@@ -19,10 +19,12 @@ export const GET_PRODUCT_BY_ID = createAsyncThunk(
 export const CREATE_PRODUCT = createAsyncThunk(
     "CREATE_PRODUCT", async (productInfo) => {
         try {
-            const res = await axios.post(`${REACT_APP_APIURL}product/new`, productInfo);
-            return res
+            const response = await axios.post(`${REACT_APP_APIURL}product/new`, productInfo);
+            const body = await response.data;
+            return body;
         } catch (e) {
             console.log(e)
+            return e.response.data;
         }
     }
 )
@@ -46,9 +48,12 @@ export const GET_CATEGORIES_ADMIN = createAsyncThunk(
 
 export const POST_IMAGE_ADMIN = createAsyncThunk(
     "POST_IMAGE_ADMIN", async (image) => {
-        try {
+        try {    
+            // console.log(1, image)
+            // console.log(2, `${REACT_APP_APIURL}images/new`)
             const res = await axios.post(`${REACT_APP_APIURL}images/new`, image);
-            return res
+            // console.log(3, res)
+            return res.data
         } catch (e) {
             console.log(e)
         }

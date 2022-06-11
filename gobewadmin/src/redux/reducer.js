@@ -13,6 +13,7 @@ const initialState = {
     users: [],
     user: {},
     userIsCreated: {},
+    // productsIsCreated: {},
     orders: [],
     order: {}
 }
@@ -23,6 +24,7 @@ export const adminReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(CREATE_PRODUCT.fulfilled, (state, action) => {
         state.product = action.payload
+        // state.productsIsCreated = action.payload
     })
     builder.addCase(CREATE_CATEGORY, (state, action) => {
         state.categories = action.payload.data
@@ -31,7 +33,7 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.categories = action.payload
     })
     builder.addCase(POST_IMAGE_ADMIN.fulfilled, (state, action)=> {
-        state.product.data.product.images = action.payload.data.image
+        state.product.product.images = action.payload.image
     })
     builder.addCase(ORDER_PRODUCT, (state, action)=>{
         state.products = action.payload

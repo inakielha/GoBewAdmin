@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
 import { POST_IMAGE_ADMIN } from "../../../redux/actions";
+// import { useParams } from "react-router-dom";
 const { REACT_APP_CLOUDINARY } = process.env
 
 
 export default function CreationImage() {
     const [img, setImg] = useState([]);
     const dispatch = useDispatch()
+    // const {productId} = useParams();
     const product = useSelector((state) => state.adminReducer.product)
     const [primaryPic, setPrimaryPic] = useState("");
+    
+
 
     const uploadImage = (files) => {
         const formData = new FormData()
@@ -24,12 +28,16 @@ export default function CreationImage() {
                     if (imgName === primaryPic) {
                         fotoPrincipal = true
                     }
+                    console.log(1, res.data)
+                    // console.log()
                     dispatch(POST_IMAGE_ADMIN({
-                        productId: product.data.product.productId,
+                        productId: product.product.productId,
+                        // productId: productId,
                         imageName: imgLink,
-                        imageAlt: product.data.product.productName,
+                        imageAlt: product.product.productName,
                         imageIsPrimary: fotoPrincipal,
                     }))
+
                 })
         });
         setImg([])
@@ -43,24 +51,30 @@ export default function CreationImage() {
         setPrimaryPic(e.target.name)
     }
 
+    console.log(img)
     return (
-        <div>
-            <label>Imagen: </label>
-            <input type="file" placeholder="Nombre..." onChange={(e) => {
-                setImg([...img, e.target.files[0]]);
-            }} />
-            <ul>
-                {img.map(pic => <li> {pic?.name}
-                    <div>
-
-                        <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
-                    </div>
-                    <div>
-                        <input type="radio" name={pic?.name} onClick={(e) => handlePrimary(e)} /> Imagen principal
-                    </div>
-                </li>)}
-            </ul>
-            <button type="button" onClick={uploadImage}> Subir Imagenes </button>
-        </div>
+        <>
+            <div className="img-label">
+                <label>Imagen: </label>
+                <label htmlFor="img-btn" className="img-btn-label">Selecciona las imágenes</label>
+                <input className="img-btn-input" type="file" id="img-btn" onChange={(e) => {
+                    setImg([...img, e.target.files[0]]);
+                }} />
+            </div>
+            <div className="img-container">
+                    {img.map(pic => <div> {pic?.name}
+                        <div>
+                            <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
+                        </div>
+                        <img src={URL.createObjectURL(pic)} alt={pic?.name} />
+                        <div>
+                            <input type="radio" name={pic?.name} onClick={(e) => handlePrimary(e)} /> Imagen principal
+                        </div>
+                    </div>)}
+            </div>
+            <div>
+                <button type="button" onClick={uploadImage}> Subir Imagenes </button>
+            </div>
+        </>
     )
 }

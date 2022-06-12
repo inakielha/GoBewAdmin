@@ -75,7 +75,7 @@ export default function CreationImage() {
                 }
             </div>
 
-            <button type="button" onClick={uploadImage}> Subir Imagenes </button>
+            {img?.length > 0 && <button type="button" className="img-upload--btn" onClick={uploadImage}> Subir Imagenes </button>}
 
         </>
     )

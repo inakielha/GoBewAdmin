@@ -12,7 +12,7 @@ export default function CreationImage() {
     // const {productId} = useParams();
     const product = useSelector((state) => state.adminReducer.product)
     const [primaryPic, setPrimaryPic] = useState("");
-    
+
 
 
     const uploadImage = (files) => {
@@ -51,7 +51,6 @@ export default function CreationImage() {
         setPrimaryPic(e.target.name)
     }
 
-    console.log(img)
     return (
         <>
             <div className="img-label">
@@ -62,19 +61,22 @@ export default function CreationImage() {
                 }} />
             </div>
             <div className="img-container">
-                    {img.map(pic => <div> {pic?.name}
-                        <div>
-                            <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
-                        </div>
+                {
+                    img.map(pic => <div className="img-try">
+
+                        <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>
+
                         <img src={URL.createObjectURL(pic)} alt={pic?.name} />
                         <div>
-                            <input type="radio" name={pic?.name} onClick={(e) => handlePrimary(e)} /> Imagen principal
+                            <input type="radio" id={pic?.name} name={pic?.name} onClick={(e) => handlePrimary(e)} />
+                            <label htmlFor={pic?.name}>Imagen principal</label>
                         </div>
-                    </div>)}
+                    </div>)
+                }
             </div>
-            <div>
-                <button type="button" onClick={uploadImage}> Subir Imagenes </button>
-            </div>
+
+            {img?.length > 0 && <button type="button" className="img-upload--btn" onClick={uploadImage}> Subir Imagenes </button>}
+
         </>
     )
 }

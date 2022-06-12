@@ -25,7 +25,7 @@ export default function ProductForm() {
         productHighlight: product[0] ? product[0]?.productHighlight : 0,
         productCategories: product[0] ? product[0]?.productCategories : [],
     }
-
+    const [checkedChild, setCheckedChild] = useState(false)
     const [disabledImg, setDisabledImg] = useState(true);
     const [categoriesSelected, setCategoriesSelected] = useState(null)
 
@@ -86,9 +86,9 @@ export default function ProductForm() {
                     (formik) => (
                         <Form className='form-newProduct'>
                             <div className='form-newProduct__inputs'>
-                                <TextInput key={1} label='Nombre' name='productName' type='text' placeholder='nombre' />
-                                <TextInput key={3} label='Precio' name='productPrice' type='number' placeholder='precio' />
-                                <TextInput key={4} label='Stock' name='productStock' type='number' placeholder='stock' />
+                                <TextInput key={1} label='Nombre' name='productName' type='text' placeholder='Nombre' />
+                                <TextInput key={3} label='Precio' name='productPrice' type='number' placeholder='Precio' />
+                                <TextInput key={4} label='Stock' name='productStock' type='number' placeholder='Stock' />
                                 <div className='form-newProduct__checkboxs'>
                                     <div className='checkbox-container'>
                                         <CheckBox key={5} label='Destacado' type='checkbox' name='productHighlight' />
@@ -99,24 +99,27 @@ export default function ProductForm() {
                                 </div>
                                 <div className='form-newProduct__textarea'>
                                     <label htmlFor="productDescription" className='textAreaLabel'> Descripción</label>
-                                    <Field as="textarea" name="productDescription" key={2} label='Descripción' class="textArea" placeholder='descripción' />
+                                    <Field as="textarea" name="productDescription" key={2} label='Descripción' class="textArea" placeholder='Descripción' />
                                 </div>
                             </div>
                             <article className='form-newProduct__continue'>
                                 <div className='form-newProduct__categories'>
-                                    <select name="category-sup" onChange={(e) => setCategoriesSelected(e.target.value)}>
+                                    <select name="category-sup" disabled={formik.values.productCategories.length > 0} onChange={(e) => setCategoriesSelected(e.target.value)}>
                                         <option value="">Selecciona una categoría</option>
                                         {categories.map((category, index) => {
                                             return <option key={index} value={category._id}>{category.categoryName}</option>
                                         })}
                                     </select>
-                                    <div className='checkboxs-categories'>
+                                    <div className='checkboxs-categories' >
                                         {categoriesSelected && categories?.map(c => {
                                             if (c._id === categoriesSelected) {
                                                 return c.childCategories.map((subCategory, index) => {
-                                                    return <label>
-                                                        <Field key={subCategory._id} type="checkbox" name="productCategories" value={subCategory._id} /> {subCategory.categoryName}
-                                                    </label>
+                                                    return <div className='childCategories'>
+                                                            <label htmlFor={subCategory._id}>
+                                                            {subCategory.categoryName}
+                                                        </label>
+                                                        <Field key={subCategory._id} type="checkbox" name="productCategories" id={subCategory._id} value={subCategory._id} />
+                                                    </div>
                                                 })
                                             }
                                         })}

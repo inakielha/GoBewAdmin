@@ -33,9 +33,9 @@ export default function DetailOrder({ orderId }) {
                         <p>Compro:</p>
                         {res.cart?.map(elem => {
                             return <section className="orders--details__cart" key={elem._id}>
-                                <p className="orders--details__cart__cant">{elem.productCant}&nbsp;&nbsp;&nbsp;&nbsp;</p> 
-                                <p className="orders--details__cart__name">{elem.productName}&nbsp;&nbsp;&nbsp;&nbsp;</p> 
-                                <p className="orders--details__cart__price">${elem.productCant * elem.productPrice}</p> 
+                                <p className="orders--details__cart__cant">{elem.productCant}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p className="orders--details__cart__name">{elem.productName}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p className="orders--details__cart__price">${elem.productCant * elem.productPrice}</p>
                             </section>
                         })}
                     </div>

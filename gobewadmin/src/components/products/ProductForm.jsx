@@ -25,7 +25,7 @@ export default function ProductForm() {
         productHighlight: product[0] ? product[0]?.productHighlight : 0,
         productCategories: product[0] ? product[0]?.productCategories : [],
     }
-
+    const [checkedChild, setCheckedChild] = useState(false)
     const [disabledImg, setDisabledImg] = useState(true);
     const [categoriesSelected, setCategoriesSelected] = useState(null)
 
@@ -104,13 +104,13 @@ export default function ProductForm() {
                             </div>
                             <article className='form-newProduct__continue'>
                                 <div className='form-newProduct__categories'>
-                                    <select name="category-sup" onChange={(e) => setCategoriesSelected(e.target.value)}>
+                                    <select name="category-sup" disabled={formik.values.productCategories.length > 0} onChange={(e) => setCategoriesSelected(e.target.value)}>
                                         <option value="">Selecciona una categoría</option>
                                         {categories.map((category, index) => {
                                             return <option key={index} value={category._id}>{category.categoryName}</option>
                                         })}
                                     </select>
-                                    <div className='checkboxs-categories'>
+                                    <div className='checkboxs-categories' >
                                         {categoriesSelected && categories?.map(c => {
                                             if (c._id === categoriesSelected) {
                                                 return c.childCategories.map((subCategory, index) => {

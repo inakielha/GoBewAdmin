@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Formik } from 'formik'
 import { TextInput } from '../form/TextInput'
 import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { USER_CREATE } from '../../redux/actions'
 import CheckBox from '../form/CheckBox'
 import '../../scss/_usersForm.scss'
+import {toast} from 'react-toastify'
 
 
 export const UserForm = () => {
     const dispatch = useDispatch();
+    const { userIsCreated } = useSelector(state => state.adminReducer);
     const initialValues = {
         userEmail: '',
         userPassword: '',
@@ -31,6 +33,18 @@ export const UserForm = () => {
         userPassword: Yup.string().min(6, 'Requerida')
     });
 
+    useEffect(() => {
+        if (userIsCreated.ok) {
+            // alert('Usuario creado correctamente')
+            toast.success('Usuario creado correctamente')
+        } else if (userIsCreated.errors) {
+            for (const key in userIsCreated.errors) {
+                // alert(userIsCreated.errors[key].msg)
+                toast.error(userIsCreated.errors[key].msg)
+            }
+        }
+    }, [userIsCreated])
+
     return (
         <div className='users--form__container'>
             <div className='users-form--title__container'>
@@ -40,7 +54,6 @@ export const UserForm = () => {
                 initialValues={initialValues}
                 onSubmit={(values) => {
                     dispatch(USER_CREATE(values))
-                    alert("Usuario creado correctamente")
                 }
                 }
                 // onSubmit={(values) => console.log(values)}
@@ -48,7 +61,7 @@ export const UserForm = () => {
             >
                 {
                     (formik) => (
-                        <Form class = 'users--form'>
+                        <Form class='users--form'>
                             <TextInput class='field-user__form' name='userEmail' type='email' placeholder='email' />
                             <TextInput class='field-user__form' name='userPassword' type='password' placeholder='password' />
                             <TextInput class='field-user__form' name='userFirstName' type='text' placeholder='first name' />
@@ -60,7 +73,7 @@ export const UserForm = () => {
                                 <CheckBox class='field-user__form' label='Google' type='checkbox' name='userIsGoogle' />
                             </div>
                             <div className='checkbox--container'>
-                                <CheckBox class='field-user__form' label='Super Admin' type='checkbox' name='userIsSuperAdmin' />       
+                                <CheckBox class='field-user__form' label='Super Admin' type='checkbox' name='userIsSuperAdmin' />
                             </div>
                             <button type='submit'>Crear</button>
                         </Form>

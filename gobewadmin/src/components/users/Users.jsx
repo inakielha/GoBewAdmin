@@ -18,7 +18,7 @@ export default function Users() {
     const [currentUsers, setCurrentUsers] = useState(users);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
-    const itemPerPage = 5;
+    const itemPerPage = 3;
 
 
     //! ADMINS

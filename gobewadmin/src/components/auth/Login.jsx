@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from "axios";
 import { useState } from 'react';
 import '../../scss/_loginAdmin.scss'
@@ -9,9 +9,16 @@ const { REACT_APP_APIURL } = process.env;
 export const Login = () => {
   
   const navigate = useNavigate();
-  const path = localStorage.getItem('lastPath');
+  const [ searchParams ] = useSearchParams()
 
+  const path = localStorage.getItem('lastPath');
+  const validate = searchParams.get('validate')
+  
   const [ok, setOk] = useState(true)
+
+ 
+
+
   const login = async (values) => {
     try {
       const response = await axios.post(`${REACT_APP_APIURL}users/authAdmin`, values);
@@ -30,10 +37,15 @@ export const Login = () => {
         setOk(false)
     }
   }
+
+  const rememberPassword=() => {
+    navigate('/rememberPass', { replace: true })
+  }
   return (
 
   <div className='login--content__container'>
-    { (!ok) && <span>Usuario no encontrado.</span>}
+    {(validate ==='ok') && <div>La cuenta ha sido activada. Por favor ingrese con su e-mail y contraseña.</div> }
+    { (!ok) && <div><br/>Usuario no encontrado.</div>}
     <Formik
       initialValues={{
                   userEmail:'',
@@ -51,6 +63,7 @@ export const Login = () => {
       login(values)
       
     }}
+    
     >
       {props => (
         <section className='form--login__container'>
@@ -66,10 +79,18 @@ export const Login = () => {
             </div>
             <div className='form--login__btn'>
               <button type="submit">Iniciar Sesión</button>
+              
             </div>
+            <div className='form--login__btn'>
+            <span style={{cursor: "pointer"}} onClick={ rememberPassword }>Recordar contraseña</span>
+              
+            </div>
+
+            
           </Form>
         </section>
       )}
     </Formik>
+    
   </div>
 )};

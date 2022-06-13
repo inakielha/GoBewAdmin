@@ -1,5 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
+<<<<<<< HEAD
 import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, POST_FAQS, GET_FAQS, GET_USERS, PUT_USERS, PUT_PRODUCT, PUT_USER_ACTIVE, GET_PRODUCT_BY_ID, PUT_PRODUCT_ACTIVE, PUT_FAQS, GET_USERS_ACTIVE, GET_USERS_ADMINS, GET_ALL_ORDERS, GET_ORDER_BY_ID, SEARCH_USERS, ORDER_ORDERS } from "./actions";
+=======
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, POST_FAQS, GET_FAQS, GET_USERS, PUT_USERS, PUT_PRODUCT, PUT_USER_ACTIVE, GET_PRODUCT_BY_ID, PUT_PRODUCT_ACTIVE, PUT_FAQS, GET_USERS_ACTIVE, GET_USERS_ADMINS, GET_ALL_ORDERS, GET_ORDER_BY_ID, SEARCH_USERS, USER_CREATE } from "./actions";
+
+
+
+>>>>>>> 795485e041259aeff0f09fed8f2ee50cdfb2213c
 
 const initialState = {
     products: [],
@@ -9,6 +16,8 @@ const initialState = {
     faqs: [],
     users: [],
     user: {},
+    userIsCreated: {},
+    // productsIsCreated: {},
     orders: [],
     order: {}
 }
@@ -19,6 +28,7 @@ export const adminReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(CREATE_PRODUCT.fulfilled, (state, action) => {
         state.product = action.payload
+        // state.productsIsCreated = action.payload
     })
     builder.addCase(CREATE_CATEGORY, (state, action) => {
         state.categories = action.payload.data
@@ -27,7 +37,7 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.categories = action.payload
     })
     builder.addCase(POST_IMAGE_ADMIN.fulfilled, (state, action)=> {
-        state.product.data.product.images = action.payload.data.image
+        state.product.product.images = action.payload.image
     })
     builder.addCase(ORDER_PRODUCT, (state, action)=>{
         state.products = action.payload
@@ -77,7 +87,8 @@ export const adminReducer = createReducer(initialState, (builder) => {
     builder.addCase(SEARCH_USERS.fulfilled, (state, action) => {
         state.users = action.payload
     })
-    builder.addCase(ORDER_ORDERS, (state, action)=>{
-        state.orders = action.payload
+    builder.addCase(USER_CREATE.fulfilled, (state, action)=>{
+        console.log(action)
+        state.userIsCreated = action.payload
     })
 })

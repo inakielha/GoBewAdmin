@@ -88,8 +88,8 @@ export default function ProductForm() {
 
     useEffect(() => {
         if (product.ok || product.length > 0) {
-            setImg(product[0].images);
-            setPrimaryPic(product[0].images[0]);
+            setImg(product[0]?.images);
+            setPrimaryPic(product[0]?.images[0]);
         }
     }, [product])
 

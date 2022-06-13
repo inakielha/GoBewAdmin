@@ -1,12 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, POST_FAQS, GET_FAQS, GET_USERS, PUT_USERS, PUT_PRODUCT, PUT_USER_ACTIVE, GET_PRODUCT_BY_ID, PUT_PRODUCT_ACTIVE, PUT_FAQS, GET_USERS_ACTIVE, GET_USERS_ADMINS, GET_ALL_ORDERS, GET_ORDER_BY_ID, SEARCH_USERS, USER_CREATE } from "./actions";
+import { GET_PRODUCTS, CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN, ORDER_PRODUCT, SEARCH_PRODUCT, POST_FAQS, GET_FAQS, GET_USERS, PUT_USERS, PUT_PRODUCT, PUT_USER_ACTIVE, GET_PRODUCT_BY_ID, PUT_PRODUCT_ACTIVE, PUT_FAQS, GET_USERS_ACTIVE, GET_USERS_ADMINS, GET_ALL_ORDERS, GET_ORDER_BY_ID, SEARCH_USERS, USER_CREATE, PRODUCT_RESET } from "./actions";
 
 
 
 
 const initialState = {
     products: [],
-    productsSort : [],
+    productsSort: [],
     product: {},
     categories: [],
     faqs: [],
@@ -32,13 +32,13 @@ export const adminReducer = createReducer(initialState, (builder) => {
     builder.addCase(GET_CATEGORIES_ADMIN.fulfilled, (state, action) => {
         state.categories = action.payload
     })
-    builder.addCase(POST_IMAGE_ADMIN.fulfilled, (state, action)=> {
+    builder.addCase(POST_IMAGE_ADMIN.fulfilled, (state, action) => {
         state.product.product.images = action.payload.image
     })
-    builder.addCase(ORDER_PRODUCT, (state, action)=>{
+    builder.addCase(ORDER_PRODUCT, (state, action) => {
         state.products = action.payload
     })
-    builder.addCase(SEARCH_PRODUCT.fulfilled, (state, action) =>{
+    builder.addCase(SEARCH_PRODUCT.fulfilled, (state, action) => {
         state.products = action.payload
     })
     builder.addCase(GET_USERS.fulfilled, (state, action) => {
@@ -83,8 +83,12 @@ export const adminReducer = createReducer(initialState, (builder) => {
     builder.addCase(SEARCH_USERS.fulfilled, (state, action) => {
         state.users = action.payload
     })
-    builder.addCase(USER_CREATE.fulfilled, (state, action)=>{
+    builder.addCase(USER_CREATE.fulfilled, (state, action) => {
         console.log(action)
         state.userIsCreated = action.payload
+    })
+    builder.addCase(PRODUCT_RESET, (state, action) => {
+        console.log(action.payload);
+        state.product = action.payload
     })
 })

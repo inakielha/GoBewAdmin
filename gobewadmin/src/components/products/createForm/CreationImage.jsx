@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux"
 import { POST_IMAGE_ADMIN } from "../../../redux/actions";

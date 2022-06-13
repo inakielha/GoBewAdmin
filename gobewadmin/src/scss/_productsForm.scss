@@ -21,7 +21,11 @@
             align-items: center;
             justify-content: space-around;
         }
-
+        .form-newProduct__inputs{
+            .errorSpan{
+                font-size: 16px;
+            }
+        }
         .form-newProduct__continue {
             min-height: 80vh;
 
@@ -35,8 +39,8 @@
 
                 &>select {
                     margin: 2%;
-                    width: 40%;
-                    height: 4vh;
+                    width: 55%;
+                    height: 5vh;
                     background-color: #82bac6;
                     border: none;
                     font-size: 1rem;
@@ -192,6 +196,7 @@
             &>label {
                 margin: 1%;
                 text-transform: capitalize;
+                font-size: 18px;
             }
 
             .form-newProduct__checkboxs {

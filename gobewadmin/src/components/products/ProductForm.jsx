@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckBox from '../form/CheckBox'
 import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID, PUT_PRODUCT } from '../../redux/actions'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../../scss/_productsForm.scss'
 import { toast } from 'react-toastify'
 import CreationImage from './createForm/CreationImage'
@@ -25,7 +25,7 @@ export default function ProductForm() {
         productHighlight: product[0] ? product[0]?.productHighlight : 0,
         productCategories: product[0] ? product[0]?.productCategories : [],
     }
-    const [checkedChild, setCheckedChild] = useState(false)
+    // const [checkedChild, setCheckedChild] = useState(false)
     const [disabledImg, setDisabledImg] = useState(true);
     const [categoriesSelected, setCategoriesSelected] = useState(null)
 
@@ -68,11 +68,13 @@ export default function ProductForm() {
                     try {
                         if (productId) {
                             dispatch(PUT_PRODUCT(values))
+                            // toast.success('Producto actualizado correctamente')
                             // dispatch(GET_PRODUCT_BY_ID(productId))
-                            navigate(`/product/edit/${productId}`)
+                            navigate(`/`)
                             setDisabledImg(false)
                         } else {
                             dispatch(CREATE_PRODUCT(values))
+                            // toast.success('Producto creado correctamente')
                             setDisabledImg(false)
                         }
                     } catch (error) {

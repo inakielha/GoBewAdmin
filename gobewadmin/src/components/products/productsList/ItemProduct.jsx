@@ -150,7 +150,7 @@ export default function ItemProduct() {
                     {
                         currentProducts?.map(p => {
                             return (
-                                <TableRow className="products--table__rows" productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} productIsActive={p.productIsActive} _id={p._id} key={p._id} />
+                                <TableRow className="products--table__rows" {...p} productName={p.productName} productStock={p.productStock} productPrice={p.productPrice} productIsActive={p.productIsActive} _id={p._id} key={p._id} />
                             )
                         })
                     }

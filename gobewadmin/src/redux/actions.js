@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const { REACT_APP_APIURL } = process.env;
+const { REACT_APP_APIURL, REACT_APP_CLOUDINARY } = process.env;
 
 export const GET_PRODUCTS = createAsyncThunk(
     'GET_PRODUCTS', async () => {
@@ -17,10 +17,35 @@ export const GET_PRODUCT_BY_ID = createAsyncThunk(
 )
 
 export const CREATE_PRODUCT = createAsyncThunk(
-    "CREATE_PRODUCT", async (productInfo) => {
+    "CREATE_PRODUCT", async ({ values, img, primaryPic }) => {
         try {
-            const response = await axios.post(`${REACT_APP_APIURL}product/new`, productInfo);
+            const response = await axios.post(`${REACT_APP_APIURL}product/new`, values);
             const body = await response.data;
+            //!IMG
+            console.log(body);
+            const formData = new FormData()
+            img.forEach(ele => {
+                formData.append("file", ele)
+                formData.append("upload_preset", "eh329sqm")
+                axios.post(REACT_APP_CLOUDINARY, formData)
+                    .then((res) => {
+                        let imgLink = res.data.secure_url.slice(47)
+                        let fotoPrincipal = false
+                        let imgName = res.data.original_filename + "." + res.data.format;
+                        if (imgName === primaryPic) {
+                            fotoPrincipal = true
+                        }
+                        console.log(1, res.data)
+                        console.log()
+                        axios.post(`${REACT_APP_APIURL}images/new`, {
+                            productId: body.product.productId,
+                            // productId: productId,
+                            imageName: imgLink,
+                            imageAlt: body.product.productName,
+                            imageIsPrimary: fotoPrincipal,
+                        });
+                    })
+            });
             return body;
         } catch (e) {
             console.log(e)
@@ -48,7 +73,7 @@ export const GET_CATEGORIES_ADMIN = createAsyncThunk(
 
 export const POST_IMAGE_ADMIN = createAsyncThunk(
     "POST_IMAGE_ADMIN", async (image) => {
-        try {    
+        try {
             // console.log(1, image)
             // console.log(2, `${REACT_APP_APIURL}images/new`)
             const res = await axios.post(`${REACT_APP_APIURL}images/new`, image);
@@ -77,15 +102,15 @@ export const SEARCH_USERS = createAsyncThunk(
 
 export const USER_CREATE = createAsyncThunk(
     'USER_CREATE', async (values) => {
-            try {
-                const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
-                const body = await response.data
-                console.log(body)
-                return body
-            } catch (error) {
-                console.log(error.response.data)
-                return error.response.data
-            }
+        try {
+            const response = await axios.post(`${REACT_APP_APIURL}users/new`, values)
+            const body = await response.data
+            console.log(body)
+            return body
+        } catch (error) {
+            console.log(error.response.data)
+            return error.response.data
+        }
     }
 )
 
@@ -120,8 +145,11 @@ export const PUT_USERS = createAsyncThunk(
 
 export const PUT_PRODUCT = createAsyncThunk(
     'PUT_PRODUCT', async (values) => {
+        console.log(values);
+        console.log(`${REACT_APP_APIURL}product`);
         const response = await axios.put(`${REACT_APP_APIURL}product`, values)
         const body = await response.data
+
         return body
     }
 )
@@ -136,6 +164,7 @@ export const PUT_USER_ACTIVE = createAsyncThunk(
 
 export const PUT_PRODUCT_ACTIVE = createAsyncThunk(
     'PUT_PRODUCT_ACTIVE', async (values) => {
+        console.log(values);
         const response = await axios.put(`${REACT_APP_APIURL}product/isActive`, values)
         const body = await response.data
         return body
@@ -185,7 +214,45 @@ export const GET_ALL_ORDERS = createAsyncThunk(
 
 export const GET_ORDER_BY_ID = createAsyncThunk(
     'GET_ORDER_BY_ID', async (orderId) => {
-        const response = await fetch(`${REACT_APP_APIURL}payments//admin/order/byId/${orderId}`)
+        const response = await fetch(`${REACT_APP_APIURL}payments/admin/order/byId/${orderId}`)
         return await response.json()
     }
 )
+
+export const CANCEL_STATUS_ORDER = createAsyncThunk(
+    'CANCEL_STATUS_ORDER', async (orderId) => {
+        const response = await fetch(`${REACT_APP_APIURL}payments/cancelled?orderId=${orderId}`)
+        return await response.json()
+    }
+)
+
+export const SEND_STATUS_ORDER = createAsyncThunk(
+    'SEND_STATUS_ORDER', async (orderId) => {
+        const response = await fetch(`${REACT_APP_APIURL}payments/delivered?orderId=${orderId}`)
+        return await response.json()
+    }
+)
+
+export const RECIEVE_STATUS_ORDER = createAsyncThunk(
+    'RECIEVE_STATUS_ORDER', async (orderId) => {
+        const response = await fetch(`${REACT_APP_APIURL}payments/arrived?orderId=${orderId}`)
+        return await response.json()
+    }
+)
+
+export const ORDER_ORDERS = createAction(
+    'ORDER_ORDERS', (ordersOrder) => {
+        return {
+            payload: ordersOrder
+        }
+    }
+)
+
+export const PRODUCT_RESET = createAction(
+    "PRODUCT_RESET", () => {
+        return {
+            payload: []
+        }
+    }
+)
+

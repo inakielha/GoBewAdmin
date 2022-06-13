@@ -37,7 +37,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid #b1d8de ;
+        border: 1px solid #b1d8de;
         border-radius: 8px;
         background-color: #b1d8de;
 
@@ -235,6 +235,7 @@
             //justify-content: space-around;
             .orders--details__final__price {
                 font-weight: bold;
+                font-size: 20px;
             }
         }
     }
@@ -246,17 +247,21 @@
         margin-left: 2rem;
         margin-top: .6rem;
 
+        display: flex;
+        width: 100%;
+        justify-content: left;
+        margin-left: 2rem;
+        margin-top: .6rem;
+
         ul {
             display: flex;
-            width: 60%;
+            width: 20%;
             justify-content: left;
 
             li {
                 margin: 2px;
                 border: 1px solid #17252A;
-                padding: 3px;
-                height: 16px;
-                width: 14px;
+                width: 10%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -268,12 +273,16 @@
                     font-size: 16px;
                     font-weight: bold;
                     text-align: center;
-                    margin-top: 1px;
+                    padding: 2%;
+                    width: 100%;
+                    cursor: default;
+                    user-select: none;
                 }
+            }
 
-                a:focus {
-                    color: #7f9599;
-                }
+            .selected {
+                background-color: #17252A;
+                color: white;
             }
         }
     }

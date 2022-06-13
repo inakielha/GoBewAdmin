@@ -65,6 +65,11 @@
                 text-align: center;
             }
 
+            .orders--table__column--totPrice {
+                width: auto;
+                text-align: center;
+            }
+
             .orders--table__column--send {
                 width: auto;
                 text-align: center;
@@ -123,6 +128,11 @@
                     outline: none;
                 }
 
+                .field--totalPrice {
+                    text-align: center;
+                    outline: none;
+                }
+
                 .field--buttonDetail {
                     text-align: center;
                     outline: none;
@@ -137,7 +147,7 @@
                     text-align: center;
                     outline: none;
                 }
-                
+
                 .field--order__cancel {
                     text-align: center;
                     outline: none;
@@ -159,7 +169,7 @@
 
         p {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 16px;
             margin-top: 2rem;
             margin-left: 2rem;
         }
@@ -187,6 +197,43 @@
             //justify-content: space-around;
             .orders--details__final__price {
                 font-weight: bold;
+            }
+        }
+    }
+
+    .orders--pagination__container {
+        display: flex;
+        width: 100%;
+        justify-content: left;
+        margin-left: 2rem;
+        margin-top: .6rem ;
+        ul{
+            display: flex;
+            width: 60%;
+            justify-content: left;
+            li{
+                margin: 2px;
+                border: 1px solid #17252A;
+                padding: 3px;
+                height: 16px;
+                width: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #b1d8de;
+                color: #17252A;
+
+                a{
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 1px;
+                }
+
+                a:focus {
+                    color: #7f9599;
+                }
             }
         }
     }

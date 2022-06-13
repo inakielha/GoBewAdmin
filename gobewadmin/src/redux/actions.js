@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const { REACT_APP_APIURL, REACT_APP_CLOUDINARY   } = process.env;
+const { REACT_APP_APIURL, REACT_APP_CLOUDINARY } = process.env;
 
 export const GET_PRODUCTS = createAsyncThunk(
     'GET_PRODUCTS', async () => {
@@ -144,33 +144,12 @@ export const PUT_USERS = createAsyncThunk(
 )
 
 export const PUT_PRODUCT = createAsyncThunk(
-    'PUT_PRODUCT', async ({ values, img, primaryPic }) => {
+    'PUT_PRODUCT', async (values) => {
+        console.log(values);
+        console.log(`${REACT_APP_APIURL}product`);
         const response = await axios.put(`${REACT_APP_APIURL}product`, values)
         const body = await response.data
-        //!IMG
-        const formData = new FormData()
-        img.forEach(ele => {
-            formData.append("file", ele)
-            formData.append("upload_preset", "eh329sqm")
-            axios.post(REACT_APP_CLOUDINARY, formData)
-                .then((res) => {
-                    let imgLink = res.data.secure_url.slice(47)
-                    let fotoPrincipal = false
-                    let imgName = res.data.original_filename + "." + res.data.format;
-                    if (imgName === primaryPic) {
-                        fotoPrincipal = true
-                    }
-                    console.log(1, res.data)
-                    console.log()
-                    axios.post(`${REACT_APP_APIURL}images/new`, {
-                        productId: body.productId,
-                        // productId: productId,
-                        imageName: imgLink,
-                        imageAlt: body.productName,
-                        imageIsPrimary: fotoPrincipal,
-                    });
-                })
-        });
+
         return body
     }
 )
@@ -185,6 +164,7 @@ export const PUT_USER_ACTIVE = createAsyncThunk(
 
 export const PUT_PRODUCT_ACTIVE = createAsyncThunk(
     'PUT_PRODUCT_ACTIVE', async (values) => {
+        console.log(values);
         const response = await axios.put(`${REACT_APP_APIURL}product/isActive`, values)
         const body = await response.data
         return body

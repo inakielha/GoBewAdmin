@@ -24,7 +24,7 @@ export default function CreationImage({ setImg, setPrimaryPic, img }) {
             </div>
             <div className="img-container">
                 {
-                    img.map(pic => {
+                    img?.map(pic => {
                         let imageSources
                         if (pic instanceof File) {
                             imageSources = URL.createObjectURL(pic)

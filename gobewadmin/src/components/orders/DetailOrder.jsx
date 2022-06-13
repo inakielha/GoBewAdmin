@@ -13,18 +13,18 @@ export default function DetailOrder({ orderId, setOrdId }) {
     function renderOptions(statusInfo) {
         switch (statusInfo) {
             case 'Pago aceptado':
-                return <form onChange={(e) => setStatus(e.target.name)} onSubmit={submitButton}>
-                    <input id="id" type="radio" name="statusSend" value={res.orderId} />Enviada
-                    <input id="id" type="radio" name="statusCancel" value={res.orderId} />Cancelada
+                return <form onChange={(e) => setStatus(e.target.id)} onSubmit={submitButton}>
+                    <input id="statusSend" type="radio" name="status" value={res.orderId} />Enviada&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="statusCancel" type="radio" name="status" value={res.orderId} />Cancelada
                     <button type="submit" >OK</button>
                 </form>
             case 'Enviada':
                 return <form onSubmit={submitButton}>
-                    <input id="id" type="radio" name="statusRecieved" value={res.orderId} onClick={(e) => setStatus(e.target.name)} defaultChecked={status === 'statusRecieved'} />Recibida
+                    <input id="statusRecieved" type="radio" name="status" value={res.orderId} onClick={(e) => setStatus(e.target.id)} checked={status === 'statusRecieved'} />Recibida
                     <button type="submit" >OK</button>
                 </form>
             default:
-                return <span>No se puede cambiar el estado</span>
+                return <p>No se puede cambiar el estado</p>
         }
     }
 
@@ -60,7 +60,6 @@ export default function DetailOrder({ orderId, setOrdId }) {
     }, [dispatch, orderId])
 
     const res = order.obj
-    console.log(res)
 
     function handleClickSend(status) {
         setOrdId(status)
@@ -110,9 +109,11 @@ export default function DetailOrder({ orderId, setOrdId }) {
                     </div>
                     <div>
                         <p>Estado actual: {statusName(res.orderState)}</p>
-                        <div>
-                            <p>Cambiar el estado a: </p> 
-                            {renderOptions(statusInfo)}
+                        <div className="orders--detail__status">
+                            <p>Cambiar el estado a: </p>
+                            <div className="orders--detail__status__info">
+                                {renderOptions(statusInfo)}
+                            </div>
                         </div>
 
                     </div>

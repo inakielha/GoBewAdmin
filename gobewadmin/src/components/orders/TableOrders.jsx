@@ -4,14 +4,20 @@
 // import { useState } from 'react'
 // import { useEffect } from 'react'
 
-export default function TableOrders({ orderId, userFirstName, userLastName, date, setOrdId, totalPrice, statusOrder }) {
+export default function TableOrders({ orderId, userFirstName, userLastName, dates, setOrdId, totalPrice, statusOrder }) {
 
     function handleClickDetail(event) {
         setOrdId(event.target.value)
     }
+    var date = new Date(dates);
+    const formatDate = (date) => {
+        let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+        return formatted_date;
+    }
+
     return (
         <tr>
-            <td className='field--date'>{date?.slice(0, 10)}</td>
+            <td className='field--date'>{formatDate(date)}</td>
             <td className='field--idOrder'>{orderId}</td>
             <td className='field--userFirstName'>{userFirstName}</td>
             <td className='field--userLastName'>{userLastName}</td>

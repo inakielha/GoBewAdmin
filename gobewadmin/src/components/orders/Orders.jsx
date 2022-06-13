@@ -11,7 +11,6 @@ export default function Orders() {
 
     let dispatch = useDispatch();
     let orders = useSelector((state) => state.adminReducer.orders)
-    console.log(orders)
 
     const [ordId, setOrdId] = useState('');
     const [valueOrder, setValueOrder] = useState('ASC')
@@ -39,18 +38,29 @@ export default function Orders() {
     }, [orders, itemOffset, itemPerPage]);
 
     function handleDateOrder() {
+        let undefDate = []
+        let ordersFull = []
         let ord = [...orders]
+        ord.forEach(elem => {
+            if(elem.orderAceptDate === null) undefDate.push(elem)
+            else ordersFull.push(elem)
+        })
         if (valueOrder === 'ASC') {
-            let ordersSort = ord.sort((a, b) => {
-                console.log(b.orderAceptDate)
-                return Date(b.orderAceptDate) - Date(a.orderAceptDate)
+            let ordersSort = ordersFull.sort((a, b) => {
+                return new Date(b.orderAceptDate).getTime() - new Date(a.orderAceptDate).getTime()
+            })
+            undefDate.forEach(elem => {
+                ordersSort.push(elem)
             })
             dispatch(ORDER_ORDERS(ordersSort))
             setValueOrder('DESC')
         }
         if (valueOrder === 'DESC') {
-            let ordersSort = ord.sort((a, b) => {
-                return Date(a.orderAceptDate) - Date(b.orderAceptDate)
+            let ordersSort = ordersFull.sort((a, b) => {
+                return new Date(a.orderAceptDate).getTime() - new Date(b.orderAceptDate).getTime()
+            })
+            undefDate.forEach(elem => {
+                ordersSort.push(elem)
             })
             dispatch(ORDER_ORDERS(ordersSort))
             setValueOrder('ASC')
@@ -62,7 +72,7 @@ export default function Orders() {
             <div className="orders--title__content">
                 <h1>Ordenes de compra</h1>
             </div>
-            <div>
+            <div className="orders--filter__content">
                 <button onClick={handleDateOrder} value={valueOrder}>
                     {valueOrder === 'ASC' ? 'Fecha 🡅' : 'Fecha 🡇'}
                 </button>
@@ -82,7 +92,7 @@ export default function Orders() {
                     {
                         currentOrders?.map(elem => {
                             return (
-                                <TableOrders key={elem._id} className='orders--table__rows' setOrdId={setOrdId} orderId={elem._id} userFirstName={elem.user[0]?.userFirstName} userLastName={elem.user[0]?.userLastName} date={elem.orderAceptDate ? elem.orderAceptDate : elem.orderCreationDate} totalPrice={elem.orderTotal} />
+                                <TableOrders key={elem._id} className='orders--table__rows' setOrdId={setOrdId} orderId={elem._id} userFirstName={elem.user[0]?.userFirstName} userLastName={elem.user[0]?.userLastName} dates={elem.orderAceptDate ? elem.orderAceptDate : elem.orderCreationDate} totalPrice={elem.orderTotal} />
                             )
                         })
                     }

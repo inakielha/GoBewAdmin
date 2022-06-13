@@ -28,6 +28,34 @@
         }
     }
 
+    .orders--filter__content {
+        width: 5rem;
+        height: 1rem;
+        padding: 1.2%;
+        margin-left: 2rem;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #b1d8de ;
+        border-radius: 8px;
+        background-color: #b1d8de;
+
+        button {
+            padding: 2px;
+            background-color: #82bac6;
+            border: none;
+            border-radius: 15px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            color: #17252A;
+            height: 30px;
+            width: 92px;
+        }
+    }
+
     .orders--table {
         width: 90%;
         border: 2px solid #17252a;
@@ -174,6 +202,15 @@
             margin-left: 2rem;
         }
 
+        .orders--detail__status {
+            display: flex;
+
+            .orders--detail__status__info {
+                display: flex;
+                margin-left: 1rem;
+            }
+        }
+
         .orders--details__cart {
             display: flex;
             margin-right: 2rem;
@@ -181,6 +218,7 @@
             .orders--details__cart__cant {
                 margin-left: 3rem;
             }
+
             .orders--details__cart__price {
                 margin-left: auto;
             }
@@ -206,12 +244,14 @@
         width: 100%;
         justify-content: left;
         margin-left: 2rem;
-        margin-top: .6rem ;
-        ul{
+        margin-top: .6rem;
+
+        ul {
             display: flex;
             width: 60%;
             justify-content: left;
-            li{
+
+            li {
                 margin: 2px;
                 border: 1px solid #17252A;
                 padding: 3px;
@@ -223,7 +263,7 @@
                 background-color: #b1d8de;
                 color: #17252A;
 
-                a{
+                a {
                     font-family: 'Poppins', sans-serif;
                     font-size: 16px;
                     font-weight: bold;

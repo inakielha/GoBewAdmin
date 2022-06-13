@@ -234,13 +234,45 @@ export const GET_ALL_ORDERS = createAsyncThunk(
 
 export const GET_ORDER_BY_ID = createAsyncThunk(
     'GET_ORDER_BY_ID', async (orderId) => {
-        const response = await fetch(`${REACT_APP_APIURL}payments//admin/order/byId/${orderId}`)
+        const response = await fetch(`${REACT_APP_APIURL}payments/admin/order/byId/${orderId}`)
         return await response.json()
     }
 )
+
+export const CANCEL_STATUS_ORDER = createAsyncThunk(
+    'CANCEL_STATUS_ORDER', async (orderId) => {
+        const response = await fetch(`${REACT_APP_APIURL}payments/cancelled?orderId=${orderId}`)
+        return await response.json()
+    }
+)
+
+export const SEND_STATUS_ORDER = createAsyncThunk(
+    'SEND_STATUS_ORDER', async (orderId) => {
+        const response = await fetch(`${REACT_APP_APIURL}payments/delivered?orderId=${orderId}`)
+        return await response.json()
+    }
+)
+
+export const RECIEVE_STATUS_ORDER = createAsyncThunk(
+    'RECIEVE_STATUS_ORDER', async (orderId) => {
+        const response = await fetch(`${REACT_APP_APIURL}payments/arrived?orderId=${orderId}`)
+        return await response.json()
+    }
+)
+
+export const ORDER_ORDERS = createAction(
+    'ORDER_ORDERS', (ordersOrder) => {
+        return {
+            payload: ordersOrder
+        }
+    }
+)
+
 export const PRODUCT_RESET = createAction(
     "PRODUCT_RESET", () => {
         return {
             payload: []
         }
-    })
+    }
+)
+

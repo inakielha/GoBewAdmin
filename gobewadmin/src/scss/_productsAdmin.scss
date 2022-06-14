@@ -124,6 +124,15 @@
                         outline: none;
                     }
                 }
+                .low--stock{
+                    input{
+                        text-align: center;
+                        outline: none;
+                        color: red;
+                        font-weight: bold;
+                        font-size: 18px;
+                    }
+                }
                 .field--price{
                     input{
                         text-align: center;

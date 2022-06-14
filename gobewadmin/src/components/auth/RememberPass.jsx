@@ -2,35 +2,30 @@ import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
 import axios from "axios";
-import { useState } from 'react';
 import '../../scss/_loginAdmin.scss'
+import { toast } from 'react-toastify'
 const { REACT_APP_APIURL } = process.env;
 export const RememberPass = () => {
   
-  const [ok, setOk] = useState('')
+
 
   const sendMailResetPass = async (values) => {
     try {
-      // console.log(`${REACT_APP_APIURL}users/admin/resetPass`)
-      // console.log(values)
       const response = await axios.post(`${REACT_APP_APIURL}users/admin/resetPass`, values);
-      // console.log(response)
       if(response.data.ok){
-        setOk(response.data.msg)
+        toast.success(response.data.msg)
       } else {
-        setOk(response.data.msg)
+        toast.error(response.data.msg)
       }
 
     } catch (error) {
-      // console.log(error)
-        setOk('Ha ocurrido un error, por favor intente nuevamente.')
+        toast.error('Ha ocurrido un error, por favor intente nuevamente.')
     }
   }
 
   return (
 
   <div className='login--content__container'>
-    <span>{ ok }</span>
     <Formik
       initialValues={{ userEmail:'' }}
       validationSchema={Yup.object({
@@ -39,7 +34,7 @@ export const RememberPass = () => {
           .required('Debes ingresar tu email para reestablecer la contraseña')
         })
     }
-    onSubmit={(values, actions) => {
+    onSubmit={(values) => {
       
       sendMailResetPass(values)
       

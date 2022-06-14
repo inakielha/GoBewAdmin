@@ -1,4 +1,4 @@
-const { REACT_APP_APIURL, REACT_APP_CLOUDINARY_RES } = process.env;
+const {  REACT_APP_CLOUDINARY_RES } = process.env;
 
 // import { useParams } from "react-router-dom";
 
@@ -17,8 +17,8 @@ export default function CreationImage({ setImg, setPrimaryPic, img }) {
         <>
             <div className="img-label">
                 <label>Imagen: </label>
-                <label htmlFor="img-btn" className="img-btn-label">Selecciona las imágenes</label>
-                <input className="img-btn-input" type="file" id="img-btn" onChange={(e) => {
+                <label htmlFor="img-btn" className={"img-btn-label"}>Selecciona las imágenes</label>
+                <input disabled={img.length==3} className="img-btn-input" type="file" id="img-btn" onChange={(e) => {
                     setImg([...img, e.target.files[0]]);
                 }} />
             </div>
@@ -31,7 +31,6 @@ export default function CreationImage({ setImg, setPrimaryPic, img }) {
                         } else {
                             let truncatedName = pic.imageName.slice(1, pic.imageName.length)
                             imageSources = `${REACT_APP_CLOUDINARY_RES}${truncatedName}`
-
                         }
                         return <div className="img-try">
                             <button type="button" key={pic?.name} name={pic?.name} onClick={(e) => handleDeleteImg(e)}>X</button>

@@ -35,6 +35,7 @@ export default function Nav() {
                 <p className='nav--links'><Link to='/user'>Usuarios</Link></p>
                 <p className='nav--links'><Link to='/orders'>Orders</Link></p>
                 <p className='nav--links'><Link to='/faq'>FAQ</Link></p>
+                <p className='nav--links'><Link to='/company'>Contacto</Link></p>
             </div>
             <div className='nav--btn__container'>
                 {

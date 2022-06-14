@@ -15,25 +15,9 @@ export const ChangePass = () => {
   })
 
   const navigate = useNavigate();
-//   const checkPass = async () => {
-//     try {
-//       const response = await axios.get(`${REACT_APP_APIURL}users/checkResetPass/${userId}/${hash}/${userEmail}`);
-      
-//       if(response.data.ok){
-//         setOk({ok:true, msg:response.data.msg})
-//       } else {
-//         setOk({ok: false, msg:response.data.msg})
-//       }
-
-//     } catch (error) {
-      
-//       setOk({ok: false, msg:'Ha ocurrido un error, por favor intente nuevamente.'})
-        
-//     }
-//   }
-
   const cbCheckPass = useCallback( async () => {
-    try {console.log('entro')
+    try {
+      
         const response = await axios.get(`${REACT_APP_APIURL}users/checkResetPass/${userId}/${hash}/${userEmail}`);
         
         if(response.data.ok){

@@ -11,10 +11,10 @@ export const RememberPass = () => {
 
   const sendMailResetPass = async (values) => {
     try {
-      console.log(`${REACT_APP_APIURL}users/admin/resetPass`)
-      console.log(values)
+      // console.log(`${REACT_APP_APIURL}users/admin/resetPass`)
+      // console.log(values)
       const response = await axios.post(`${REACT_APP_APIURL}users/admin/resetPass`, values);
-      console.log(response)
+      // console.log(response)
       if(response.data.ok){
         setOk(response.data.msg)
       } else {
@@ -22,7 +22,7 @@ export const RememberPass = () => {
       }
 
     } catch (error) {
-      console.log(error)
+      // console.log(error)
         setOk('Ha ocurrido un error, por favor intente nuevamente.')
     }
   }

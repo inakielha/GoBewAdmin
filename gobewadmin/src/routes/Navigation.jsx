@@ -19,6 +19,7 @@ import Orders from '../components/orders/Orders';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ChangePass } from '../components/auth/ChangePass';
+import { CompanyForm } from '../components/company/CompanyForm';
 export const Navigation = () => {
   return (
     <Router>
@@ -74,6 +75,11 @@ export const Navigation = () => {
         <Route exact path='/user/new' element={
           <PrivateRoutes>
             <UserForm />
+          </PrivateRoutes>
+        }/>
+        <Route exact path='/company' element={
+          <PrivateRoutes>
+            <CompanyForm />
           </PrivateRoutes>
         }/>
         <Route path='/login' element={<Login />} />

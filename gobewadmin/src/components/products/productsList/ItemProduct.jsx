@@ -6,11 +6,11 @@ import '../../../scss/_productsAdmin.scss'
 import SearchBar from './SearchBar';
 import TableRow from './TableRow';
 import ReactPaginate from 'react-paginate';
-import {TiArrowRightThick , TiArrowLeftThick} from 'react-icons/ti'
+import { TiArrowRightThick, TiArrowLeftThick } from 'react-icons/ti'
 
 export default function ItemProduct() {
 
-    const  products  = useSelector((store) => store.adminReducer.products);
+    const { products } = useSelector((store) => store.adminReducer);
     const dispatch = useDispatch();
 
     const [valueButtonPrice, setValueButtonPrice] = useState('ASC')
@@ -31,7 +31,7 @@ export default function ItemProduct() {
         const endOffset = itemOffset + itemPerPage;
         setCurrentProducts(products.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(products.length / itemPerPage));
-    } , [products, itemOffset, itemPerPage]);
+    }, [products, itemOffset, itemPerPage]);
 
 
 
@@ -41,7 +41,7 @@ export default function ItemProduct() {
         setItemOffset(offset);
     }
 
-    
+
     //! ORDERS
 
 
@@ -159,11 +159,11 @@ export default function ItemProduct() {
             <div className='products--pagination__container'>
                 <ReactPaginate
                     breakLabel="..."
-                    nextLabel= {<TiArrowRightThick/>}
+                    nextLabel={<TiArrowRightThick />}
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
-                    previousLabel={<TiArrowLeftThick/>}
+                    previousLabel={<TiArrowLeftThick />}
                     renderOnZeroPageCount={null}
                 />
             </div>

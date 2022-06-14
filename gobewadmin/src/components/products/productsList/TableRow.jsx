@@ -11,6 +11,7 @@ export default function TableRow({ productName, productPrice, productStock, prod
     // console.log(productCategories);
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(false)
+    const [lowStock, setLowStock] = useState(false)
     const [productChange, setProductChange] = useState({
         productId: _id,
         productName,
@@ -54,13 +55,19 @@ export default function TableRow({ productName, productPrice, productStock, prod
     }, [productName, productPrice, productStock, _id, productIsActive, productCategories])
 
 
+    useEffect(() => {
+        if (productStock > 10) {
+            setLowStock(true)
+        }
+    }, [productStock])
+
     return (
         <tr>
             {
                 <td><input onChange={handleChange} type="text" value={productChange.productName} name="productName" disabled={!edit} /></td>
             }
             {
-                <td className='field--stock'><input onChange={handleChange} type="text" value={productChange.productStock} name="productStock" disabled={!edit} /></td>
+                <td className={lowStock ? "field--stock" : "low--stock"}><input onChange={handleChange} type="text" value={lowStock ? productChange.productStock : "⚠" + productChange.productStock} name="productStock" disabled={!edit} /></td>
             }
             {
                 <td className='field--price'><input onChange={handleChange} type="text" value={productChange.productPrice} name="productPrice" disabled={!edit} /></td>

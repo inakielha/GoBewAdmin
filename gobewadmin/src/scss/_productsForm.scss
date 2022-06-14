@@ -24,7 +24,11 @@
             align-items: center;
             justify-content: space-around;
         }
-
+        .form-newProduct__inputs{
+            .errorSpan{
+                font-size: 16px;
+            }
+        }
         .form-newProduct__continue {
 
             .form-newProduct__categories {
@@ -37,8 +41,8 @@
 
                 &>select {
                     margin: 2%;
-                    width: 40%;
-                    height: 4vh;
+                    width: 55%;
+                    height: 5vh;
                     background-color: #82bac6;
                     border: none;
                     font-size: 1rem;
@@ -130,11 +134,16 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
-
+                    margin-left: 3%;
+                    margin-top: 8%;
                     &>.img-try {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        border: 1px solid black;
+                        border-radius: 16px;
+                        padding: 1%;
+                        margin: 8px;
 
                         &>button {
                             align-self: flex-end;
@@ -172,6 +181,7 @@
             &>label {
                 margin: 1%;
                 text-transform: capitalize;
+                font-size: 18px;
             }
 
             .form-newProduct__checkboxs {

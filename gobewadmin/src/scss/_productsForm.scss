@@ -1,17 +1,20 @@
 .form--newProduct__container {
     display: flex;
     justify-content: space-around;
-    width: 100%;
-    min-height: 80vh;
+    width: 97%;
     background-color: white;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 16px;
+    margin: 0.5%;
+    padding: 0.5%;
 
     .form-newProduct {
         width: 80%;
         display: flex;
-        height: 100%;
         justify-content: space-around;
         align-items: center;
+        flex-direction: column;
 
         .form-newProduct__inputs,
         .form-newProduct__continue {
@@ -21,9 +24,12 @@
             align-items: center;
             justify-content: space-around;
         }
-
+        .form-newProduct__inputs{
+            .errorSpan{
+                font-size: 16px;
+            }
+        }
         .form-newProduct__continue {
-            min-height: 80vh;
 
             .form-newProduct__categories {
                 display: flex;
@@ -31,12 +37,12 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 width: 80%;
-                height: 40vh;
+                height: 20vh;
 
                 &>select {
                     margin: 2%;
-                    width: 40%;
-                    height: 4vh;
+                    width: 55%;
+                    height: 5vh;
                     background-color: #82bac6;
                     border: none;
                     font-size: 1rem;
@@ -64,29 +70,7 @@
                 }
             }
 
-            .form-newProduct__btn {
-                align-self: flex-end;
-                width: 40%;
-                // margin: 2%;
-                padding: 2%;
 
-                &>button {
-                    height: 5vh;
-                    border: 1px solid black;
-                    padding: 1%;
-                    border-radius: 8px;
-                    width: 100%;
-                    text-align: center;
-                    background-color: #82bac6;
-                    border: none;
-                    font-size: 1rem;
-                    font-family: "Poppins", sans-serif;
-                    color: #17252A;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
 
             .form-newProduct__images {
                 display: flex;
@@ -150,11 +134,16 @@
                     display: flex;
                     align-items: center;
                     justify-content: flex-start;
-
+                    margin-left: 3%;
+                    margin-top: 8%;
                     &>.img-try {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        border: 1px solid black;
+                        border-radius: 16px;
+                        padding: 1%;
+                        margin: 8px;
 
                         &>button {
                             align-self: flex-end;
@@ -192,6 +181,7 @@
             &>label {
                 margin: 1%;
                 text-transform: capitalize;
+                font-size: 18px;
             }
 
             .form-newProduct__checkboxs {
@@ -230,6 +220,28 @@
 
             }
 
+        }
+
+        .form-newProduct__btn {
+            width: 40%;
+            // margin: 2%;
+
+            &>button {
+                height: 5vh;
+                border: 1px solid black;
+                padding: 1%;
+                border-radius: 8px;
+                width: 100%;
+                text-align: center;
+                background-color: #82bac6;
+                border: none;
+                font-size: 1rem;
+                font-family: "Poppins", sans-serif;
+                color: #17252A;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         }
     }
 

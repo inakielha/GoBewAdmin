@@ -124,6 +124,15 @@
                         outline: none;
                     }
                 }
+                .low--stock{
+                    input{
+                        text-align: center;
+                        outline: none;
+                        color: red;
+                        font-weight: bold;
+                        font-size: 18px;
+                    }
+                }
                 .field--price{
                     input{
                         text-align: center;
@@ -214,14 +223,14 @@
         margin-top: .6rem ;
         ul{
             display: flex;
-            width: 60%;
+            width: 20%;
             justify-content: left;
             li{
                 margin: 2px;
                 border: 1px solid #17252A;
-                padding: 3px;
-                height: 16px;
-                width: 14px;
+                // padding: 3px;
+                // height: 16px;
+                width: 10%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -232,8 +241,15 @@
                     font-size: 16px;
                     font-weight: bold;
                     text-align: center;
-                    margin-top: 1px;
+                    padding: 2%;
+                    width: 100%;
+                    cursor: default;
+                    user-select: none;
                 }
+            }
+            .selected{
+                background-color: #17252A;
+                color: white;
             }
         }
     }

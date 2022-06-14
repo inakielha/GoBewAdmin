@@ -38,7 +38,8 @@ export default function TableRow({ productName, productPrice, productStock, prod
             dispatch(PUT_PRODUCT(productChange))
             setReady(false)
             setEdit(false)
-            toast.success("Producto editado correctamente")
+          toast.success("Producto editado correctamente")
+
         } catch (error) {
             toast.error("Error al editar el producto")
         }
@@ -46,13 +47,13 @@ export default function TableRow({ productName, productPrice, productStock, prod
 
     const handleProductActive = (e) => {
         dispatch(PUT_PRODUCT_ACTIVE({ productId: productChange.productId, productIsActive: !productChange.productIsActive }))
-        setProductChange({ ...productChange, productIsActive: !productChange.productIsActive })
         dispatch(GET_PRODUCTS())
+        setProductChange({ ...productChange, productIsActive: !productChange.productIsActive })
     }
 
-    useEffect(() => {
-        setProductChange({ productName, productPrice, productStock, productIsActive, productId: _id,productCategories })
-    }, [productName, productPrice, productStock, _id, productIsActive, productCategories])
+    // useEffect(() => {
+    //     setProductChange({ productName, productPrice, productStock, productIsActive, productId: _id, productCategories })
+    // }, [productName, productPrice, productStock, _id, productIsActive, productCategories])
 
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export default function TableRow({ productName, productPrice, productStock, prod
                 <td><input onChange={handleChange} type="text" value={productChange.productName} name="productName" disabled={!edit} /></td>
             }
             {
-                <td className={lowStock ? "field--stock" : "low--stock"}><input onChange={handleChange} type="text" value={lowStock ? productChange.productStock : "⚠" + productChange.productStock} name="productStock" disabled={!edit} /></td>
+                <td className={lowStock ? "field--stock" : "low--stock"}> {<span>{!lowStock && "⚠"}</span>} <input onChange={handleChange} type="text" value={productChange.productStock} name="productStock" disabled={!edit} /></td>
             }
             {
                 <td className='field--price'><input onChange={handleChange} type="text" value={productChange.productPrice} name="productPrice" disabled={!edit} /></td>

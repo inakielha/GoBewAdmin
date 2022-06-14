@@ -63,6 +63,7 @@ export const adminReducer = createReducer(initialState, (builder) => {
         state.product = action.payload.productList
     })
     builder.addCase(PUT_PRODUCT_ACTIVE.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.product = action.payload.product
     })
     builder.addCase(GET_USERS_ACTIVE.fulfilled, (state, action) => {

@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 import '../../scss/_loginAdmin.scss'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify'
 const { REACT_APP_APIURL } = process.env;
 export const ChangePass = () => {
   const { userId, hash, userEmail } = useParams();
@@ -15,25 +16,9 @@ export const ChangePass = () => {
   })
 
   const navigate = useNavigate();
-//   const checkPass = async () => {
-//     try {
-//       const response = await axios.get(`${REACT_APP_APIURL}users/checkResetPass/${userId}/${hash}/${userEmail}`);
-      
-//       if(response.data.ok){
-//         setOk({ok:true, msg:response.data.msg})
-//       } else {
-//         setOk({ok: false, msg:response.data.msg})
-//       }
-
-//     } catch (error) {
-      
-//       setOk({ok: false, msg:'Ha ocurrido un error, por favor intente nuevamente.'})
-        
-//     }
-//   }
-
   const cbCheckPass = useCallback( async () => {
-    try {console.log('entro')
+    try {
+      
         const response = await axios.get(`${REACT_APP_APIURL}users/checkResetPass/${userId}/${hash}/${userEmail}`);
         
         if(response.data.ok){
@@ -66,7 +51,8 @@ export const ChangePass = () => {
                 sessionStorage.setItem('userId', data.userId);
                 sessionStorage.setItem('userIsAdmin', data.userIsAdmin);
                 sessionStorage.setItem('userIsSuperAdmin', data.userIsSuperAdmin);
-                alert('La password fue modificada')
+                // alert('La password fue modificada')
+                toast.success('La password fue modificada')
                 return navigate('/', {replace: true})
             }
             else {

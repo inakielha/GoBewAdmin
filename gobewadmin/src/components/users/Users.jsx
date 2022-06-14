@@ -77,6 +77,11 @@ export default function Users() {
         setItemOffset(offset);
     }
 
+    //! SUPERADMIN CHECK
+
+    const userSuperAdmin = sessionStorage.getItem('userIsSuperAdmin');
+    console.log(userSuperAdmin);
+
     return (
         <section className='users--content__container'>
             <div className='users--title__content'>
@@ -106,14 +111,15 @@ export default function Users() {
                         <th className='users--table__column-admin'>Admin</th>
                         <th className='users--table__column-google'>Google</th>
                         <th className='users--table__column-superAdmin'>SuperAdmin</th>
-                        <th className='users--table__column-actions'>Acciones</th>
+                        {/* <th className='users--table__column-actions'>Acciones</th> */}
+                        {userSuperAdmin === "true" && <th className='users--table__column-actions'>Acciones</th>}
                     </tr>
                 </thead>
                 <tbody className='users--table__body'>
                     {
                         currentUsers?.map(u =>{
                             return(
-                                <TableRow userFirstName={u.userFirstName} userLastName={u.userLastName} userEmail={u.userEmail} userIsActive={u.userIsActive} userIsAdmin={u.userIsAdmin} userIsGoogle={u.userIsGoogle} userIsSuperAdmin={u.userIsSuperAdmin} _id={u._id} key={u._id}/>
+                                <TableRow userFirstName={u.userFirstName} userLastName={u.userLastName} userEmail={u.userEmail} userIsActive={u.userIsActive} userIsAdmin={u.userIsAdmin} userIsGoogle={u.userIsGoogle} userIsSuperAdmin={u.userIsSuperAdmin} _id={u._id} key={u._id} userSuperAdmin={userSuperAdmin}/>
                             )
                         })
                     }

@@ -5,7 +5,7 @@ import { GET_PRODUCTS, PUT_PRODUCT, PUT_PRODUCT_ACTIVE } from '../../../redux/ac
 import { RiPencilFill } from 'react-icons/ri'
 import { MdDoNotDisturbOn } from 'react-icons/md'
 import { ImCheckboxChecked } from 'react-icons/im'
-
+import { toast } from 'react-toastify'
 
 export default function TableRow({ productName, productPrice, productStock, productIsActive, productCategories, _id }) {
     // console.log(productCategories);
@@ -38,11 +38,10 @@ export default function TableRow({ productName, productPrice, productStock, prod
             dispatch(PUT_PRODUCT(productChange))
             setReady(false)
             setEdit(false)
-            dispatch(GET_PRODUCTS())
+          toast.success("Producto editado correctamente")
 
-            alert("Producto editado correctamente")
         } catch (error) {
-            alert("El producto no se pudo editar, intentar nuevamente")
+            toast.error("Error al editar el producto")
         }
     }
 

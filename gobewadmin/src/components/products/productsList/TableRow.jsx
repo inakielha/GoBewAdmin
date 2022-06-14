@@ -5,7 +5,6 @@ import { GET_PRODUCTS, PUT_PRODUCT, PUT_PRODUCT_ACTIVE } from '../../../redux/ac
 import { RiPencilFill } from 'react-icons/ri'
 import { MdDoNotDisturbOn } from 'react-icons/md'
 import { ImCheckboxChecked } from 'react-icons/im'
-import {GoAlert} from 'react-icons/go'
 
 
 export default function TableRow({ productName, productPrice, productStock, productIsActive, productCategories, _id }) {

@@ -4,13 +4,11 @@ import { TextInput } from '../form/TextInput'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckBox from '../form/CheckBox'
-import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID, PRODUCT_RESET, PUT_PRODUCT } from '../../redux/actions'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID, PRODUCT_RESET, PUT_FULL_PRODUCT, } from '../../redux/actions'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../../scss/_productsForm.scss'
 import { toast } from 'react-toastify'
 import CreationImage from './createForm/CreationImage'
-import axios from "axios";
-const { REACT_APP_CLOUDINARY } = process.env
 
 export default function ProductForm() {
     const { categories, product } = useSelector((state) => state.adminReducer)
@@ -109,7 +107,8 @@ export default function ProductForm() {
                     try {
                         setCreated(true)
                         if (productId) {
-                            dispatch(PUT_PRODUCT({ values, img, primaryPic }))
+                            console.log(values)
+                            dispatch(PUT_FULL_PRODUCT({ values, img, primaryPic }))
                             // dispatch(GET_PRODUCT_BY_ID(productId))
                             setDisabledImg(false)
                         } else {

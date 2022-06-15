@@ -20,6 +20,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ChangePass } from '../components/auth/ChangePass';
 import { CompanyForm } from '../components/company/CompanyForm';
+import { CategoryForm } from '../components/categories/CategoryForm';
 export const Navigation = () => {
   return (
     <Router>
@@ -80,6 +81,11 @@ export const Navigation = () => {
         <Route exact path='/company' element={
           <PrivateRoutes>
             <CompanyForm />
+          </PrivateRoutes>
+        }/>
+        <Route exact path='/category' element={
+          <PrivateRoutes>
+            <CategoryForm />
           </PrivateRoutes>
         }/>
         <Route path='/login' element={<Login />} />

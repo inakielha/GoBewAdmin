@@ -32,6 +32,7 @@ export default function Nav() {
             <div className='nav--logo__container'>
                 <img src={Logo} alt='img not found' />
                 <p className='nav--links'><Link to='/'>Productos</Link></p>
+                <p className='nav--links'><Link to='/category'>Categorías</Link></p>
                 <p className='nav--links'><Link to='/user'>Usuarios</Link></p>
                 <p className='nav--links'><Link to='/orders'>Orders</Link></p>
                 <p className='nav--links'><Link to='/faq'>FAQ</Link></p>

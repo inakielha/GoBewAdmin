@@ -70,6 +70,7 @@ useEffect( () => {
 },[cbUserActivateCta])
 
 useEffect(() => {
+  localStorage.setItem('lastPath', '/')
   res?.ok === true  && navigate('/login?validate=ok', {replace: true})
   
 }, [res, navigate])

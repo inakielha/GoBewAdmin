@@ -99,7 +99,7 @@ try {
               <h1>Información de contacto</h1>
             </div>
             <div className='form--company__input--container'>
-              <TextInput label="Name" name='companyName' type='text'/>
+              <TextInput label="Nombre" name='companyName' type='text'/>
             </div>
             <div className='form--company__input--container'>
               <TextInput label="E-mail" name='companyEmail' type='email'/>

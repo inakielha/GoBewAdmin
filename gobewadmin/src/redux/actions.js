@@ -22,7 +22,6 @@ export const CREATE_PRODUCT = createAsyncThunk(
             const response = await axios.post(`${REACT_APP_APIURL}product/new`, values);
             const body = await response.data;
             //!IMG
-            console.log(body);
             const formData = new FormData()
             img.forEach(ele => {
                 formData.append("file", ele)
@@ -153,6 +152,72 @@ export const PUT_PRODUCT = createAsyncThunk(
         return body
     }
 )
+export const PUT_FULL_PRODUCT = createAsyncThunk(
+    'PUT_FULL_PRODUCT', async ({ values, img, primaryPic }) => {
+
+        try {
+            //!IMG
+            const formData = new FormData()
+            img.forEach(ele => {
+                if (ele instanceof File) {
+                    formData.append("file", ele)
+                    formData.append("upload_preset", "eh329sqm")
+                    axios.post(REACT_APP_CLOUDINARY, formData)
+                        .then((res) => {
+                            let imgLink = res.data.secure_url.slice(47)
+                            let fotoPrincipal = false
+                            let imgName = res.data.original_filename + "." + res.data.format;
+                            if (imgName === primaryPic) {
+                                fotoPrincipal = true
+                            }
+                            axios.post(`${REACT_APP_APIURL}images/new`, {
+                                productId: values.productId,
+                                imageName: imgLink,
+                                imageAlt: values.productName,
+                                imageIsPrimary: fotoPrincipal,
+                            });
+                        })
+                }
+            });
+
+
+            const response = await fetch(`${REACT_APP_APIURL}product`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    productId: values.productId,
+                    productName: values.productName,
+                    productDescription: values.productDescription,
+                    productPrice: values.productPrice,
+                    productCategories: values.productCategories,
+                    productStock: values.productStock,
+                    productIsHighLight: values.productIsHighLight
+                })
+            })
+            const body = await response.json()
+            console.log(body);
+
+            // ok: true
+            // product:
+            // productCategories: ['6290d7546655f25f6df9a9e6']
+            // productCreationDate: "2022-05-27T13:57:52.456Z"
+            // productDescription: "- Pantalla 5? - 1 GB de RAM - 32 GB de ROM. - Batería 2000 MAH - Quad-core 1.4GHz - Sistema Operativo Android. - Cámara Frontal 5 MP - Cámara Posterior 8MP"
+            // productId: "6290d8e06655f25f6df9a9f8"
+            // productIsActive: true
+            // productIsHighLight: true
+            // productName: "Celular ZTEA Ultima generacion"
+            // productPrice: 20021
+            // productStock: 21
+
+            return body
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
 
 export const PUT_USER_ACTIVE = createAsyncThunk(
     'PUT_USER_ACTIVE', async (values) => {

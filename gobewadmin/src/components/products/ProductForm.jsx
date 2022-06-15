@@ -4,13 +4,11 @@ import { TextInput } from '../form/TextInput'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckBox from '../form/CheckBox'
-import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID, PRODUCT_RESET, PUT_PRODUCT } from '../../redux/actions'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN, GET_PRODUCT_BY_ID, PRODUCT_RESET, PUT_FULL_PRODUCT, } from '../../redux/actions'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../../scss/_productsForm.scss'
 import { toast } from 'react-toastify'
 import CreationImage from './createForm/CreationImage'
-import axios from "axios";
-const { REACT_APP_CLOUDINARY } = process.env
 
 export default function ProductForm() {
     const { categories, product } = useSelector((state) => state.adminReducer)
@@ -24,7 +22,7 @@ export default function ProductForm() {
         productDescription: product[0] ? product[0]?.productDescription : '',
         productPrice: product[0] ? product[0]?.productPrice : '',
         productStock: product[0] ? product[0]?.productStock : '',
-        productHighlight: product[0] ? product[0]?.productHighlight : 0,
+        productIsHighLight: product[0] ? product[0]?.productIsHighLight : 0,
         productCategories: product[0] ? product[0]?.productCategories : [],
     }
     const [created, setCreated] = useState(false)
@@ -108,8 +106,10 @@ export default function ProductForm() {
                 onSubmit={(values) => {
                     try {
                         setCreated(true)
+                        console.log(1, values)
                         if (productId) {
-                            dispatch(PUT_PRODUCT({ values, img, primaryPic }))
+                            console.log(values)
+                            dispatch(PUT_FULL_PRODUCT({ values, img, primaryPic }))
                             // dispatch(GET_PRODUCT_BY_ID(productId))
                             setDisabledImg(false)
                         } else {
@@ -134,7 +134,7 @@ export default function ProductForm() {
                                     <TextInput key={4} label='Stock' name='productStock' type='number' placeholder='Stock' />
                                     <div className='form-newProduct__checkboxs'>
                                         <div className='checkbox-container'>
-                                            <CheckBox key={5} label='Destacado' type='checkbox' name='productHighlight' />
+                                            <CheckBox key={5} label='Destacado' type='checkbox' name='productIsHighLight' />
                                         </div>
                                         <div className='checkbox-container'>
                                             <CheckBox key={6} label='Activo' type='checkbox' name='productIsActive' />

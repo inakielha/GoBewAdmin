@@ -193,6 +193,7 @@ export const PUT_FULL_PRODUCT = createAsyncThunk(
                     productPrice: values.productPrice,
                     productCategories: values.productCategories,
                     productStock: values.productStock,
+                    productIsHighLight: values.productIsHighLight
                 })
             })
             const body = await response.json()
